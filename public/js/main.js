@@ -1,0 +1,364 @@
+(function () {
+  const cartKey = "proteinMarketCart";
+  const products = window.PRODUCTS || [];
+  const getCart = () => JSON.parse(localStorage.getItem(cartKey) || "[]");
+  const saveCart = (cart) => localStorage.setItem(cartKey, JSON.stringify(cart));
+
+  function updateCartCount() {
+    const total = getCart().reduce((sum, item) => sum + item.qty, 0);
+    document.querySelectorAll("[data-cart-count]").forEach((node) => {
+      node.textContent = total;
+    });
+  }
+
+  function showToast(message) {
+    const oldToast = document.querySelector(".toast");
+    if (oldToast) oldToast.remove();
+    const toast = document.createElement("div");
+    toast.className = "toast";
+    toast.textContent = message;
+    document.body.appendChild(toast);
+    window.setTimeout(() => toast.remove(), 1800);
+  }
+
+  function smartSuggestionsFor(product, limit = 4) {
+    if (!product) return products.slice(0, limit);
+    const rules = {
+      protein: ["bars-snacks", "meal-plan", "fresh-protein"],
+      "meal-plan": ["protein", "bars-snacks"],
+      "vegan-protein": ["vegan-protein"],
+      "bars-snacks": ["protein", "vegan-protein", "meal-plan"],
+      "fresh-protein": ["protein", "bars-snacks", "meal-plan"]
+    };
+    const categories = rules[product.category] || ["protein", "bars-snacks", "meal-plan"];
+    return products.filter((item) => item.id !== product.id && categories.includes(item.category)).slice(0, limit);
+  }
+
+  function productSuggestionCard(product) {
+    return `<article class="suggestion-card"><img src="${product.image}" alt="${product.name}" loading="lazy"><div><strong>${product.name}</strong><span>AED ${Number(product.price).toFixed(2)}</span></div><button type="button" data-add-to-cart="${product.id}">Add</button></article>`;
+  }
+
+  function showCartDrawer(addedProduct) {
+    const oldDrawer = document.querySelector(".mini-cart-drawer");
+    if (oldDrawer) oldDrawer.remove();
+    const drawer = document.createElement("aside");
+    drawer.className = "mini-cart-drawer";
+    drawer.innerHTML = `<button class="mini-cart-close" type="button" aria-label="Close cart suggestions">×</button><p class="eyebrow">Added to cart</p><h2>Complete your routine</h2><p>${addedProduct.name} was added. These pair well with it.</p><div class="mini-suggestions">${smartSuggestionsFor(addedProduct, 3).map(productSuggestionCard).join("")}</div><a class="btn btn--gold" href="/cart">View Cart</a>`;
+    document.body.appendChild(drawer);
+    drawer.querySelector(".mini-cart-close").addEventListener("click", () => drawer.remove());
+    drawer.querySelectorAll("[data-add-to-cart]").forEach((button) => {
+      button.addEventListener("click", (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        addToCart(button.dataset.addToCart, 1);
+      });
+    });
+  }
+
+  function addToCart(productId, qty) {
+    const product = products.find((item) => item.id === productId);
+    if (!product) return;
+    const cart = getCart();
+    const existing = cart.find((item) => item.id === productId);
+    if (existing) {
+      existing.qty += qty;
+    } else {
+      cart.push({ id: productId, qty });
+    }
+    saveCart(cart);
+    updateCartCount();
+    showToast(`${product.name} added to cart`);
+    showCartDrawer(product);
+    renderCart();
+  }
+
+  window.addProteinMarketProductToCart = addToCart;
+
+  function renderCart() {
+    const panel = document.querySelector("[data-cart-panel]");
+    if (!panel) return;
+    const cart = getCart();
+    if (!cart.length) {
+      panel.innerHTML = '<h2>Your cart is empty.</h2><a class="btn btn--gold" href="/shop">Back to Shop</a>';
+      return;
+    }
+    let total = 0;
+    const rows = cart.map((item) => {
+      const product = products.find((entry) => entry.id === item.id);
+      if (!product) return "";
+      total += product.price * item.qty;
+      return `<div class="cart-row"><img src="${product.image}" alt="${product.name}"><div><strong>${product.name}</strong><br><span>Qty ${item.qty}</span></div><strong>AED ${(product.price * item.qty).toFixed(2)}</strong></div>`;
+    }).join("");
+    const delivery = total > 250 ? 0 : 15;
+    const grandTotal = total + delivery;
+    panel.innerHTML = `${rows}<div class="cart-totals"><div><span>Subtotal</span><strong>AED ${total.toFixed(2)}</strong></div><div><span>Delivery</span><strong>${delivery ? `AED ${delivery.toFixed(2)}` : "Free"}</strong></div><div class="total"><span>Total</span><strong>AED ${grandTotal.toFixed(2)}</strong></div></div><a class="btn btn--gold" href="/checkout">Proceed to Checkout</a>`;
+  }
+
+  function cartTotals(cart) {
+    const subtotal = cart.reduce((sum, item) => {
+      const product = products.find((entry) => entry.id === item.id);
+      return product ? sum + Number(product.price) * item.qty : sum;
+    }, 0);
+    const delivery = subtotal > 250 || subtotal === 0 ? 0 : 15;
+    return { subtotal, delivery, total: subtotal + delivery };
+  }
+
+  function renderCheckoutSummary() {
+    const target = document.querySelector("[data-checkout-summary]");
+    if (!target) return;
+    const cart = getCart();
+    if (!cart.length) {
+      target.innerHTML = '<p>Your cart is empty.</p><a class="btn btn--gold" href="/shop">Back to Shop</a>';
+      return;
+    }
+    const rows = cart.map((item) => {
+      const product = products.find((entry) => entry.id === item.id);
+      if (!product) return "";
+      return `<div class="summary-item"><img src="${product.image}" alt="${product.name}"><div><strong>${product.name}</strong><span>Qty ${item.qty}</span></div><strong>AED ${(Number(product.price) * item.qty).toFixed(2)}</strong></div>`;
+    }).join("");
+    const totals = cartTotals(cart);
+    target.innerHTML = `${rows}<div class="summary-line"><span>Subtotal</span><strong>AED ${totals.subtotal.toFixed(2)}</strong></div><div class="summary-line"><span>Delivery</span><strong>${totals.delivery ? `AED ${totals.delivery.toFixed(2)}` : "Free"}</strong></div><div class="summary-line total"><span>Total</span><strong>AED ${totals.total.toFixed(2)}</strong></div>`;
+  }
+
+  function setupCheckoutForm() {
+    const form = document.querySelector("[data-checkout-form]");
+    if (!form) return;
+    const errorBox = document.querySelector("[data-checkout-error]");
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      const cart = getCart();
+      if (!cart.length) {
+        errorBox.hidden = false;
+        errorBox.textContent = "Your cart is empty.";
+        return;
+      }
+      const formData = new FormData(form);
+      const submitButton = form.querySelector("button[type='submit']");
+      submitButton.disabled = true;
+      submitButton.textContent = "Starting Payment...";
+      errorBox.hidden = true;
+      try {
+        const response = await fetch("/api/create-payment-session", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            paymentMethod: formData.get("paymentMethod"),
+            customer: {
+              name: formData.get("name"),
+              email: formData.get("email"),
+              phone: formData.get("phone"),
+              address1: formData.get("address1"),
+              address2: formData.get("address2"),
+              city: formData.get("city"),
+              emirate: formData.get("emirate"),
+              notes: formData.get("notes")
+            },
+            cart: cart.map((item) => ({ productId: item.id, quantity: item.qty }))
+          })
+        });
+        const payload = await response.json();
+        if (!response.ok) throw new Error(payload.error || "Payment could not be started.");
+        window.location.href = payload.redirectUrl;
+      } catch (error) {
+        errorBox.hidden = false;
+        errorBox.textContent = error.message;
+        submitButton.disabled = false;
+        submitButton.textContent = "Pay Securely";
+      }
+    });
+  }
+
+  function renderCartSuggestions() {
+    const target = document.querySelector("[data-cart-suggestions]");
+    if (!target) return;
+    const cart = getCart();
+    const first = products.find((product) => product.id === cart[0]?.id);
+    const suggestions = smartSuggestionsFor(first, 4);
+    target.innerHTML = suggestions.map((product) => {
+      return `<article class="product-card" data-product-card data-product-url="/product/${product.slug}"><a href="/product/${product.slug}"><img src="${product.image}" alt="${product.name}" loading="lazy"></a><span class="product-card__category">${product.category.replace("-", " ")}</span><h3><a href="/product/${product.slug}">${product.name}</a></h3><p class="product-card__description">${product.description}</p><p class="price"><strong>AED ${Number(product.price).toFixed(2)}</strong></p><button class="btn btn--small btn--gold" data-add-to-cart="${product.id}">Add to Cart</button></article>`;
+    }).join("");
+    target.querySelectorAll("[data-add-to-cart]").forEach((button) => {
+      button.addEventListener("click", (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        addToCart(button.dataset.addToCart, 1);
+      });
+    });
+    target.querySelectorAll("[data-product-card]").forEach((card) => {
+      card.addEventListener("click", (event) => {
+        if (event.target.closest("a, button")) return;
+        window.location.href = card.dataset.productUrl;
+      });
+    });
+  }
+
+  window.addEventListener("protein:add-stack", (event) => {
+    const ids = event.detail || [];
+    ids.forEach((id) => addToCart(id, 1));
+    showToast("Your protein stack was added to cart.");
+  });
+
+  document.querySelectorAll("[data-add-to-cart]").forEach((button) => {
+    button.addEventListener("click", (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+      const quantityInput = document.querySelector("[data-quantity]");
+      const qty = Math.max(1, Number(quantityInput ? quantityInput.value : 1) || 1);
+      addToCart(button.dataset.addToCart, qty);
+    });
+  });
+
+  document.querySelectorAll("[data-product-card]").forEach((card) => {
+    card.addEventListener("click", (event) => {
+      if (event.target.closest("a, button")) return;
+      window.location.href = card.dataset.productUrl;
+    });
+  });
+
+  function setupCollectionFilters() {
+    const collection = document.querySelector("[data-collection]");
+    if (!collection) return;
+
+    const sidebar = collection.querySelector("[data-filter-sidebar]");
+    const cards = Array.from(collection.querySelectorAll("[data-product-grid] [data-product-card]"));
+    const grid = collection.querySelector("[data-product-grid]");
+    const empty = collection.querySelector("[data-filter-empty]");
+    const resultCount = collection.querySelector("[data-result-count]");
+    const search = collection.querySelector("[data-product-search]");
+    const minInput = collection.querySelector("[data-price-min]");
+    const maxInput = collection.querySelector("[data-price-max]");
+    const sort = collection.querySelector("[data-sort-products]");
+    const filterOpen = collection.querySelector("[data-filter-open]");
+    const filterClose = collection.querySelector("[data-filter-close]");
+    const categorySearch = collection.querySelector("[data-category-search]");
+    const categoryRows = Array.from(collection.querySelectorAll("[data-filter-category]"));
+
+    const activeTags = new Set();
+    const activeBundles = new Set();
+
+    function cardHasAny(card, attr, activeValues) {
+      if (!activeValues.size) return true;
+      const values = (card.dataset[attr] || "").split("|").filter(Boolean);
+      return values.some((value) => activeValues.has(value));
+    }
+
+    function getCheckedValues(selector) {
+      return Array.from(collection.querySelectorAll(`${selector}:checked`)).map((item) => item.value);
+    }
+
+    function applyFilters() {
+      const query = (search?.value || "").trim().toLowerCase();
+      const min = Number(minInput?.value || 0);
+      const max = Number(maxInput?.value || Number.MAX_SAFE_INTEGER);
+      const badges = new Set(getCheckedValues("[data-filter-badge]"));
+      const stockValues = new Set(getCheckedValues("[data-filter-stock]"));
+      const rating = Number(collection.querySelector("[data-filter-rating]:checked")?.value || 0);
+      let visible = 0;
+
+      cards.forEach((card) => {
+        const price = Number(card.dataset.price || 0);
+        const cardRating = Number(card.dataset.rating || 0);
+        const matches =
+          (!query || card.dataset.name.includes(query)) &&
+          price >= min &&
+          price <= max &&
+          cardHasAny(card, "badges", badges) &&
+          cardHasAny(card, "tags", activeTags) &&
+          (!activeBundles.size || activeBundles.has(card.dataset.bundle)) &&
+          (!stockValues.size || stockValues.has(card.dataset.stock)) &&
+          (!rating || cardRating >= rating);
+        card.hidden = !matches;
+        if (matches) visible += 1;
+      });
+
+      if (resultCount) {
+        resultCount.textContent = visible ? `Showing 1-${visible} of ${visible} products` : "Showing 0 of 0 products";
+      }
+      if (empty) empty.hidden = visible !== 0;
+      if (grid) grid.hidden = visible === 0;
+    }
+
+    function sortCards() {
+      if (!grid || !sort) return;
+      const value = sort.value;
+      const sorted = cards.slice().sort((a, b) => {
+        if (value === "price-asc") return Number(a.dataset.price) - Number(b.dataset.price);
+        if (value === "price-desc") return Number(b.dataset.price) - Number(a.dataset.price);
+        if (value === "rating") return Number(b.dataset.rating) - Number(a.dataset.rating);
+        return 0;
+      });
+      sorted.forEach((card) => grid.appendChild(card));
+    }
+
+    [search, minInput, maxInput].forEach((input) => input?.addEventListener("input", applyFilters));
+    collection.querySelectorAll("[data-filter-badge], [data-filter-stock], [data-filter-rating]").forEach((input) => {
+      input.addEventListener("change", applyFilters);
+    });
+    collection.querySelectorAll("[data-filter-tag]").forEach((button) => {
+      button.addEventListener("click", () => {
+        button.classList.toggle("is-active");
+        activeTags.has(button.dataset.filterTag) ? activeTags.delete(button.dataset.filterTag) : activeTags.add(button.dataset.filterTag);
+        applyFilters();
+      });
+    });
+    collection.querySelectorAll("[data-filter-bundle]").forEach((button) => {
+      button.addEventListener("click", () => {
+        button.classList.toggle("is-active");
+        activeBundles.has(button.dataset.filterBundle) ? activeBundles.delete(button.dataset.filterBundle) : activeBundles.add(button.dataset.filterBundle);
+        applyFilters();
+      });
+    });
+    sort?.addEventListener("change", () => {
+      sortCards();
+      applyFilters();
+    });
+    filterOpen?.addEventListener("click", () => sidebar?.classList.add("is-open"));
+    filterClose?.addEventListener("click", () => sidebar?.classList.remove("is-open"));
+    sidebar?.addEventListener("click", (event) => {
+      if (event.target === sidebar) sidebar.classList.remove("is-open");
+    });
+    categorySearch?.addEventListener("input", () => {
+      const query = categorySearch.value.trim().toLowerCase();
+      categoryRows.forEach((row) => {
+        row.hidden = query && !row.dataset.filterCategory.includes(query);
+      });
+    });
+
+    applyFilters();
+  }
+
+  const menuToggle = document.querySelector("[data-menu-toggle]");
+  const nav = document.querySelector("[data-nav]");
+  if (menuToggle && nav) {
+    menuToggle.addEventListener("click", () => nav.classList.toggle("is-open"));
+  }
+
+  const shopToggle = document.querySelector("[data-shop-toggle]");
+  const shopMenu = document.querySelector(".shop-menu");
+  if (shopToggle && shopMenu) {
+    shopToggle.addEventListener("click", (event) => {
+      if (window.matchMedia("(max-width: 1020px)").matches) {
+        event.preventDefault();
+        shopMenu.classList.toggle("is-open");
+      }
+    });
+  }
+
+  const searchOverlay = document.querySelector("[data-search-overlay]");
+  const searchOpen = document.querySelector("[data-search-open]");
+  const searchClose = document.querySelector("[data-search-close]");
+  if (searchOverlay && searchOpen && searchClose) {
+    searchOpen.addEventListener("click", () => searchOverlay.classList.add("is-open"));
+    searchClose.addEventListener("click", () => searchOverlay.classList.remove("is-open"));
+    searchOverlay.addEventListener("click", (event) => {
+      if (event.target === searchOverlay) searchOverlay.classList.remove("is-open");
+    });
+  }
+
+  updateCartCount();
+  renderCart();
+  renderCheckoutSummary();
+  renderCartSuggestions();
+  setupCollectionFilters();
+  setupCheckoutForm();
+})();

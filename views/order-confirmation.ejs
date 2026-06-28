@@ -1,0 +1,13 @@
+<%- include("partials/header", { pageTitle: order.id }) %>
+<section class="section checkout-section">
+  <div class="container payment-result">
+    <div class="checkout-card">
+      <h1>Order <%= order.id %></h1>
+      <p>Status: <strong><%= order.orderStatus %></strong></p>
+      <p>Payment: <strong><%= order.payment.status %></strong></p>
+      <div class="order-lines"><% order.items.forEach((item) => { %><div><span><%= item.name %> x <%= item.quantity %></span><strong>AED <%= money(item.lineTotal) %></strong></div><% }) %></div>
+      <div class="summary-line total"><span>Total</span><strong>AED <%= money(order.total) %></strong></div>
+    </div>
+  </div>
+</section>
+<%- include("partials/footer") %>

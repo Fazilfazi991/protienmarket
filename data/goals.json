@@ -1,0 +1,75 @@
+[
+  {
+    "slug": "lose-fat",
+    "name": "Lose Fat",
+    "matchGoal": "Lose Fat",
+    "title": "Lose Fat",
+    "description": "Lean protein, lower-sugar snacks, and structured meal plans for a lighter routine.",
+    "icon": "↓",
+    "tags": ["fat-loss", "low-sugar", "thermogenic", "clear-protein", "fit-diet"],
+    "categories": [],
+    "subcategories": ["thermogenic", "clear-protein", "fit-diet"],
+    "approach": "Prioritize lean protein at each meal, choose lower-sugar snacks, and keep meal planning simple enough to repeat."
+  },
+  {
+    "slug": "build-muscle",
+    "name": "Build Muscle",
+    "matchGoal": "Build Muscle",
+    "title": "Build Muscle",
+    "description": "Whey, mass gainers, fresh protein, and high-protein meals for strength and size.",
+    "icon": "↗",
+    "tags": ["muscle-gain", "whey", "mass-gainer", "high-protein", "post-workout"],
+    "categories": [],
+    "subcategories": ["whey-protein", "mass-gainers", "bars", "my-meal"],
+    "approach": "Build your day around enough total protein, recover well after training, and use convenient snacks to avoid missed meals."
+  },
+  {
+    "slug": "stay-fit",
+    "name": "Stay Fit",
+    "matchGoal": "Maintain Fitness",
+    "title": "Stay Fit",
+    "description": "Balanced daily protein, snacks, and meal support for consistency.",
+    "icon": "◎",
+    "tags": ["balanced", "daily-protein", "snack", "convenient"],
+    "categories": [],
+    "subcategories": ["whey-protein", "bars", "kcal", "milks"],
+    "approach": "Keep protein easy and consistent: a daily shake, a smart snack, and balanced meals you can repeat."
+  },
+  {
+    "slug": "vegan-lifestyle",
+    "name": "Vegan Lifestyle",
+    "matchGoal": "Vegan Lifestyle",
+    "title": "Vegan Lifestyle",
+    "description": "Plant-powered powders, snacks, and meal plans for vegan protein goals.",
+    "icon": "◇",
+    "tags": ["vegan", "plant-power"],
+    "categories": ["vegan-protein"],
+    "subcategories": [],
+    "diet": "Vegan",
+    "approach": "Combine plant protein powders with vegan snacks and meal plans to make daily protein intake simpler."
+  },
+  {
+    "slug": "busy-professional",
+    "name": "Busy Professional",
+    "matchGoal": "Busy Professional",
+    "title": "Busy Professional",
+    "description": "Ready meals, snacks, and convenient protein options for packed schedules.",
+    "icon": "▣",
+    "tags": ["ready-meal", "snack", "convenient"],
+    "categories": ["meal-plan"],
+    "subcategories": ["bars", "chips", "vegan-protein-snacks"],
+    "approach": "Use prepared meals and portable snacks so workdays do not interrupt your nutrition routine."
+  },
+  {
+    "slug": "athlete-recovery",
+    "name": "Athlete Recovery",
+    "matchGoal": "Athletic Performance",
+    "title": "Athlete Recovery",
+    "description": "Recovery-focused whey, fresh proteins, and post-workout nutrition.",
+    "icon": "↻",
+    "tags": ["recovery", "fresh-protein", "whey", "post-workout", "performance"],
+    "categories": [],
+    "subcategories": ["whey-protein", "fish", "chicken", "thermogenic"],
+    "approach": "Recover with high-quality protein after training, keep fresh proteins ready, and support performance with consistent meals."
+  }
+]

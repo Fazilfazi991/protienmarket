@@ -1,0 +1,30 @@
+<%- include("partials/header", { pageTitle: "Build Your Protein Stack" }) %>
+<section class="mvp-hero">
+  <div class="container mvp-hero__inner">
+    <p class="eyebrow">Bundle builder</p>
+    <h1>Build Your Protein Stack</h1>
+    <p>Choose your goal and create a simple combo of protein, snacks, and meal support.</p>
+  </div>
+</section>
+<section class="mvp-section" data-stack-builder>
+  <div class="container stack-builder-layout">
+    <div class="stack-steps">
+      <div class="stack-step" data-stack-step="goal"></div>
+      <div class="stack-step" data-stack-step="protein" hidden></div>
+      <div class="stack-step" data-stack-step="addon" hidden></div>
+      <div class="stack-step" data-stack-step="support" hidden></div>
+    </div>
+    <aside class="stack-summary stack-summary--sticky">
+      <p class="eyebrow">Live preview</p>
+      <h2>Your Protein Stack</h2>
+      <div data-stack-preview><p>Pick your goal to start building.</p></div>
+      <p class="stack-total">Total: <strong data-stack-builder-total>AED 0.00</strong></p>
+      <p class="stack-save" data-stack-save></p>
+      <button class="btn btn--gold" type="button" data-add-builder-stack>Add Stack to Cart</button>
+      <a class="btn btn--whatsapp" href="https://wa.me/971553271712" target="_blank" rel="noreferrer" data-builder-whatsapp>Ask Expert on WhatsApp</a>
+      <button class="btn btn--ghost" type="button" data-edit-stack>Edit Stack</button>
+    </aside>
+  </div>
+</section>
+<script>window.STACK_PRODUCTS = <%- JSON.stringify(products) %>;</script>
+<%- include("partials/footer") %>

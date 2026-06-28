@@ -1,0 +1,35 @@
+<%- include("partials/header", { pageTitle: goal.title }) %>
+<section class="mvp-hero">
+  <div class="container mvp-hero__inner">
+    <p class="breadcrumb"><a href="/">Home</a> &gt; Shop By Goal</p>
+    <h1><%= goal.title %></h1>
+    <p><%= goal.description %></p>
+    <a class="btn btn--gold" href="https://wa.me/971553271712?text=<%= encodeURIComponent('Hi, I need help with my ' + goal.title + ' goal. Can you suggest the right products?') %>" target="_blank" rel="noreferrer">Ask Expert on WhatsApp</a>
+  </div>
+</section>
+<section class="mvp-section">
+  <div class="container">
+    <div class="section__head"><h2>Best Products For This Goal</h2><a href="/find-my-protein">Take the quiz</a></div>
+    <div class="collection-product-grid">
+      <% goalProducts.forEach((product) => { %><%- include("partials/product-card", { product }) %><% }) %>
+    </div>
+  </div>
+</section>
+<section class="mvp-section mvp-section--beige">
+  <div class="container goal-education">
+    <div class="stack-summary">
+      <p class="eyebrow">Suggested stack</p>
+      <h2><%= goal.title %> Stack</h2>
+      <ul>
+        <% stackProducts.forEach((product) => { %><li><%= product.name %> <strong>AED <%= money(product.price) %></strong></li><% }) %>
+      </ul>
+      <a class="btn btn--gold" href="/build-your-stack">Build My Stack</a>
+    </div>
+    <article>
+      <p class="eyebrow">How to approach this goal</p>
+      <h2>Keep it simple and repeatable</h2>
+      <p><%= goal.approach %></p>
+    </article>
+  </div>
+</section>
+<%- include("partials/footer") %>

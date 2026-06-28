@@ -1,0 +1,58 @@
+[
+  {
+    "name": "Protein",
+    "slug": "protein",
+    "description": "Daily powders and performance blends for strength, recovery, and lean nutrition.",
+    "children": [
+      { "name": "Clear Protein", "slug": "clear-protein" },
+      { "name": "Mass Gainers", "slug": "mass-gainers" },
+      { "name": "Meat Protein", "slug": "meat-protein" },
+      { "name": "Thermogenic", "slug": "thermogenic" },
+      { "name": "Whey Protein", "slug": "whey-protein" }
+    ]
+  },
+  {
+    "name": "Fresh Protein",
+    "slug": "fresh-protein",
+    "description": "Fresh chilled proteins for clean meals, prep, and everyday cooking.",
+    "children": [
+      { "name": "Chicken", "slug": "chicken" },
+      { "name": "Fish", "slug": "fish" },
+      { "name": "Meats", "slug": "meats" },
+      { "name": "Milks", "slug": "milks" }
+    ]
+  },
+  {
+    "name": "Bars & Snacks",
+    "slug": "bars-snacks",
+    "description": "Protein snacks, bars, chips, desserts, and DIY mixes for quick fuel.",
+    "children": [
+      { "name": "Bars", "slug": "bars" },
+      { "name": "Chips", "slug": "chips" },
+      { "name": "Deserts", "slug": "deserts" },
+      { "name": "DIY", "slug": "diy" }
+    ]
+  },
+  {
+    "name": "Meal Plan",
+    "slug": "meal-plan",
+    "description": "Prepared meal plans built for goals, calories, and weekly consistency.",
+    "children": [
+      { "name": "Fit Diet", "slug": "fit-diet" },
+      { "name": "Kcal", "slug": "kcal" },
+      { "name": "My Meal", "slug": "my-meal" }
+    ]
+  },
+  {
+    "name": "Vegan Protein",
+    "slug": "vegan-protein",
+    "description": "Plant-based powders, snacks, frozen foods, and complete vegan meal options.",
+    "children": [
+      { "name": "Vegan Protein Powders", "slug": "vegan-protein-powders" },
+      { "name": "Vegan Clear Protein", "slug": "vegan-clear-protein" },
+      { "name": "Vegan Frozen Foods", "slug": "vegan-frozen-foods" },
+      { "name": "Vegan Protein Snacks", "slug": "vegan-protein-snacks" },
+      { "name": "Vegan Meal Plans", "slug": "vegan-meal-plans" }
+    ]
+  }
+]

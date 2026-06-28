@@ -1,0 +1,157 @@
+<%- include("partials/header", { pageTitle: "Home" }) %>
+<%
+  const heroConfig = {
+    heroLogoAsset: "/images/protein_main_logo.png",
+    heroBottleImage: "/images/hero-protein-jar.webp",
+    heroSplashEnabled: true,
+    heroSplashAsset: "/images/hero-protein-jar.webp",
+    heroAnimationIntensity: "subtle",
+    heroAnimationSpeed: "8s"
+  };
+%>
+<section
+  class="hero hero-premium"
+  data-hero-splash="<%= heroConfig.heroSplashEnabled %>"
+  data-hero-intensity="<%= heroConfig.heroAnimationIntensity %>"
+  style="--hero-animation-speed: <%= heroConfig.heroAnimationSpeed %>;"
+>
+  <div class="container hero__grid">
+    <div class="hero__copy">
+      <p class="eyebrow">Discover Premium Protein Solutions</p>
+      <h1>Your One-Stop Destination for All Things Protein</h1>
+      <p>Your one-stop shop for clean, high-quality nutrition across the UAE.</p>
+      <a class="btn btn--gold" href="/shop">Shop Now -></a>
+    </div>
+    <div class="hero-product" aria-hidden="true">
+      <div class="hero-product__splash hero-product__splash--back"></div>
+      <div class="hero-product__splash hero-product__splash--mist"></div>
+      <div class="hero-product__particles">
+        <span></span><span></span><span></span><span></span><span></span>
+      </div>
+      <div class="hero-product__label">
+        <img src="<%= heroConfig.heroLogoAsset %>" alt="">
+        <span>Premium Protein</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section goal-section">
+  <div class="container">
+    <div class="profile-return" data-profile-return hidden></div>
+    <h2>Shop By Goal</h2>
+    <p class="section-intro">Choose your fitness goal and we'll show the right products, stacks, and meal options.</p>
+    <div class="goal-card-grid">
+      <% goals.forEach((goal) => { %>
+        <a class="goal-card" href="/goal/<%= goal.slug %>">
+          <span><%= goal.icon %></span>
+          <h3><%= goal.title %></h3>
+          <p><%= goal.description %></p>
+          <strong>Explore Goal</strong>
+        </a>
+      <% }) %>
+    </div>
+  </div>
+</section>
+
+<section class="section categories">
+  <div class="container">
+    <h2>Shop By Category</h2>
+    <div class="title-line"></div>
+    <div class="category-row">
+      <% const categoryImages = { "vegan-protein": "/images/product-vegan-protein.webp", "protein": "/images/product-whey-protein.webp", "bars-snacks": "/images/product-protein-bars.webp", "fresh-protein": "/images/category-protein-foods.webp", "meal-plan": "/images/product-meal-plan.webp" }; %>
+      <% categories.forEach((category) => { %>
+        <a class="category" href="/category/<%= category.slug %>">
+          <img src="<%= categoryImages[category.slug] %>" alt="<%= category.name %>" loading="lazy">
+          <span><%= category.name %></span>
+        </a>
+      <% }) %>
+    </div>
+  </div>
+</section>
+
+<section class="section mvp-cta-row">
+  <div class="container cta-grid">
+    <article class="conversion-card">
+      <p class="eyebrow">Guided shopping</p>
+      <h2>Not sure which protein is right for you?</h2>
+      <p>Answer 5 quick questions and get product suggestions based on your goal, diet, and routine.</p>
+      <div class="button-row"><a class="btn btn--gold" href="/find-my-protein">Start Quiz</a><a class="btn btn--ghost" href="/protein-calculator">Calculate Protein</a></div>
+    </article>
+    <article class="conversion-card conversion-card--dark">
+      <p class="eyebrow">Smart bundle</p>
+      <h2>Build Your Protein Stack</h2>
+      <p>Choose your goal and create a simple combo of protein, snacks, and meal support.</p>
+      <a class="btn btn--gold" href="/build-your-stack">Build My Stack</a>
+    </article>
+  </div>
+</section>
+
+<section class="section featured">
+  <div class="container">
+    <h2>Featured Products</h2>
+    <div class="title-line"></div>
+    <p class="section-intro">Fuel your body with the purity and strength it deserves. Our featured products are designed to support every rep, run, and recovery.</p>
+    <div class="carousel-wrap">
+      <button class="carousel-arrow left" type="button" data-scroll-products="-1">&lt;</button>
+      <div class="product-grid product-grid--featured" data-product-track>
+        <% featuredProducts.forEach((product) => { %><%- include("partials/product-card", { product }) %><% }) %>
+      </div>
+      <button class="carousel-arrow right" type="button" data-scroll-products="1">&gt;</button>
+    </div>
+  </div>
+</section>
+
+<section class="section consultation">
+  <div class="container split">
+    <div>
+      <h2>One on one Health coach/ Personal Consultation</h2>
+      <p>At Protein Market, we believe that true strength comes from within and it starts with the right nutrition. Our mission is simple: to empower every individual to achieve their best by providing clean, high-quality protein products that fuel ambition and support a healthier lifestyle.</p>
+      <p>Join us on this journey to redefine strength and well-being. Because when you fuel better, you feel better.</p>
+      <div class="button-row">
+        <a class="btn btn--gold" href="/contact">Consult Now</a>
+        <a class="btn btn--insta" href="https://instagram.com/" target="_blank" rel="noreferrer">Instagram</a>
+        <a class="btn btn--whatsapp" href="https://wa.me/971553271712" target="_blank" rel="noreferrer">Chat With us</a>
+      </div>
+    </div>
+    <img class="wide-image" src="/images/section-consultation.webp" alt="Personal nutrition consultation" loading="lazy">
+  </div>
+</section>
+
+<section class="section why">
+  <div class="container">
+    <h2>Why Choose Us?</h2>
+    <p class="section-intro">Choosing the right protein is not just about the label, it is about trust, quality, and results. Here is why The Protein Market is your ideal choice for premium protein products.</p>
+    <div class="why-grid">
+      <article><span><svg viewBox="0 0 24 24"><path d="M12 3l7 3v5c0 4.7-2.8 8.8-7 10-4.2-1.2-7-5.3-7-10V6l7-3z"/><path d="M8.5 12l2.2 2.2 4.8-5"/></svg></span><div><h3>Quality Guaranteed</h3><p>Only the finest ingredients, pure, potent, and rigorously tested for quality.</p></div></article>
+      <article><span><svg viewBox="0 0 24 24"><path d="M3 7h11v9H3z"/><path d="M14 10h4l3 3v3h-7z"/><circle cx="7" cy="18" r="2"/><circle cx="18" cy="18" r="2"/></svg></span><div><h3>UAE-Wide Delivery</h3><p>Fast and reliable delivery to your doorstep, anywhere in the UAE.</p></div></article>
+      <article><span><svg viewBox="0 0 24 24"><path d="M20 4c-8 0-14 5-14 12 0 2 1 3 1 3s1-5 7-8"/><path d="M20 4c0 8-5 14-12 14"/></svg></span><div><h3>Freshness & Sustainability</h3><p>Packed for peak freshness with sustainable practices you can trust.</p></div></article>
+      <article><span><svg viewBox="0 0 24 24"><path d="M7 8h10"/><path d="M5 6v4"/><path d="M19 6v4"/><path d="M9 14h6"/><path d="M12 10v9"/></svg></span><div><h3>Fitness-Focused Meal Plans</h3><p>Expertly crafted meal plans to fuel your workouts and support your goals.</p></div></article>
+    </div>
+  </div>
+</section>
+
+<section class="journey">
+  <img src="/images/section-fitness-cta.webp" alt="Athlete drinking protein" loading="lazy">
+  <div>
+    <h2>Ready to Transform Your Fitness Journey?</h2>
+    <p>Discover the power of clean, high-quality protein designed to fuel your workouts, enhance recovery, and elevate your daily nutrition.</p>
+    <a class="btn btn--gold" href="/shop">Start Your Transformation Today -></a>
+  </div>
+</section>
+
+<section class="section blog-preview">
+  <div class="container">
+    <h2>Insights on Protein, Health, and Fitness</h2>
+    <p>In today&apos;s fast-paced world, maintaining a healthy lifestyle is more important than ever. Stay tuned for expert tips, nutritional insights, and fitness strategies.</p>
+    <div class="blog-grid">
+      <% featuredBlogs.forEach((post) => { %>
+        <article class="blog-card">
+          <img src="<%= post.image %>" alt="<%= post.title %>" loading="lazy">
+          <div><time><%= post.date %></time><h3><%= post.title %></h3><p><%= post.excerpt %></p><a href="/blog/<%= post.slug %>">READ MORE -></a></div>
+        </article>
+      <% }) %>
+    </div>
+  </div>
+</section>
+<%- include("partials/footer") %>

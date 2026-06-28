@@ -1,0 +1,18 @@
+<%- include("partials/header", { pageTitle: order.id }) %>
+<section class="section checkout-section">
+  <div class="container checkout-layout">
+    <div class="checkout-card">
+      <h1>Order <%= order.id %></h1>
+      <p><strong><%= order.customer.name %></strong><br><%= order.customer.email %><br><%= order.customer.phone %></p>
+      <p><%= order.customer.address1 %><br><%= order.customer.address2 %><br><%= order.customer.city %>, <%= order.customer.emirate %></p>
+      <p>Payment: <strong><%= order.payment.status %></strong><br>Session: <%= order.payment.sessionId || "N/A" %><br>Transaction: <%= order.payment.transactionId || "N/A" %></p>
+      <div class="button-row">
+        <% ["processing", "delivered", "cancelled"].forEach((status) => { %>
+          <form action="/admin/orders/<%= order.id %>/status" method="post"><input type="hidden" name="status" value="<%= status %>"><button class="btn btn--gold" type="submit">Mark <%= status %></button></form>
+        <% }) %>
+      </div>
+    </div>
+    <aside class="checkout-summary"><h2>Items</h2><div class="order-lines"><% order.items.forEach((item) => { %><div><span><%= item.name %> x <%= item.quantity %></span><strong>AED <%= money(item.lineTotal) %></strong></div><% }) %></div><div class="summary-line total"><span>Total</span><strong>AED <%= money(order.total) %></strong></div></aside>
+  </div>
+</section>
+<%- include("partials/footer") %>

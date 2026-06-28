@@ -1,0 +1,14 @@
+<article class="product-card" data-product-card data-product-url="/product/<%= product.slug %>" data-name="<%= product.name.toLowerCase() %>" data-price="<%= product.price %>" data-rating="<%= product.rating %>" data-sale="<%= product.sale %>" data-category="<%= product.category %>" data-subcategory="<%= product.subcategory %>" data-badges="<%= (product.badges || []).join("|") %>" data-tags="<%= (product.tags || []).join("|") %>" data-goals="<%= (product.goals || []).join("|") %>" data-bundle="<%= product.bundle || "" %>" data-stock="<%= product.inStock !== false %>">
+  <% if (product.sale) { %><span class="sale">SALE!</span><% } %>
+  <a href="/product/<%= product.slug %>"><img src="<%= product.image %>" alt="<%= product.name %>"></a>
+  <% const cardCategory = categories.find((item) => item.slug === product.category); %>
+  <span class="product-card__category"><%= cardCategory ? cardCategory.name : product.category %></span>
+  <h3><a href="/product/<%= product.slug %>"><%= product.name %></a></h3>
+  <div class="stars" aria-label="<%= product.rating %> out of 5 stars">
+    <% for (let i = 1; i <= 5; i += 1) { %><span class="<%= i <= Math.round(product.rating) ? "filled" : "" %>">&#9733;</span><% } %>
+  </div>
+  <p class="product-card__description"><%= product.description %></p>
+  <p class="price"><del>AED <%= money(product.oldPrice) %></del> <strong>AED <%= money(product.price) %></strong></p>
+  <button class="btn btn--small btn--gold" data-add-to-cart="<%= product.id %>">Add to Cart</button>
+  <a class="view-details" href="/product/<%= product.slug %>">View Details</a>
+</article>

@@ -1,0 +1,66 @@
+<aside class="collection-sidebar" data-filter-sidebar>
+  <div class="filter-panel">
+    <div class="filter-panel__head">
+      <h2>Filters</h2>
+      <button type="button" aria-label="Close filters" data-filter-close>×</button>
+    </div>
+    <div class="filter-section">
+      <h3>Search Products</h3>
+      <label class="search-field">
+        <span>⌕</span>
+        <input type="search" placeholder="e.g. product name or SKU" data-product-search value="<%= typeof q !== "undefined" ? q : "" %>">
+      </label>
+    </div>
+    <div class="filter-section">
+      <h3>Categories</h3>
+      <label class="search-field search-field--small">
+        <input type="search" placeholder="Search" data-category-search>
+      </label>
+      <div class="filter-list" data-category-list>
+        <% categories.forEach((item) => { %>
+          <a class="filter-row <%= activeCategory === item.slug ? "is-active" : "" %>" href="/category/<%= item.slug %>" data-filter-category="<%= item.name.toLowerCase() %>">
+            <span><input type="checkbox" <%= activeCategory === item.slug ? "checked" : "" %> readonly> <%= item.name %> <em>(<%= categoryCounts[item.slug] || 0 %>)</em></span>
+            <strong>+</strong>
+          </a>
+        <% }) %>
+      </div>
+    </div>
+    <div class="filter-section">
+      <h3>Price</h3>
+      <div class="price-inputs">
+        <input type="number" min="<%= priceBounds.min %>" max="<%= priceBounds.max %>" value="<%= priceBounds.min %>" data-price-min>
+        <input type="number" min="<%= priceBounds.min %>" max="<%= priceBounds.max %>" value="<%= priceBounds.max %>" data-price-max>
+      </div>
+      <div class="range-track"><span></span></div>
+    </div>
+    <div class="filter-section">
+      <h3>Badges</h3>
+      <label class="filter-check"><input type="checkbox" value="Top Rated" data-filter-badge> Top Rated</label>
+      <label class="filter-check"><input type="checkbox" value="Vegan Certified" data-filter-badge> Vegan Certified</label>
+    </div>
+    <div class="filter-section">
+      <h3>Tags</h3>
+      <div class="tag-cloud">
+        <% ["Plant Power", "Gluten-Free", "High-Fiber", "Organic", "Soy-Free", "Vegan Starter Kit", "Plant-Based Performance Pack"].forEach((tag) => { %>
+          <button type="button" data-filter-tag="<%= tag.toLowerCase().replace(/\s+/g, "-") %>"><%= tag %></button>
+        <% }) %>
+      </div>
+    </div>
+    <div class="filter-section">
+      <h3>Bundle</h3>
+      <button class="bundle-pill" type="button" data-filter-bundle="Plant-Based Performance Pack">Plant-Based Performance Pack</button>
+      <button class="bundle-pill" type="button" data-filter-bundle="Vegan Starter Kit">Vegan Starter Kit</button>
+    </div>
+    <div class="filter-section">
+      <h3>Availability</h3>
+      <label class="filter-check"><input type="checkbox" value="true" data-filter-stock> In stock</label>
+      <label class="filter-check"><input type="checkbox" value="false" data-filter-stock> Out of stock</label>
+    </div>
+    <div class="filter-section">
+      <h3>Rating</h3>
+      <% [1, 2, 3, 4, 5].forEach((rating) => { %>
+        <label class="filter-check rating-filter"><input type="radio" name="rating-filter" value="<%= rating %>" data-filter-rating> <span><%= "★★★★★".slice(0, rating) %></span></label>
+      <% }) %>
+    </div>
+  </div>
+</aside>

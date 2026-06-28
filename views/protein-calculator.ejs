@@ -1,0 +1,214 @@
+<%- include("partials/header", { pageTitle: "Protein Calculator" }) %>
+
+<section class="protein-calc-page">
+  <div class="protein-calc-shell calculator-dashboard" data-calculator-app>
+    <form class="calc-profile-panel" data-protein-form novalidate>
+      <div class="calc-stepper" data-calc-stepper>
+        <div class="calc-step is-active" data-step="profile"><span>1</span><strong>Your Profile</strong></div>
+        <div class="calc-step"><span>2</span><strong>Goals</strong></div>
+        <div class="calc-step" data-step="results"><span>3</span><strong>Results</strong></div>
+        <div class="calc-step"><span>4</span><strong>Plan</strong></div>
+      </div>
+
+      <div class="calc-form-card">
+        <div class="calc-form-title">
+          <span class="calc-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 21a9 9 0 1 0-9-9 9 9 0 0 0 9 9Z"/><path d="M12 7v5l3 2"/></svg></span>
+          <div>
+            <h1>1. Your Profile</h1>
+            <p>Tell us about yourself so we can personalize your protein plan.</p>
+          </div>
+        </div>
+
+        <div class="calc-fieldset">
+          <h2>Lifestyle & Preferences</h2>
+          <div class="calc-fields">
+            <label class="calc-field"> <span class="calc-field__label">Fitness Goal</span>
+              <select name="fitnessGoal" required>
+                <option value="">Select your goal</option>
+                <option>Fat Loss</option>
+                <option>Muscle Gain</option>
+                <option>Maintenance</option>
+                <option>Athletic Performance</option>
+              </select>
+              <span class="field-error" data-error-for="fitnessGoal"></span>
+            </label>
+
+            <label class="calc-field"> <span class="calc-field__label">Activity Level</span>
+              <select name="activityLevel" required>
+                <option value="">Select activity level</option>
+                <option>Sedentary</option>
+                <option>Lightly Active</option>
+                <option>Moderately Active</option>
+                <option>Very Active</option>
+                <option>Athlete</option>
+              </select>
+              <span class="field-error" data-error-for="activityLevel"></span>
+            </label>
+
+            <label class="calc-field"> <span class="calc-field__label">Diet Preference</span>
+              <select name="dietPreference" required>
+                <option value="">Select preference</option>
+                <option>No Preference</option>
+                <option>Vegetarian</option>
+                <option>Vegan</option>
+                <option>Non-Vegetarian</option>
+              </select>
+              <span class="field-error" data-error-for="dietPreference"></span>
+            </label>
+
+            <label class="calc-field"> <span class="calc-field__label">Product Interest</span>
+              <select name="productInterest">
+                <option value="Not Sure">Select product interest</option>
+                <option>Protein Powder</option>
+                <option>Meal Plan</option>
+                <option>Bars & Snacks</option>
+              </select>
+            </label>
+          </div>
+        </div>
+
+        <div class="calc-fieldset">
+          <h2>Personal Details</h2>
+          <div class="calc-fields">
+            <label class="calc-field"> <span class="calc-field__label">Age (years)</span>
+              <input name="age" type="number" inputmode="numeric" min="13" max="90" placeholder="Select your age" required>
+              <span class="field-error" data-error-for="age"></span>
+            </label>
+
+            <label class="calc-field"> <span class="calc-field__label">Sex</span>
+              <select name="sex" required>
+                <option value="">Select your sex</option>
+                <option>Male</option>
+                <option>Female</option>
+              </select>
+              <span class="field-error" data-error-for="sex"></span>
+            </label>
+
+            <label class="calc-field"> <span class="calc-field__label">Height (cm)</span>
+              <input name="height" type="number" inputmode="decimal" min="1" placeholder="Select height" required>
+              <span class="field-error" data-error-for="height"></span>
+            </label>
+
+            <label class="calc-field"> <span class="calc-field__label">Current Weight (kg)</span>
+              <input name="weight" type="number" inputmode="decimal" min="1" placeholder="Select weight" required>
+              <span class="field-error" data-error-for="weight"></span>
+            </label>
+          </div>
+        </div>
+
+        <div class="calc-fieldset">
+          <h2>Body Composition Goals</h2>
+          <div class="calc-fields">
+            <label class="calc-field"> <span class="calc-field__label">Target Body Fat %</span>
+              <input name="bodyFat" type="number" inputmode="decimal" min="5" max="60" placeholder="Select target" required>
+              <span class="field-error" data-error-for="bodyFat"></span>
+            </label>
+
+            <label class="calc-field"> <span class="calc-field__label">Target Lean Muscle Mass (kg)</span>
+              <input name="leanMass" type="number" inputmode="decimal" min="1" placeholder="Select target" required>
+              <span class="field-error" data-error-for="leanMass"></span>
+            </label>
+          </div>
+        </div>
+
+        <button class="calc-submit" type="submit" data-calculate-button>
+          <span>Calculate My Plan</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg>
+        </button>
+        <p class="calc-secure"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 11V8a5 5 0 0 1 10 0v3"/><path d="M6 11h12v10H6z"/></svg>Your data is private and secure</p>
+      </div>
+    </form>
+
+    <aside class="calc-plan-panel" data-result-panel>
+      <div class="plan-panel plan-panel-empty" data-result-empty>
+        <div class="plan-hero plan-hero-empty">
+          <div>
+            <p class="calc-eyebrow">Your Personal Plan</p>
+            <h2>Your Protein Plan <span>Starts Here</span></h2>
+            <p>Fill in your profile to unlock your personalized protein target, meal split, and product recommendations.</p>
+          </div>
+        </div>
+
+        <div class="empty-feature-list">
+          <article class="empty-feature">
+            <span class="feature-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 7v10M7 12h10"/></svg></span>
+            <div><h3>Daily protein target</h3><p>Get a science-backed daily protein target based on your goal, activity level, and body composition.</p></div>
+          </article>
+          <article class="empty-feature">
+            <span class="feature-icon"><svg viewBox="0 0 24 24"><path d="M4 5v14"/><path d="M20 5v14"/><path d="M8 7v10"/><path d="M16 7v10"/><path d="M4 12h16"/></svg></span>
+            <div><h3>Meal-by-meal split</h3><p>See how to distribute your protein across meals to support energy, recovery, and consistency.</p></div>
+          </article>
+          <article class="empty-feature">
+            <span class="feature-icon"><svg viewBox="0 0 24 24"><path d="M8 21h8"/><path d="M9 8h6"/><path d="M10 3h4v5h-4z"/><path d="M7 8h10l-1 13H8z"/></svg></span>
+            <div><h3>Recommended products</h3><p>Discover products and meal options that match your needs from our premium range.</p></div>
+          </article>
+        </div>
+
+        <div class="empty-callout">
+          <span class="feature-icon"><svg viewBox="0 0 24 24"><path d="M12 2l1.8 6.2L20 10l-6.2 1.8L12 18l-1.8-6.2L4 10l6.2-1.8z"/></svg></span>
+          <div><h3>Complete the form and click Calculate My Plan</h3><p>Your personalized plan is just a few steps away.</p></div>
+        </div>
+      </div>
+
+      <div class="plan-panel plan-panel-results" data-result-dashboard hidden>
+        <div class="result-hero-card">
+          <div class="result-hero-copy">
+            <p class="calc-eyebrow">Your Protein Target</p>
+            <h2>Daily Protein Target</h2>
+            <div class="result-target"><span data-protein-target>0</span><strong>g</strong><em>per day</em></div>
+            <p>Based on your profile, this is your estimated daily protein target to support your goal.</p>
+          </div>
+          <div class="result-hero-art">
+            <div class="range-badge"><span>Optimal Range</span><strong data-range>--</strong></div>
+          </div>
+        </div>
+
+        <div class="metric-card-grid">
+          <article class="metric-card"><span>Daily Calories</span><strong data-metric="dailyCalories">-</strong><small>Estimated target</small></article>
+          <article class="metric-card"><span>Lean Muscle Goal</span><strong data-metric="leanGoal">-</strong><small>Target mass</small></article>
+          <article class="metric-card"><span>Protein per kg</span><strong data-metric="proteinKg">-</strong><small>Per kg body weight</small></article>
+          <article class="metric-card"><span>Activity Summary</span><strong data-metric="activity">-</strong><small data-metric="activityLabel">-</small></article>
+        </div>
+
+        <div class="result-lower-grid">
+          <article class="distribution-card">
+            <h3>Daily Protein Distribution</h3>
+            <div class="distribution-layout">
+              <div class="protein-donut" data-protein-donut><span><strong data-donut-total>0g</strong><small>Total</small></span></div>
+              <div class="meal-list" data-meal-split></div>
+            </div>
+          </article>
+          <article class="pro-tip-card">
+            <p class="calc-eyebrow">Pro Tip</p>
+            <p data-goal-insight></p>
+          </article>
+        </div>
+
+        <article class="dashboard-products">
+          <div class="dashboard-products__head">
+            <h3>Recommended for Your Goal</h3>
+            <a href="/shop">View all products</a>
+          </div>
+          <div class="dashboard-product-row" data-recommendation-grid></div>
+          <div class="dashboard-ctas">
+            <a class="calc-secondary-link" href="/shop">View all products</a>
+            <a class="calc-whatsapp-link" href="#" target="_blank" rel="noreferrer" data-whatsapp-result>Send Result to WhatsApp</a>
+            <a class="calc-secondary-link" href="/build-your-stack">Build My Protein Stack</a>
+          </div>
+        </article>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<section class="section disclaimer-section calc-disclaimer">
+  <div class="container">
+    <div class="disclaimer-card">
+      <h2>Disclaimer</h2>
+      <p>This calculator provides general nutrition estimates only. Results are not medical advice. For personalized medical or clinical nutrition guidance, consult a qualified healthcare professional.</p>
+      <p>Your information is used only to generate your result and recommendation on this page.</p>
+    </div>
+  </div>
+</section>
+
+<%- include("partials/footer") %>

@@ -1,0 +1,7 @@
+<%- include("partials/header", { pageTitle: "Admin Orders" }) %>
+<section class="page-hero compact"><div class="container"><h1>Admin Orders</h1><p>Sandbox/demo order dashboard.</p></div></section>
+<section class="section"><div class="container admin-table-wrap"><table class="admin-table"><thead><tr><th>Order</th><th>Customer</th><th>Phone</th><th>Total</th><th>Payment</th><th>Status</th><th>Date</th><th></th></tr></thead><tbody>
+<% orders.forEach((order) => { %><tr><td><%= order.id %></td><td><%= order.customer.name %></td><td><%= order.customer.phone %></td><td>AED <%= money(order.total) %></td><td><%= order.payment.status %></td><td><%= order.orderStatus %></td><td><%= new Date(order.createdAt).toLocaleString() %></td><td><a class="btn btn--small btn--gold" href="/admin/orders/<%= order.id %>">View</a></td></tr><% }) %>
+<% if (!orders.length) { %><tr><td colspan="8">No orders yet.</td></tr><% } %>
+</tbody></table></div></section>
+<%- include("partials/footer") %>

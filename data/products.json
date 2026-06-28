@@ -1,0 +1,2437 @@
+[
+  {
+    "id": "clear-protein-001",
+    "slug": "citrus-clear-whey-isolate",
+    "name": "Citrus Clear Whey Isolate",
+    "category": "protein",
+    "subcategory": "clear-protein",
+    "image": "/images/product-whey-protein.webp",
+    "price": 129,
+    "oldPrice": 149,
+    "sale": true,
+    "rating": 5,
+    "badges": [
+      "Top Rated",
+      "Low Sugar",
+      "Daily Protein",
+      "Sale"
+    ],
+    "tags": [
+      "gluten-free",
+      "high-fiber",
+      "clear-protein",
+      "fat-loss",
+      "low-sugar",
+      "daily-protein"
+    ],
+    "bundle": "",
+    "inStock": true,
+    "description": "A light citrus clear protein with fast-mixing isolate and a refreshing finish.",
+    "goals": [
+      "Fat Loss",
+      "Muscle Gain",
+      "Maintenance",
+      "Athletic Performance",
+      "Lose Fat",
+      "Maintain Fitness"
+    ],
+    "diet": [
+      "No Preference",
+      "Vegetarian"
+    ],
+    "proteinPerServing": 22,
+    "calories": 95
+  },
+  {
+    "id": "clear-protein-002",
+    "slug": "berry-clear-protein-refresher",
+    "name": "Berry Clear Protein Refresher",
+    "category": "protein",
+    "subcategory": "clear-protein",
+    "image": "/images/product-whey-protein.webp",
+    "price": 119,
+    "oldPrice": 139,
+    "sale": true,
+    "rating": 4.5,
+    "badges": [
+      "Top Rated",
+      "Low Sugar",
+      "Daily Protein",
+      "Sale"
+    ],
+    "tags": [
+      "gluten-free",
+      "clear-protein",
+      "fat-loss",
+      "low-sugar",
+      "daily-protein"
+    ],
+    "bundle": "",
+    "inStock": true,
+    "description": "Refreshing berry clear protein for clean hydration and everyday fitness support.",
+    "goals": [
+      "Fat Loss",
+      "Athletic Performance",
+      "Lose Fat",
+      "Maintain Fitness"
+    ],
+    "diet": [
+      "No Preference",
+      "Vegetarian"
+    ],
+    "proteinPerServing": 22,
+    "calories": 95
+  },
+  {
+    "id": "clear-protein-003",
+    "slug": "mango-ice-clear-isolate",
+    "name": "Mango Ice Clear Isolate",
+    "category": "protein",
+    "subcategory": "clear-protein",
+    "image": "/images/product-whey-protein.webp",
+    "price": 135,
+    "oldPrice": 155,
+    "sale": false,
+    "rating": 4,
+    "badges": [
+      "Low Sugar",
+      "Daily Protein"
+    ],
+    "tags": [
+      "organic",
+      "clear-protein",
+      "fat-loss",
+      "low-sugar",
+      "daily-protein"
+    ],
+    "bundle": "",
+    "inStock": true,
+    "description": "Smooth mango isolate designed for light shakes after training or warm days.",
+    "goals": [
+      "Fat Loss",
+      "Athletic Performance",
+      "Lose Fat",
+      "Maintain Fitness"
+    ],
+    "diet": [
+      "No Preference",
+      "Vegetarian"
+    ],
+    "proteinPerServing": 22,
+    "calories": 95
+  },
+  {
+    "id": "mass-gainers-001",
+    "slug": "vanilla-lean-mass-gainer",
+    "name": "Vanilla Lean Mass Gainer",
+    "category": "protein",
+    "subcategory": "mass-gainers",
+    "image": "/images/product-whey-protein.webp",
+    "price": 189,
+    "oldPrice": 219,
+    "sale": true,
+    "rating": 5,
+    "badges": [
+      "Top Rated",
+      "High Protein",
+      "Muscle Gain",
+      "Sale"
+    ],
+    "tags": [
+      "high-fiber",
+      "mass-gainer",
+      "muscle-gain",
+      "high-protein"
+    ],
+    "bundle": "",
+    "inStock": true,
+    "description": "Calorie-dense vanilla protein with quality carbs for clean bulking phases.",
+    "goals": [
+      "Fat Loss",
+      "Muscle Gain",
+      "Build Muscle"
+    ],
+    "diet": [
+      "No Preference",
+      "Vegetarian"
+    ],
+    "proteinPerServing": 32,
+    "calories": 380
+  },
+  {
+    "id": "mass-gainers-002",
+    "slug": "chocolate-bulk-builder",
+    "name": "Chocolate Bulk Builder",
+    "category": "protein",
+    "subcategory": "mass-gainers",
+    "image": "/images/product-whey-protein.webp",
+    "price": 205,
+    "oldPrice": 235,
+    "sale": true,
+    "rating": 4.5,
+    "badges": [
+      "High Protein",
+      "Muscle Gain",
+      "Sale"
+    ],
+    "tags": [
+      "high-fiber",
+      "mass-gainer",
+      "muscle-gain",
+      "high-protein"
+    ],
+    "bundle": "",
+    "inStock": true,
+    "description": "Rich chocolate mass gainer for high-calorie training days and recovery.",
+    "goals": [
+      "Muscle Gain",
+      "Build Muscle"
+    ],
+    "diet": [
+      "No Preference",
+      "Vegetarian"
+    ],
+    "proteinPerServing": 32,
+    "calories": 380
+  },
+  {
+    "id": "mass-gainers-003",
+    "slug": "banana-oat-mass-shake",
+    "name": "Banana Oat Mass Shake",
+    "category": "protein",
+    "subcategory": "mass-gainers",
+    "image": "/images/product-whey-protein.webp",
+    "price": 176,
+    "oldPrice": 199,
+    "sale": false,
+    "rating": 4,
+    "badges": [
+      "High Protein",
+      "Muscle Gain"
+    ],
+    "tags": [
+      "organic",
+      "mass-gainer",
+      "muscle-gain",
+      "high-protein"
+    ],
+    "bundle": "",
+    "inStock": true,
+    "description": "Banana oat gainer made for steady energy and easy daily calories.",
+    "goals": [
+      "Muscle Gain",
+      "Build Muscle"
+    ],
+    "diet": [
+      "No Preference",
+      "Vegetarian"
+    ],
+    "proteinPerServing": 32,
+    "calories": 380
+  },
+  {
+    "id": "meat-protein-001",
+    "slug": "beef-protein-isolate",
+    "name": "Beef Protein Isolate",
+    "category": "protein",
+    "subcategory": "meat-protein",
+    "image": "/images/product-whey-protein.webp",
+    "price": 159,
+    "oldPrice": 179,
+    "sale": false,
+    "rating": 4,
+    "badges": [
+      "High Protein",
+      "Recovery"
+    ],
+    "tags": [
+      "gluten-free",
+      "high-protein",
+      "recovery",
+      "fresh-protein"
+    ],
+    "bundle": "",
+    "inStock": true,
+    "description": "Dairy-free beef isolate made for athletes who want a rich amino profile.",
+    "goals": [
+      "Athletic Performance",
+      "Build Muscle"
+    ],
+    "diet": [
+      "No Preference",
+      "Vegetarian"
+    ],
+    "proteinPerServing": 27,
+    "calories": 145
+  },
+  {
+    "id": "meat-protein-002",
+    "slug": "hydro-beef-performance-protein",
+    "name": "Hydro Beef Performance Protein",
+    "category": "protein",
+    "subcategory": "meat-protein",
+    "image": "/images/product-whey-protein.webp",
+    "price": 172,
+    "oldPrice": 198,
+    "sale": true,
+    "rating": 4.5,
+    "badges": [
+      "Top Rated",
+      "High Protein",
+      "Recovery",
+      "Sale"
+    ],
+    "tags": [
+      "gluten-free",
+      "high-protein",
+      "recovery",
+      "fresh-protein"
+    ],
+    "bundle": "",
+    "inStock": true,
+    "description": "Hydrolyzed beef protein for clean shakes and intense training cycles.",
+    "goals": [
+      "Athletic Performance",
+      "Build Muscle"
+    ],
+    "diet": [
+      "No Preference",
+      "Vegetarian"
+    ],
+    "proteinPerServing": 27,
+    "calories": 145
+  },
+  {
+    "id": "meat-protein-003",
+    "slug": "steakhouse-amino-protein",
+    "name": "Steakhouse Amino Protein",
+    "category": "protein",
+    "subcategory": "meat-protein",
+    "image": "/images/product-whey-protein.webp",
+    "price": 148,
+    "oldPrice": 168,
+    "sale": false,
+    "rating": 4,
+    "badges": [
+      "High Protein",
+      "Recovery"
+    ],
+    "tags": [
+      "organic",
+      "high-protein",
+      "recovery",
+      "fresh-protein"
+    ],
+    "bundle": "",
+    "inStock": true,
+    "description": "Savory-inspired amino protein built for dairy-free recovery routines.",
+    "goals": [
+      "Maintenance",
+      "Build Muscle",
+      "Athletic Performance"
+    ],
+    "diet": [
+      "No Preference",
+      "Vegetarian"
+    ],
+    "proteinPerServing": 27,
+    "calories": 145
+  },
+  {
+    "id": "thermo-burn-protein-blend",
+    "slug": "thermo-burn-protein-blend",
+    "name": "Thermo Burn Protein Blend",
+    "category": "protein",
+    "subcategory": "thermogenic",
+    "image": "/images/product-whey-protein.webp",
+    "price": 145,
+    "oldPrice": 165,
+    "sale": true,
+    "rating": 4.5,
+    "badges": [
+      "Top Rated",
+      "Low Sugar",
+      "Performance",
+      "Sale"
+    ],
+    "tags": [
+      "gluten-free",
+      "fat-loss",
+      "thermogenic",
+      "performance"
+    ],
+    "bundle": "",
+    "inStock": true,
+    "description": "A performance-focused protein blend crafted for active routines.",
+    "goals": [
+      "Fat Loss",
+      "Lose Fat",
+      "Athletic Performance"
+    ],
+    "diet": [
+      "No Preference",
+      "Vegetarian"
+    ],
+    "proteinPerServing": 24,
+    "calories": 120
+  },
+  {
+    "id": "lean-fire-clear-protein",
+    "slug": "lean-fire-clear-protein",
+    "name": "Lean Fire Clear Protein",
+    "category": "protein",
+    "subcategory": "thermogenic",
+    "image": "/images/product-whey-protein.webp",
+    "price": 129,
+    "oldPrice": 149,
+    "sale": true,
+    "rating": 4,
+    "badges": [
+      "Low Sugar",
+      "Performance",
+      "Sale"
+    ],
+    "tags": [
+      "gluten-free",
+      "fat-loss",
+      "thermogenic",
+      "performance"
+    ],
+    "bundle": "",
+    "inStock": true,
+    "description": "A light and refreshing clear protein option for everyday fitness support.",
+    "goals": [
+      "Fat Loss",
+      "Athletic Performance",
+      "Lose Fat"
+    ],
+    "diet": [
+      "No Preference",
+      "Vegetarian"
+    ],
+    "proteinPerServing": 24,
+    "calories": 120
+  },
+  {
+    "id": "active-thermo-whey",
+    "slug": "active-thermo-whey",
+    "name": "Active Thermo Whey",
+    "category": "protein",
+    "subcategory": "thermogenic",
+    "image": "/images/product-whey-protein.webp",
+    "price": 159,
+    "oldPrice": 179,
+    "sale": false,
+    "rating": 5,
+    "badges": [
+      "Top Rated",
+      "Low Sugar",
+      "Performance"
+    ],
+    "tags": [
+      "high-fiber",
+      "fat-loss",
+      "thermogenic",
+      "performance"
+    ],
+    "bundle": "",
+    "inStock": true,
+    "description": "Premium whey protein created for training, recovery, and strength.",
+    "goals": [
+      "Fat Loss",
+      "Muscle Gain",
+      "Maintenance",
+      "Athletic Performance",
+      "Lose Fat"
+    ],
+    "diet": [
+      "No Preference",
+      "Vegetarian"
+    ],
+    "proteinPerServing": 24,
+    "calories": 120
+  },
+  {
+    "id": "whey-protein-001",
+    "slug": "premium-whey-protein-chocolate",
+    "name": "Premium Whey Protein Chocolate",
+    "category": "protein",
+    "subcategory": "whey-protein",
+    "image": "/images/product-whey-protein.webp",
+    "price": 139,
+    "oldPrice": 159,
+    "sale": true,
+    "rating": 5,
+    "badges": [
+      "Top Rated",
+      "24g Protein",
+      "Post Workout",
+      "Recovery",
+      "Sale"
+    ],
+    "tags": [
+      "gluten-free",
+      "whey",
+      "post-workout",
+      "recovery",
+      "daily-protein"
+    ],
+    "bundle": "",
+    "inStock": true,
+    "description": "High quality chocolate whey protein for daily shakes, recovery, and strength support.",
+    "goals": [
+      "Muscle Gain",
+      "Maintenance",
+      "Athletic Performance",
+      "Build Muscle",
+      "Maintain Fitness"
+    ],
+    "diet": [
+      "No Preference",
+      "Vegetarian"
+    ],
+    "proteinPerServing": 24,
+    "calories": 120
+  },
+  {
+    "id": "whey-protein-002",
+    "slug": "vanilla-whey-isolate",
+    "name": "Vanilla Whey Isolate",
+    "category": "protein",
+    "subcategory": "whey-protein",
+    "image": "/images/product-whey-protein.webp",
+    "price": 149,
+    "oldPrice": 169,
+    "sale": false,
+    "rating": 4.5,
+    "badges": [
+      "24g Protein",
+      "Post Workout",
+      "Recovery"
+    ],
+    "tags": [
+      "organic",
+      "whey",
+      "post-workout",
+      "recovery",
+      "daily-protein"
+    ],
+    "bundle": "",
+    "inStock": true,
+    "description": "Smooth vanilla whey isolate for clean shakes and post-workout recovery.",
+    "goals": [
+      "Muscle Gain",
+      "Maintenance",
+      "Athletic Performance",
+      "Build Muscle",
+      "Maintain Fitness"
+    ],
+    "diet": [
+      "No Preference",
+      "Vegetarian"
+    ],
+    "proteinPerServing": 24,
+    "calories": 120
+  },
+  {
+    "id": "whey-protein-003",
+    "slug": "salted-caramel-whey",
+    "name": "Salted Caramel Whey",
+    "category": "protein",
+    "subcategory": "whey-protein",
+    "image": "/images/product-whey-protein.webp",
+    "price": 155,
+    "oldPrice": 179,
+    "sale": true,
+    "rating": 4,
+    "badges": [
+      "24g Protein",
+      "Post Workout",
+      "Recovery",
+      "Sale"
+    ],
+    "tags": [
+      "high-fiber",
+      "whey",
+      "post-workout",
+      "recovery",
+      "daily-protein"
+    ],
+    "bundle": "",
+    "inStock": true,
+    "description": "Creamy salted caramel whey with a balanced macro profile for daily use.",
+    "goals": [
+      "Muscle Gain",
+      "Maintenance",
+      "Athletic Performance",
+      "Build Muscle",
+      "Maintain Fitness"
+    ],
+    "diet": [
+      "No Preference",
+      "Vegetarian"
+    ],
+    "proteinPerServing": 24,
+    "calories": 120
+  },
+  {
+    "id": "chicken-001",
+    "slug": "grilled-chicken-breast-pack",
+    "name": "Grilled Chicken Breast Pack",
+    "category": "fresh-protein",
+    "subcategory": "chicken",
+    "image": "/images/product-meal-plan.webp",
+    "price": 42,
+    "oldPrice": 48,
+    "sale": false,
+    "rating": 5,
+    "badges": [
+      "Top Rated",
+      "High Protein",
+      "Meal Plan Friendly"
+    ],
+    "tags": [
+      "organic",
+      "fresh-protein",
+      "ready-meal",
+      "high-protein",
+      "convenient"
+    ],
+    "bundle": "",
+    "inStock": true,
+    "description": "Tender grilled chicken breast portions ready for quick, protein-rich meals.",
+    "goals": [
+      "Athletic Performance",
+      "Maintain Fitness",
+      "Build Muscle"
+    ],
+    "diet": [
+      "Non-Vegetarian",
+      "No Preference"
+    ],
+    "proteinPerServing": 35,
+    "calories": 260
+  },
+  {
+    "id": "chicken-002",
+    "slug": "peri-peri-chicken-meal-prep",
+    "name": "Peri Peri Chicken Meal Prep",
+    "category": "fresh-protein",
+    "subcategory": "chicken",
+    "image": "/images/product-meal-plan.webp",
+    "price": 49,
+    "oldPrice": 58,
+    "sale": true,
+    "rating": 4.5,
+    "badges": [
+      "High Protein",
+      "Meal Plan Friendly",
+      "Sale"
+    ],
+    "tags": [
+      "high-fiber",
+      "fresh-protein",
+      "ready-meal",
+      "high-protein",
+      "convenient"
+    ],
+    "bundle": "",
+    "inStock": true,
+    "description": "Spiced chicken meal prep with lean protein and balanced sides.",
+    "goals": [
+      "Maintenance",
+      "Athletic Performance",
+      "Maintain Fitness",
+      "Build Muscle"
+    ],
+    "diet": [
+      "Non-Vegetarian",
+      "No Preference"
+    ],
+    "proteinPerServing": 35,
+    "calories": 260
+  },
+  {
+    "id": "chicken-003",
+    "slug": "lemon-herb-chicken-fillets",
+    "name": "Lemon Herb Chicken Fillets",
+    "category": "fresh-protein",
+    "subcategory": "chicken",
+    "image": "/images/product-meal-plan.webp",
+    "price": 45,
+    "oldPrice": 52,
+    "sale": false,
+    "rating": 4,
+    "badges": [
+      "High Protein",
+      "Meal Plan Friendly"
+    ],
+    "tags": [
+      "gluten-free",
+      "fresh-protein",
+      "ready-meal",
+      "high-protein",
+      "convenient"
+    ],
+    "bundle": "",
+    "inStock": true,
+    "description": "Fresh lemon herb fillets for clean dinners, salads, and bowls.",
+    "goals": [
+      "Athletic Performance",
+      "Maintain Fitness",
+      "Build Muscle"
+    ],
+    "diet": [
+      "Non-Vegetarian",
+      "No Preference"
+    ],
+    "proteinPerServing": 35,
+    "calories": 260
+  },
+  {
+    "id": "fish-001",
+    "slug": "atlantic-salmon-protein-cut",
+    "name": "Atlantic Salmon Protein Cut",
+    "category": "fresh-protein",
+    "subcategory": "fish",
+    "image": "/images/product-meal-plan.webp",
+    "price": 58,
+    "oldPrice": 64,
+    "sale": true,
+    "rating": 5,
+    "badges": [
+      "Top Rated",
+      "Recovery",
+      "High Protein",
+      "Sale"
+    ],
+    "tags": [
+      "organic",
+      "fresh-protein",
+      "recovery",
+      "balanced"
+    ],
+    "bundle": "",
+    "inStock": true,
+    "description": "Fresh salmon cuts with rich omega fats and clean protein for balanced plates.",
+    "goals": [
+      "Athletic Performance",
+      "Maintain Fitness"
+    ],
+    "diet": [
+      "Non-Vegetarian",
+      "No Preference"
+    ],
+    "proteinPerServing": 32,
+    "calories": 240
+  },
+  {
+    "id": "fish-002",
+    "slug": "seared-white-fish-box",
+    "name": "Seared White Fish Box",
+    "category": "fresh-protein",
+    "subcategory": "fish",
+    "image": "/images/product-meal-plan.webp",
+    "price": 52,
+    "oldPrice": 60,
+    "sale": false,
+    "rating": 4.5,
+    "badges": [
+      "Recovery",
+      "High Protein"
+    ],
+    "tags": [
+      "gluten-free",
+      "fresh-protein",
+      "recovery",
+      "balanced"
+    ],
+    "bundle": "",
+    "inStock": true,
+    "description": "Light white fish portions prepared for quick high-protein lunches.",
+    "goals": [
+      "Athletic Performance",
+      "Maintain Fitness"
+    ],
+    "diet": [
+      "Non-Vegetarian",
+      "No Preference"
+    ],
+    "proteinPerServing": 32,
+    "calories": 240
+  },
+  {
+    "id": "fish-003",
+    "slug": "tuna-protein-meal-kit",
+    "name": "Tuna Protein Meal Kit",
+    "category": "fresh-protein",
+    "subcategory": "fish",
+    "image": "/images/product-meal-plan.webp",
+    "price": 46,
+    "oldPrice": 54,
+    "sale": true,
+    "rating": 4,
+    "badges": [
+      "Recovery",
+      "High Protein",
+      "Sale"
+    ],
+    "tags": [
+      "high-fiber",
+      "fresh-protein",
+      "recovery",
+      "balanced"
+    ],
+    "bundle": "",
+    "inStock": true,
+    "description": "Lean tuna meal kit with fresh sides for simple performance nutrition.",
+    "goals": [
+      "Maintenance",
+      "Athletic Performance",
+      "Maintain Fitness"
+    ],
+    "diet": [
+      "Non-Vegetarian",
+      "No Preference"
+    ],
+    "proteinPerServing": 32,
+    "calories": 240
+  },
+  {
+    "id": "meats-001",
+    "slug": "lean-beef-steak-strips",
+    "name": "Lean Beef Steak Strips",
+    "category": "fresh-protein",
+    "subcategory": "meats",
+    "image": "/images/product-meal-plan.webp",
+    "price": 54,
+    "oldPrice": 61,
+    "sale": false,
+    "rating": 4,
+    "badges": [
+      "High Protein"
+    ],
+    "tags": [
+      "organic",
+      "fresh-protein",
+      "high-protein",
+      "balanced"
+    ],
+    "bundle": "",
+    "inStock": true,
+    "description": "Lean beef strips trimmed for stir-fries, bowls, and high-protein dinners.",
+    "goals": [
+      "Fat Loss",
+      "Athletic Performance",
+      "Build Muscle",
+      "Maintain Fitness"
+    ],
+    "diet": [
+      "Non-Vegetarian",
+      "No Preference"
+    ],
+    "proteinPerServing": 34,
+    "calories": 290
+  },
+  {
+    "id": "meats-002",
+    "slug": "turkey-protein-mince",
+    "name": "Turkey Protein Mince",
+    "category": "fresh-protein",
+    "subcategory": "meats",
+    "image": "/images/product-meal-plan.webp",
+    "price": 47,
+    "oldPrice": 55,
+    "sale": true,
+    "rating": 4.5,
+    "badges": [
+      "High Protein",
+      "Sale"
+    ],
+    "tags": [
+      "gluten-free",
+      "fresh-protein",
+      "high-protein",
+      "balanced"
+    ],
+    "bundle": "",
+    "inStock": true,
+    "description": "Lean turkey mince for clean meal prep and macro-friendly recipes.",
+    "goals": [
+      "Athletic Performance",
+      "Build Muscle",
+      "Maintain Fitness"
+    ],
+    "diet": [
+      "Non-Vegetarian",
+      "No Preference"
+    ],
+    "proteinPerServing": 34,
+    "calories": 290
+  },
+  {
+    "id": "meats-003",
+    "slug": "premium-lamb-protein-cuts",
+    "name": "Premium Lamb Protein Cuts",
+    "category": "fresh-protein",
+    "subcategory": "meats",
+    "image": "/images/product-meal-plan.webp",
+    "price": 68,
+    "oldPrice": 79,
+    "sale": false,
+    "rating": 5,
+    "badges": [
+      "Top Rated",
+      "High Protein"
+    ],
+    "tags": [
+      "organic",
+      "fresh-protein",
+      "high-protein",
+      "balanced"
+    ],
+    "bundle": "",
+    "inStock": true,
+    "description": "Premium lamb cuts portioned for hearty protein-focused meals.",
+    "goals": [
+      "Athletic Performance",
+      "Build Muscle",
+      "Maintain Fitness"
+    ],
+    "diet": [
+      "Non-Vegetarian",
+      "No Preference"
+    ],
+    "proteinPerServing": 34,
+    "calories": 290
+  },
+  {
+    "id": "milks-001",
+    "slug": "high-protein-vanilla-milk",
+    "name": "High Protein Vanilla Milk",
+    "category": "fresh-protein",
+    "subcategory": "milks",
+    "image": "/images/product-meal-plan.webp",
+    "price": 16,
+    "oldPrice": 19,
+    "sale": true,
+    "rating": 4,
+    "badges": [
+      "Daily Protein",
+      "Sale"
+    ],
+    "tags": [
+      "gluten-free",
+      "daily-protein",
+      "convenient",
+      "recovery"
+    ],
+    "bundle": "",
+    "inStock": true,
+    "description": "Smooth vanilla milk with extra protein for breakfast, snacks, or post-training.",
+    "goals": [
+      "Maintenance",
+      "Athletic Performance",
+      "Maintain Fitness"
+    ],
+    "diet": [
+      "Non-Vegetarian",
+      "No Preference"
+    ],
+    "proteinPerServing": 18,
+    "calories": 170
+  },
+  {
+    "id": "milks-002",
+    "slug": "chocolate-recovery-milk",
+    "name": "Chocolate Recovery Milk",
+    "category": "fresh-protein",
+    "subcategory": "milks",
+    "image": "/images/product-meal-plan.webp",
+    "price": 18,
+    "oldPrice": 22,
+    "sale": true,
+    "rating": 4.5,
+    "badges": [
+      "Daily Protein",
+      "Sale"
+    ],
+    "tags": [
+      "high-fiber",
+      "daily-protein",
+      "convenient",
+      "recovery"
+    ],
+    "bundle": "",
+    "inStock": true,
+    "description": "Chocolate protein milk made for fast recovery and easy daily nutrition.",
+    "goals": [
+      "Maintenance",
+      "Athletic Performance",
+      "Maintain Fitness"
+    ],
+    "diet": [
+      "Non-Vegetarian",
+      "No Preference"
+    ],
+    "proteinPerServing": 18,
+    "calories": 170
+  },
+  {
+    "id": "milks-003",
+    "slug": "protein-labneh-drink",
+    "name": "Protein Labneh Drink",
+    "category": "fresh-protein",
+    "subcategory": "milks",
+    "image": "/images/product-meal-plan.webp",
+    "price": 21,
+    "oldPrice": 25,
+    "sale": false,
+    "rating": 4,
+    "badges": [
+      "Daily Protein"
+    ],
+    "tags": [
+      "organic",
+      "daily-protein",
+      "convenient",
+      "recovery"
+    ],
+    "bundle": "",
+    "inStock": true,
+    "description": "A creamy protein-rich dairy drink inspired by regional everyday flavors.",
+    "goals": [
+      "Maintenance",
+      "Athletic Performance",
+      "Maintain Fitness"
+    ],
+    "diet": [
+      "Non-Vegetarian",
+      "No Preference"
+    ],
+    "proteinPerServing": 18,
+    "calories": 170
+  },
+  {
+    "id": "bars-001",
+    "slug": "gluten-free-energy-bar-berry-blast",
+    "name": "Gluten-Free Energy Bar Berry Blast",
+    "category": "bars-snacks",
+    "subcategory": "bars",
+    "image": "/images/product-protein-bars.webp",
+    "price": 19,
+    "oldPrice": 24,
+    "sale": true,
+    "rating": 5,
+    "badges": [
+      "Top Rated",
+      "High Protein",
+      "Sale"
+    ],
+    "tags": [
+      "gluten-free",
+      "snack",
+      "convenient",
+      "high-protein",
+      "daily-protein"
+    ],
+    "bundle": "",
+    "inStock": true,
+    "description": "A clean berry protein bar made for quick fuel, rich texture, and balanced snacking.",
+    "goals": [
+      "Fat Loss",
+      "Muscle Gain",
+      "Maintenance",
+      "Build Muscle",
+      "Maintain Fitness"
+    ],
+    "diet": [
+      "No Preference",
+      "Vegetarian"
+    ],
+    "proteinPerServing": 20,
+    "calories": 210
+  },
+  {
+    "id": "bars-002",
+    "slug": "chocolate-peanut-protein-bar",
+    "name": "Chocolate Peanut Protein Bar",
+    "category": "bars-snacks",
+    "subcategory": "bars",
+    "image": "/images/product-protein-bars.webp",
+    "price": 21,
+    "oldPrice": 26,
+    "sale": true,
+    "rating": 4.5,
+    "badges": [
+      "High Protein",
+      "Sale"
+    ],
+    "tags": [
+      "high-fiber",
+      "snack",
+      "convenient",
+      "high-protein",
+      "daily-protein"
+    ],
+    "bundle": "",
+    "inStock": true,
+    "description": "Chocolate peanut bar with a soft bite and satisfying protein content.",
+    "goals": [
+      "Fat Loss",
+      "Muscle Gain",
+      "Maintenance",
+      "Build Muscle",
+      "Maintain Fitness"
+    ],
+    "diet": [
+      "No Preference",
+      "Vegetarian"
+    ],
+    "proteinPerServing": 20,
+    "calories": 210
+  },
+  {
+    "id": "bars-003",
+    "slug": "date-almond-protein-bar",
+    "name": "Date Almond Protein Bar",
+    "category": "bars-snacks",
+    "subcategory": "bars",
+    "image": "/images/product-protein-bars.webp",
+    "price": 23,
+    "oldPrice": 28,
+    "sale": false,
+    "rating": 4,
+    "badges": [
+      "High Protein"
+    ],
+    "tags": [
+      "organic",
+      "snack",
+      "convenient",
+      "high-protein",
+      "daily-protein"
+    ],
+    "bundle": "",
+    "inStock": true,
+    "description": "Date and almond bar for naturally sweet protein snacking.",
+    "goals": [
+      "Fat Loss",
+      "Muscle Gain",
+      "Maintenance",
+      "Build Muscle",
+      "Maintain Fitness"
+    ],
+    "diet": [
+      "No Preference",
+      "Vegetarian"
+    ],
+    "proteinPerServing": 20,
+    "calories": 210
+  },
+  {
+    "id": "chips-001",
+    "slug": "sea-salt-protein-chips",
+    "name": "Sea Salt Protein Chips",
+    "category": "bars-snacks",
+    "subcategory": "chips",
+    "image": "/images/product-protein-bars.webp",
+    "price": 14,
+    "oldPrice": 18,
+    "sale": false,
+    "rating": 4,
+    "badges": [
+      "Low Sugar"
+    ],
+    "tags": [
+      "gluten-free",
+      "snack",
+      "low-sugar",
+      "convenient"
+    ],
+    "bundle": "",
+    "inStock": true,
+    "description": "Crunchy baked chips with extra protein and a simple sea salt finish.",
+    "goals": [
+      "Fat Loss",
+      "Muscle Gain",
+      "Maintenance",
+      "Lose Fat",
+      "Maintain Fitness"
+    ],
+    "diet": [
+      "No Preference",
+      "Vegetarian"
+    ],
+    "proteinPerServing": 14,
+    "calories": 150
+  },
+  {
+    "id": "chips-002",
+    "slug": "bbq-crunch-protein-chips",
+    "name": "BBQ Crunch Protein Chips",
+    "category": "bars-snacks",
+    "subcategory": "chips",
+    "image": "/images/product-protein-bars.webp",
+    "price": 16,
+    "oldPrice": 20,
+    "sale": true,
+    "rating": 4.5,
+    "badges": [
+      "Low Sugar",
+      "Sale"
+    ],
+    "tags": [
+      "high-fiber",
+      "snack",
+      "low-sugar",
+      "convenient"
+    ],
+    "bundle": "",
+    "inStock": true,
+    "description": "Smoky BBQ chips baked for a crunchy higher-protein snack.",
+    "goals": [
+      "Fat Loss",
+      "Muscle Gain",
+      "Maintenance",
+      "Lose Fat",
+      "Maintain Fitness"
+    ],
+    "diet": [
+      "No Preference",
+      "Vegetarian"
+    ],
+    "proteinPerServing": 14,
+    "calories": 150
+  },
+  {
+    "id": "chips-003",
+    "slug": "chili-lime-protein-crisps",
+    "name": "Chili Lime Protein Crisps",
+    "category": "bars-snacks",
+    "subcategory": "chips",
+    "image": "/images/product-protein-bars.webp",
+    "price": 15,
+    "oldPrice": 19,
+    "sale": false,
+    "rating": 4,
+    "badges": [
+      "Low Sugar"
+    ],
+    "tags": [
+      "gluten-free",
+      "snack",
+      "low-sugar",
+      "convenient"
+    ],
+    "bundle": "",
+    "inStock": true,
+    "description": "Bright chili lime crisps for a lighter snack with a protein lift.",
+    "goals": [
+      "Fat Loss",
+      "Muscle Gain",
+      "Maintenance",
+      "Lose Fat",
+      "Maintain Fitness"
+    ],
+    "diet": [
+      "No Preference",
+      "Vegetarian"
+    ],
+    "proteinPerServing": 14,
+    "calories": 150
+  },
+  {
+    "id": "deserts-001",
+    "slug": "chocolate-protein-brownie",
+    "name": "Chocolate Protein Brownie",
+    "category": "bars-snacks",
+    "subcategory": "deserts",
+    "image": "/images/product-protein-bars.webp",
+    "price": 22,
+    "oldPrice": 27,
+    "sale": true,
+    "rating": 5,
+    "badges": [
+      "Top Rated",
+      "High Protein",
+      "Sale"
+    ],
+    "tags": [
+      "high-fiber",
+      "snack",
+      "high-protein"
+    ],
+    "bundle": "",
+    "inStock": true,
+    "description": "A soft chocolate brownie with satisfying protein and dessert-level flavor.",
+    "goals": [
+      "Fat Loss",
+      "Muscle Gain",
+      "Maintenance",
+      "Maintain Fitness",
+      "Build Muscle"
+    ],
+    "diet": [
+      "No Preference",
+      "Vegetarian"
+    ],
+    "proteinPerServing": 18,
+    "calories": 230
+  },
+  {
+    "id": "deserts-002",
+    "slug": "vanilla-protein-pudding",
+    "name": "Vanilla Protein Pudding",
+    "category": "bars-snacks",
+    "subcategory": "deserts",
+    "image": "/images/product-protein-bars.webp",
+    "price": 18,
+    "oldPrice": 23,
+    "sale": true,
+    "rating": 4.5,
+    "badges": [
+      "High Protein",
+      "Sale"
+    ],
+    "tags": [
+      "gluten-free",
+      "snack",
+      "high-protein"
+    ],
+    "bundle": "",
+    "inStock": true,
+    "description": "Creamy vanilla pudding for a chilled, macro-friendly dessert.",
+    "goals": [
+      "Fat Loss",
+      "Muscle Gain",
+      "Maintenance",
+      "Maintain Fitness",
+      "Build Muscle"
+    ],
+    "diet": [
+      "No Preference",
+      "Vegetarian"
+    ],
+    "proteinPerServing": 18,
+    "calories": 230
+  },
+  {
+    "id": "deserts-003",
+    "slug": "protein-cookie-dough-cup",
+    "name": "Protein Cookie Dough Cup",
+    "category": "bars-snacks",
+    "subcategory": "deserts",
+    "image": "/images/product-protein-bars.webp",
+    "price": 24,
+    "oldPrice": 29,
+    "sale": false,
+    "rating": 4,
+    "badges": [
+      "High Protein"
+    ],
+    "tags": [
+      "organic",
+      "snack",
+      "high-protein"
+    ],
+    "bundle": "",
+    "inStock": true,
+    "description": "Cookie dough style dessert cup with a soft texture and strong protein base.",
+    "goals": [
+      "Fat Loss",
+      "Muscle Gain",
+      "Maintenance",
+      "Maintain Fitness",
+      "Build Muscle"
+    ],
+    "diet": [
+      "No Preference",
+      "Vegetarian"
+    ],
+    "proteinPerServing": 18,
+    "calories": 230
+  },
+  {
+    "id": "diy-001",
+    "slug": "protein-pancake-diy-mix",
+    "name": "Protein Pancake DIY Mix",
+    "category": "bars-snacks",
+    "subcategory": "diy",
+    "image": "/images/product-protein-bars.webp",
+    "price": 35,
+    "oldPrice": 42,
+    "sale": false,
+    "rating": 4,
+    "badges": [
+      "Daily Protein"
+    ],
+    "tags": [
+      "high-fiber",
+      "snack",
+      "balanced",
+      "convenient"
+    ],
+    "bundle": "",
+    "inStock": true,
+    "description": "Easy pancake mix for high-protein breakfasts with a soft golden texture.",
+    "goals": [
+      "Fat Loss",
+      "Muscle Gain",
+      "Maintenance",
+      "Maintain Fitness"
+    ],
+    "diet": [
+      "No Preference",
+      "Vegetarian"
+    ],
+    "proteinPerServing": 20,
+    "calories": 240
+  },
+  {
+    "id": "diy-002",
+    "slug": "protein-cookie-diy-kit",
+    "name": "Protein Cookie DIY Kit",
+    "category": "bars-snacks",
+    "subcategory": "diy",
+    "image": "/images/product-protein-bars.webp",
+    "price": 39,
+    "oldPrice": 48,
+    "sale": true,
+    "rating": 4.5,
+    "badges": [
+      "Daily Protein",
+      "Sale"
+    ],
+    "tags": [
+      "gluten-free",
+      "snack",
+      "balanced",
+      "convenient"
+    ],
+    "bundle": "",
+    "inStock": true,
+    "description": "Make-at-home protein cookies with simple steps and premium ingredients.",
+    "goals": [
+      "Fat Loss",
+      "Muscle Gain",
+      "Maintenance",
+      "Maintain Fitness"
+    ],
+    "diet": [
+      "No Preference",
+      "Vegetarian"
+    ],
+    "proteinPerServing": 20,
+    "calories": 240
+  },
+  {
+    "id": "diy-003",
+    "slug": "overnight-oats-protein-kit",
+    "name": "Overnight Oats Protein Kit",
+    "category": "bars-snacks",
+    "subcategory": "diy",
+    "image": "/images/product-protein-bars.webp",
+    "price": 32,
+    "oldPrice": 39,
+    "sale": false,
+    "rating": 4,
+    "badges": [
+      "Daily Protein"
+    ],
+    "tags": [
+      "organic",
+      "snack",
+      "balanced",
+      "convenient"
+    ],
+    "bundle": "",
+    "inStock": true,
+    "description": "A ready kit for creamy overnight oats with added protein and fiber.",
+    "goals": [
+      "Fat Loss",
+      "Muscle Gain",
+      "Maintenance",
+      "Maintain Fitness"
+    ],
+    "diet": [
+      "No Preference",
+      "Vegetarian"
+    ],
+    "proteinPerServing": 20,
+    "calories": 240
+  },
+  {
+    "id": "fit-diet-001",
+    "slug": "fit-diet-weekly-meal-plan",
+    "name": "Fit Diet Weekly Meal Plan",
+    "category": "meal-plan",
+    "subcategory": "fit-diet",
+    "image": "/images/product-meal-plan.webp",
+    "price": 249,
+    "oldPrice": 289,
+    "sale": true,
+    "rating": 5,
+    "badges": [
+      "Top Rated",
+      "Meal Plan Friendly",
+      "Low Sugar",
+      "Sale"
+    ],
+    "tags": [
+      "organic",
+      "fit-diet",
+      "ready-meal",
+      "fat-loss",
+      "balanced"
+    ],
+    "bundle": "",
+    "inStock": true,
+    "description": "A balanced weekly plan for lean protein, vegetables, and reliable daily meals.",
+    "goals": [
+      "Fat Loss",
+      "Maintenance",
+      "Lose Fat",
+      "Maintain Fitness"
+    ],
+    "diet": [
+      "No Preference",
+      "Vegetarian"
+    ],
+    "proteinPerServing": 38,
+    "calories": 420
+  },
+  {
+    "id": "fit-diet-002",
+    "slug": "lean-lunch-fit-plan",
+    "name": "Lean Lunch Fit Plan",
+    "category": "meal-plan",
+    "subcategory": "fit-diet",
+    "image": "/images/product-meal-plan.webp",
+    "price": 219,
+    "oldPrice": 249,
+    "sale": true,
+    "rating": 4.5,
+    "badges": [
+      "Meal Plan Friendly",
+      "Low Sugar",
+      "Sale"
+    ],
+    "tags": [
+      "high-fiber",
+      "fit-diet",
+      "ready-meal",
+      "fat-loss",
+      "balanced"
+    ],
+    "bundle": "",
+    "inStock": true,
+    "description": "Lunch-focused meal plan designed for steady energy and clean macros.",
+    "goals": [
+      "Fat Loss",
+      "Maintenance",
+      "Lose Fat",
+      "Maintain Fitness"
+    ],
+    "diet": [
+      "No Preference",
+      "Vegetarian"
+    ],
+    "proteinPerServing": 38,
+    "calories": 420
+  },
+  {
+    "id": "fit-diet-003",
+    "slug": "balanced-fit-dinner-box",
+    "name": "Balanced Fit Dinner Box",
+    "category": "meal-plan",
+    "subcategory": "fit-diet",
+    "image": "/images/product-meal-plan.webp",
+    "price": 229,
+    "oldPrice": 265,
+    "sale": false,
+    "rating": 4,
+    "badges": [
+      "Meal Plan Friendly",
+      "Low Sugar"
+    ],
+    "tags": [
+      "gluten-free",
+      "fit-diet",
+      "ready-meal",
+      "fat-loss",
+      "balanced"
+    ],
+    "bundle": "",
+    "inStock": true,
+    "description": "Dinner boxes with lean proteins and vegetables for easy weekly planning.",
+    "goals": [
+      "Fat Loss",
+      "Maintenance",
+      "Lose Fat",
+      "Maintain Fitness"
+    ],
+    "diet": [
+      "No Preference",
+      "Vegetarian"
+    ],
+    "proteinPerServing": 38,
+    "calories": 420
+  },
+  {
+    "id": "kcal-001",
+    "slug": "kcal-controlled-performance-plan",
+    "name": "Kcal Controlled Performance Plan",
+    "category": "meal-plan",
+    "subcategory": "kcal",
+    "image": "/images/product-meal-plan.webp",
+    "price": 269,
+    "oldPrice": 299,
+    "sale": false,
+    "rating": 5,
+    "badges": [
+      "Top Rated",
+      "Meal Plan Friendly"
+    ],
+    "tags": [
+      "high-fiber",
+      "ready-meal",
+      "balanced",
+      "meal-plan"
+    ],
+    "bundle": "",
+    "inStock": true,
+    "description": "Calorie-controlled meals organized for tracking, consistency, and strong training days.",
+    "goals": [
+      "Maintenance",
+      "Athletic Performance",
+      "Maintain Fitness"
+    ],
+    "diet": [
+      "No Preference",
+      "Vegetarian"
+    ],
+    "proteinPerServing": 40,
+    "calories": 520
+  },
+  {
+    "id": "kcal-002",
+    "slug": "1500-kcal-protein-plan",
+    "name": "1500 Kcal Protein Plan",
+    "category": "meal-plan",
+    "subcategory": "kcal",
+    "image": "/images/product-meal-plan.webp",
+    "price": 239,
+    "oldPrice": 279,
+    "sale": true,
+    "rating": 4.5,
+    "badges": [
+      "Meal Plan Friendly",
+      "Sale"
+    ],
+    "tags": [
+      "gluten-free",
+      "ready-meal",
+      "balanced",
+      "meal-plan"
+    ],
+    "bundle": "",
+    "inStock": true,
+    "description": "Structured 1500 kcal plan with satisfying high-protein meals.",
+    "goals": [
+      "Fat Loss",
+      "Maintenance",
+      "Maintain Fitness",
+      "Athletic Performance"
+    ],
+    "diet": [
+      "No Preference",
+      "Vegetarian"
+    ],
+    "proteinPerServing": 40,
+    "calories": 520
+  },
+  {
+    "id": "kcal-003",
+    "slug": "2200-kcal-strength-plan",
+    "name": "2200 Kcal Strength Plan",
+    "category": "meal-plan",
+    "subcategory": "kcal",
+    "image": "/images/product-meal-plan.webp",
+    "price": 299,
+    "oldPrice": 339,
+    "sale": false,
+    "rating": 4,
+    "badges": [
+      "Meal Plan Friendly"
+    ],
+    "tags": [
+      "organic",
+      "ready-meal",
+      "balanced",
+      "meal-plan"
+    ],
+    "bundle": "",
+    "inStock": true,
+    "description": "Higher-calorie meal plan built for training, strength, and recovery.",
+    "goals": [
+      "Muscle Gain",
+      "Maintenance",
+      "Maintain Fitness",
+      "Athletic Performance"
+    ],
+    "diet": [
+      "No Preference",
+      "Vegetarian"
+    ],
+    "proteinPerServing": 40,
+    "calories": 520
+  },
+  {
+    "id": "my-meal-001",
+    "slug": "my-meal-custom-protein-plan",
+    "name": "My Meal Custom Protein Plan",
+    "category": "meal-plan",
+    "subcategory": "my-meal",
+    "image": "/images/product-meal-plan.webp",
+    "price": 299,
+    "oldPrice": 349,
+    "sale": true,
+    "rating": 5,
+    "badges": [
+      "Top Rated",
+      "Meal Plan Friendly",
+      "High Protein",
+      "Sale"
+    ],
+    "tags": [
+      "organic",
+      "ready-meal",
+      "convenient",
+      "meal-plan",
+      "high-protein"
+    ],
+    "bundle": "",
+    "inStock": true,
+    "description": "Custom weekly meals selected around your preferred proteins, sides, and goals.",
+    "goals": [
+      "Maintenance",
+      "Build Muscle",
+      "Maintain Fitness"
+    ],
+    "diet": [
+      "No Preference",
+      "Vegetarian"
+    ],
+    "proteinPerServing": 42,
+    "calories": 560
+  },
+  {
+    "id": "my-meal-002",
+    "slug": "my-meal-athlete-box",
+    "name": "My Meal Athlete Box",
+    "category": "meal-plan",
+    "subcategory": "my-meal",
+    "image": "/images/product-meal-plan.webp",
+    "price": 329,
+    "oldPrice": 369,
+    "sale": true,
+    "rating": 4.5,
+    "badges": [
+      "Meal Plan Friendly",
+      "High Protein",
+      "Sale"
+    ],
+    "tags": [
+      "high-fiber",
+      "ready-meal",
+      "convenient",
+      "meal-plan",
+      "high-protein"
+    ],
+    "bundle": "",
+    "inStock": true,
+    "description": "Athlete-style custom box with flexible protein choices and smart sides.",
+    "goals": [
+      "Maintenance",
+      "Athletic Performance",
+      "Build Muscle",
+      "Maintain Fitness"
+    ],
+    "diet": [
+      "No Preference",
+      "Vegetarian"
+    ],
+    "proteinPerServing": 42,
+    "calories": 560
+  },
+  {
+    "id": "my-meal-003",
+    "slug": "my-meal-family-protein-pack",
+    "name": "My Meal Family Protein Pack",
+    "category": "meal-plan",
+    "subcategory": "my-meal",
+    "image": "/images/product-meal-plan.webp",
+    "price": 349,
+    "oldPrice": 399,
+    "sale": false,
+    "rating": 4,
+    "badges": [
+      "Meal Plan Friendly",
+      "High Protein"
+    ],
+    "tags": [
+      "gluten-free",
+      "ready-meal",
+      "convenient",
+      "meal-plan",
+      "high-protein"
+    ],
+    "bundle": "",
+    "inStock": true,
+    "description": "A family-sized custom plan with balanced protein meals for the week.",
+    "goals": [
+      "Maintenance",
+      "Build Muscle",
+      "Maintain Fitness"
+    ],
+    "diet": [
+      "No Preference",
+      "Vegetarian"
+    ],
+    "proteinPerServing": 42,
+    "calories": 560
+  },
+  {
+    "id": "vegan-protein-powders-001",
+    "slug": "plant-protein-chocolate-almond",
+    "name": "Plant Protein Chocolate Almond",
+    "category": "vegan-protein",
+    "subcategory": "vegan-protein-powders",
+    "image": "/images/product-vegan-protein.webp",
+    "price": 142,
+    "oldPrice": 165,
+    "sale": true,
+    "rating": 5,
+    "badges": [
+      "Top Rated",
+      "Vegan Certified",
+      "Vegan Friendly",
+      "Daily Protein",
+      "Sale"
+    ],
+    "tags": [
+      "plant-power",
+      "vegan",
+      "daily-protein",
+      "recovery"
+    ],
+    "bundle": "Plant-Based Performance Pack",
+    "inStock": true,
+    "description": "A smooth plant protein powder with chocolate almond flavor and clean amino support.",
+    "goals": [
+      "Fat Loss",
+      "Maintenance",
+      "Athletic Performance",
+      "Muscle Gain",
+      "Build Muscle",
+      "Maintain Fitness",
+      "Vegan Lifestyle"
+    ],
+    "diet": [
+      "Vegan",
+      "Vegetarian",
+      "No Preference"
+    ],
+    "proteinPerServing": 23,
+    "calories": 125
+  },
+  {
+    "id": "vegan-protein-powders-002",
+    "slug": "pea-rice-vegan-protein",
+    "name": "Pea Rice Vegan Protein",
+    "category": "vegan-protein",
+    "subcategory": "vegan-protein-powders",
+    "image": "/images/product-vegan-protein.webp",
+    "price": 132,
+    "oldPrice": 155,
+    "sale": true,
+    "rating": 4.5,
+    "badges": [
+      "Vegan Certified",
+      "Vegan Friendly",
+      "Daily Protein",
+      "Sale"
+    ],
+    "tags": [
+      "plant-power",
+      "vegan",
+      "daily-protein",
+      "recovery"
+    ],
+    "bundle": "Plant-Based Performance Pack",
+    "inStock": true,
+    "description": "Pea and rice protein blend for a smooth plant-based daily shake.",
+    "goals": [
+      "Fat Loss",
+      "Maintenance",
+      "Athletic Performance",
+      "Muscle Gain",
+      "Build Muscle",
+      "Maintain Fitness",
+      "Vegan Lifestyle"
+    ],
+    "diet": [
+      "Vegan",
+      "Vegetarian",
+      "No Preference"
+    ],
+    "proteinPerServing": 23,
+    "calories": 125
+  },
+  {
+    "id": "vegan-protein-powders-003",
+    "slug": "vanilla-green-protein",
+    "name": "Vanilla Green Protein",
+    "category": "vegan-protein",
+    "subcategory": "vegan-protein-powders",
+    "image": "/images/product-vegan-protein.webp",
+    "price": 138,
+    "oldPrice": 158,
+    "sale": false,
+    "rating": 4,
+    "badges": [
+      "Vegan Certified",
+      "Vegan Friendly",
+      "Daily Protein"
+    ],
+    "tags": [
+      "plant-power",
+      "organic",
+      "vegan",
+      "daily-protein",
+      "recovery"
+    ],
+    "bundle": "Plant-Based Performance Pack",
+    "inStock": true,
+    "description": "Vanilla plant protein with a clean taste and everyday nutrition profile.",
+    "goals": [
+      "Fat Loss",
+      "Maintenance",
+      "Athletic Performance",
+      "Muscle Gain",
+      "Build Muscle",
+      "Maintain Fitness",
+      "Vegan Lifestyle"
+    ],
+    "diet": [
+      "Vegan",
+      "Vegetarian",
+      "No Preference"
+    ],
+    "proteinPerServing": 23,
+    "calories": 125
+  },
+  {
+    "id": "vegan-clear-protein-001",
+    "slug": "vegan-clear-protein-mango",
+    "name": "Vegan Clear Protein Mango",
+    "category": "vegan-protein",
+    "subcategory": "vegan-clear-protein",
+    "image": "/images/product-vegan-protein.webp",
+    "price": 136,
+    "oldPrice": 152,
+    "sale": false,
+    "rating": 4,
+    "badges": [
+      "Vegan Certified",
+      "Vegan Friendly",
+      "Low Sugar"
+    ],
+    "tags": [
+      "plant-power",
+      "vegan",
+      "clear-protein",
+      "low-sugar"
+    ],
+    "bundle": "Vegan Starter Kit",
+    "inStock": true,
+    "description": "Light mango plant protein made for refreshing shakes without a heavy texture.",
+    "goals": [
+      "Fat Loss",
+      "Athletic Performance",
+      "Maintenance",
+      "Lose Fat",
+      "Maintain Fitness",
+      "Vegan Lifestyle"
+    ],
+    "diet": [
+      "Vegan",
+      "Vegetarian",
+      "No Preference"
+    ],
+    "proteinPerServing": 21,
+    "calories": 100
+  },
+  {
+    "id": "vegan-clear-protein-002",
+    "slug": "berry-vegan-clear-isolate",
+    "name": "Berry Vegan Clear Isolate",
+    "category": "vegan-protein",
+    "subcategory": "vegan-clear-protein",
+    "image": "/images/product-vegan-protein.webp",
+    "price": 129,
+    "oldPrice": 149,
+    "sale": true,
+    "rating": 4.5,
+    "badges": [
+      "Vegan Certified",
+      "Vegan Friendly",
+      "Low Sugar",
+      "Sale"
+    ],
+    "tags": [
+      "plant-power",
+      "gluten-free",
+      "vegan",
+      "clear-protein",
+      "low-sugar"
+    ],
+    "bundle": "Vegan Starter Kit",
+    "inStock": true,
+    "description": "Berry clear vegan protein for light, refreshing plant-based recovery.",
+    "goals": [
+      "Fat Loss",
+      "Athletic Performance",
+      "Maintenance",
+      "Lose Fat",
+      "Maintain Fitness",
+      "Vegan Lifestyle"
+    ],
+    "diet": [
+      "Vegan",
+      "Vegetarian",
+      "No Preference"
+    ],
+    "proteinPerServing": 21,
+    "calories": 100
+  },
+  {
+    "id": "vegan-clear-protein-003",
+    "slug": "lemon-vegan-hydration-protein",
+    "name": "Lemon Vegan Hydration Protein",
+    "category": "vegan-protein",
+    "subcategory": "vegan-clear-protein",
+    "image": "/images/product-vegan-protein.webp",
+    "price": 133,
+    "oldPrice": 153,
+    "sale": false,
+    "rating": 4,
+    "badges": [
+      "Vegan Certified",
+      "Vegan Friendly",
+      "Low Sugar"
+    ],
+    "tags": [
+      "plant-power",
+      "vegan",
+      "clear-protein",
+      "low-sugar"
+    ],
+    "bundle": "Vegan Starter Kit",
+    "inStock": true,
+    "description": "Lemon plant protein designed for clean hydration and active routines.",
+    "goals": [
+      "Fat Loss",
+      "Athletic Performance",
+      "Maintenance",
+      "Lose Fat",
+      "Maintain Fitness",
+      "Vegan Lifestyle"
+    ],
+    "diet": [
+      "Vegan",
+      "Vegetarian",
+      "No Preference"
+    ],
+    "proteinPerServing": 21,
+    "calories": 100
+  },
+  {
+    "id": "vegan-frozen-foods-001",
+    "slug": "vegan-frozen-power-bowl",
+    "name": "Vegan Frozen Power Bowl",
+    "category": "vegan-protein",
+    "subcategory": "vegan-frozen-foods",
+    "image": "/images/product-vegan-protein.webp",
+    "price": 38,
+    "oldPrice": 45,
+    "sale": true,
+    "rating": 5,
+    "badges": [
+      "Top Rated",
+      "Vegan Certified",
+      "Vegan Friendly",
+      "Meal Plan Friendly",
+      "Sale"
+    ],
+    "tags": [
+      "plant-power",
+      "vegan",
+      "ready-meal",
+      "convenient"
+    ],
+    "bundle": "Vegan Starter Kit",
+    "inStock": true,
+    "description": "A ready frozen bowl with plant proteins, grains, and colorful vegetables.",
+    "goals": [
+      "Fat Loss",
+      "Maintenance",
+      "Maintain Fitness",
+      "Busy Professional",
+      "Vegan Lifestyle"
+    ],
+    "diet": [
+      "Vegan",
+      "Vegetarian",
+      "No Preference"
+    ],
+    "proteinPerServing": 24,
+    "calories": 360
+  },
+  {
+    "id": "vegan-frozen-foods-002",
+    "slug": "vegan-lentil-freezer-meal",
+    "name": "Vegan Lentil Freezer Meal",
+    "category": "vegan-protein",
+    "subcategory": "vegan-frozen-foods",
+    "image": "/images/product-vegan-protein.webp",
+    "price": 34,
+    "oldPrice": 41,
+    "sale": true,
+    "rating": 4.5,
+    "badges": [
+      "Vegan Certified",
+      "Vegan Friendly",
+      "Meal Plan Friendly",
+      "Sale"
+    ],
+    "tags": [
+      "plant-power",
+      "high-fiber",
+      "vegan",
+      "ready-meal",
+      "convenient"
+    ],
+    "bundle": "Vegan Starter Kit",
+    "inStock": true,
+    "description": "Frozen lentil meal with plant protein and warming spices.",
+    "goals": [
+      "Maintenance",
+      "Fat Loss",
+      "Muscle Gain",
+      "Maintain Fitness",
+      "Busy Professional",
+      "Vegan Lifestyle"
+    ],
+    "diet": [
+      "Vegan",
+      "Vegetarian",
+      "No Preference"
+    ],
+    "proteinPerServing": 24,
+    "calories": 360
+  },
+  {
+    "id": "vegan-frozen-foods-003",
+    "slug": "tofu-stir-fry-freezer-box",
+    "name": "Tofu Stir Fry Freezer Box",
+    "category": "vegan-protein",
+    "subcategory": "vegan-frozen-foods",
+    "image": "/images/product-vegan-protein.webp",
+    "price": 36,
+    "oldPrice": 44,
+    "sale": false,
+    "rating": 4,
+    "badges": [
+      "Vegan Certified",
+      "Vegan Friendly",
+      "Meal Plan Friendly"
+    ],
+    "tags": [
+      "plant-power",
+      "vegan",
+      "ready-meal",
+      "convenient"
+    ],
+    "bundle": "Vegan Starter Kit",
+    "inStock": true,
+    "description": "Freezer-ready tofu stir fry box with vegetables and balanced macros.",
+    "goals": [
+      "Fat Loss",
+      "Maintenance",
+      "Maintain Fitness",
+      "Busy Professional",
+      "Vegan Lifestyle"
+    ],
+    "diet": [
+      "Vegan",
+      "Vegetarian",
+      "No Preference"
+    ],
+    "proteinPerServing": 24,
+    "calories": 360
+  },
+  {
+    "id": "vegan-protein-snacks-001",
+    "slug": "vegan-protein-cookie-pack",
+    "name": "Vegan Protein Cookie Pack",
+    "category": "vegan-protein",
+    "subcategory": "vegan-protein-snacks",
+    "image": "/images/product-vegan-protein.webp",
+    "price": 28,
+    "oldPrice": 34,
+    "sale": false,
+    "rating": 4,
+    "badges": [
+      "Vegan Certified",
+      "Vegan Friendly"
+    ],
+    "tags": [
+      "plant-power",
+      "vegan",
+      "snack",
+      "convenient"
+    ],
+    "bundle": "Vegan Starter Kit",
+    "inStock": true,
+    "description": "Soft vegan cookies with pea protein and a balanced chocolate chip bite.",
+    "goals": [
+      "Fat Loss",
+      "Maintenance",
+      "Muscle Gain",
+      "Maintain Fitness",
+      "Busy Professional",
+      "Vegan Lifestyle"
+    ],
+    "diet": [
+      "Vegan",
+      "Vegetarian",
+      "No Preference"
+    ],
+    "proteinPerServing": 16,
+    "calories": 190
+  },
+  {
+    "id": "vegan-protein-snacks-002",
+    "slug": "vegan-crunch-snack-box",
+    "name": "Vegan Crunch Snack Box",
+    "category": "vegan-protein",
+    "subcategory": "vegan-protein-snacks",
+    "image": "/images/product-vegan-protein.webp",
+    "price": 31,
+    "oldPrice": 38,
+    "sale": true,
+    "rating": 4.5,
+    "badges": [
+      "Vegan Certified",
+      "Vegan Friendly",
+      "Sale"
+    ],
+    "tags": [
+      "plant-power",
+      "gluten-free",
+      "vegan",
+      "snack",
+      "convenient"
+    ],
+    "bundle": "Vegan Starter Kit",
+    "inStock": true,
+    "description": "Crunchy vegan snack box for quick plant-based fuel between meals.",
+    "goals": [
+      "Fat Loss",
+      "Maintenance",
+      "Muscle Gain",
+      "Maintain Fitness",
+      "Busy Professional",
+      "Vegan Lifestyle"
+    ],
+    "diet": [
+      "Vegan",
+      "Vegetarian",
+      "No Preference"
+    ],
+    "proteinPerServing": 16,
+    "calories": 190
+  },
+  {
+    "id": "vegan-protein-snacks-003",
+    "slug": "plant-protein-date-bites",
+    "name": "Plant Protein Date Bites",
+    "category": "vegan-protein",
+    "subcategory": "vegan-protein-snacks",
+    "image": "/images/product-vegan-protein.webp",
+    "price": 26,
+    "oldPrice": 32,
+    "sale": false,
+    "rating": 4,
+    "badges": [
+      "Vegan Certified",
+      "Vegan Friendly"
+    ],
+    "tags": [
+      "plant-power",
+      "organic",
+      "vegan",
+      "snack",
+      "convenient"
+    ],
+    "bundle": "Vegan Starter Kit",
+    "inStock": true,
+    "description": "Date bites with plant protein, nuts, and a naturally sweet finish.",
+    "goals": [
+      "Fat Loss",
+      "Maintenance",
+      "Muscle Gain",
+      "Maintain Fitness",
+      "Busy Professional",
+      "Vegan Lifestyle"
+    ],
+    "diet": [
+      "Vegan",
+      "Vegetarian",
+      "No Preference"
+    ],
+    "proteinPerServing": 16,
+    "calories": 190
+  },
+  {
+    "id": "vegan-meal-plans-001",
+    "slug": "vegan-performance-meal-plan",
+    "name": "Vegan Performance Meal Plan",
+    "category": "vegan-protein",
+    "subcategory": "vegan-meal-plans",
+    "image": "/images/product-vegan-protein.webp",
+    "price": 259,
+    "oldPrice": 299,
+    "sale": true,
+    "rating": 5,
+    "badges": [
+      "Top Rated",
+      "Vegan Certified",
+      "Vegan Friendly",
+      "Meal Plan Friendly",
+      "Sale"
+    ],
+    "tags": [
+      "plant-based-performance-pack",
+      "plant-power",
+      "vegan",
+      "ready-meal",
+      "meal-plan"
+    ],
+    "bundle": "Plant-Based Performance Pack",
+    "inStock": true,
+    "description": "Plant-based weekly meals for protein-focused training and everyday convenience.",
+    "goals": [
+      "Maintenance",
+      "Athletic Performance",
+      "Fat Loss",
+      "Muscle Gain",
+      "Maintain Fitness",
+      "Busy Professional",
+      "Vegan Lifestyle"
+    ],
+    "diet": [
+      "Vegan",
+      "Vegetarian",
+      "No Preference"
+    ],
+    "proteinPerServing": 36,
+    "calories": 480
+  },
+  {
+    "id": "vegan-meal-plans-002",
+    "slug": "vegan-starter-meal-plan",
+    "name": "Vegan Starter Meal Plan",
+    "category": "vegan-protein",
+    "subcategory": "vegan-meal-plans",
+    "image": "/images/product-vegan-protein.webp",
+    "price": 229,
+    "oldPrice": 269,
+    "sale": true,
+    "rating": 4.5,
+    "badges": [
+      "Vegan Certified",
+      "Vegan Friendly",
+      "Meal Plan Friendly",
+      "Sale"
+    ],
+    "tags": [
+      "vegan-starter-kit",
+      "plant-power",
+      "vegan",
+      "ready-meal",
+      "meal-plan"
+    ],
+    "bundle": "Vegan Starter Kit",
+    "inStock": true,
+    "description": "A friendly vegan starter plan with complete meals and strong protein coverage.",
+    "goals": [
+      "Maintenance",
+      "Fat Loss",
+      "Muscle Gain",
+      "Maintain Fitness",
+      "Busy Professional",
+      "Vegan Lifestyle"
+    ],
+    "diet": [
+      "Vegan",
+      "Vegetarian",
+      "No Preference"
+    ],
+    "proteinPerServing": 36,
+    "calories": 480
+  },
+  {
+    "id": "vegan-meal-plans-003",
+    "slug": "plant-based-lean-plan",
+    "name": "Plant-Based Lean Plan",
+    "category": "vegan-protein",
+    "subcategory": "vegan-meal-plans",
+    "image": "/images/product-vegan-protein.webp",
+    "price": 249,
+    "oldPrice": 289,
+    "sale": false,
+    "rating": 4,
+    "badges": [
+      "Vegan Certified",
+      "Vegan Friendly",
+      "Meal Plan Friendly"
+    ],
+    "tags": [
+      "plant-power",
+      "vegan",
+      "ready-meal",
+      "meal-plan"
+    ],
+    "bundle": "Plant-Based Performance Pack",
+    "inStock": true,
+    "description": "Lean plant-based meal plan made for consistent energy and recovery.",
+    "goals": [
+      "Fat Loss",
+      "Maintenance",
+      "Muscle Gain",
+      "Maintain Fitness",
+      "Busy Professional",
+      "Vegan Lifestyle"
+    ],
+    "diet": [
+      "Vegan",
+      "Vegetarian",
+      "No Preference"
+    ],
+    "proteinPerServing": 36,
+    "calories": 480
+  }
+]

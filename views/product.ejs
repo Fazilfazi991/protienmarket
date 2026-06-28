@@ -1,0 +1,73 @@
+<%- include("partials/header", { pageTitle: product.name }) %>
+<section class="product-detail">
+  <div class="container product-detail__grid">
+    <div class="product-detail__media">
+      <% if (product.sale) { %><span class="sale">SALE!</span><% } %>
+      <img src="<%= product.image %>" alt="<%= product.name %>">
+    </div>
+    <div class="product-detail__content">
+      <p class="breadcrumb"><a href="/">Home</a> / <a href="/shop">Shop</a><% if (category) { %> / <a href="/category/<%= category.slug %>"><%= category.name %></a><% } %><% if (subcategory) { %> / <a href="/category/<%= category.slug %>/<%= subcategory.slug %>"><%= subcategory.name %></a><% } %></p>
+      <h1><%= product.name %></h1>
+      <div class="stars" aria-label="<%= product.rating %> out of 5 stars"><% for (let i = 1; i <= 5; i += 1) { %><span class="<%= i <= Math.round(product.rating) ? "filled" : "" %>">&#9733;</span><% } %></div>
+      <div class="product-badges">
+        <% (product.badges || []).slice(0, 5).forEach((badge) => { %><span><%= badge %></span><% }) %>
+        <% if (product.proteinPerServing) { %><span><%= product.proteinPerServing %>g Protein</span><% } %>
+      </div>
+      <p class="price price--large"><del>AED <%= money(product.oldPrice) %></del> <strong>AED <%= money(product.price) %></strong></p>
+      <p class="product-description"><%= product.description %></p>
+      <div class="product-actions">
+        <label for="quantity">Qty</label>
+        <input id="quantity" type="number" min="1" value="1" data-quantity>
+        <button class="btn btn--gold" data-add-to-cart="<%= product.id %>">Add to Cart</button>
+      </div>
+      <div class="expert-card">
+        <h3>Not sure if this is right?</h3>
+        <p>Ask our team before you buy and get a quick product check.</p>
+        <a class="btn btn--whatsapp" href="https://wa.me/971553271712?text=<%= encodeURIComponent('Hi, is ' + product.name + ' right for my goal?') %>" target="_blank" rel="noreferrer">Ask Expert on WhatsApp</a>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="mvp-section product-education">
+  <div class="container education-grid">
+    <article>
+      <p class="eyebrow">Best for</p>
+      <h2>Goal Fit</h2>
+      <div class="product-badges product-badges--dark">
+        <% (product.goals || []).forEach((goal) => { %><span><%= goal %></span><% }) %>
+      </div>
+    </article>
+    <article>
+      <p class="eyebrow">How to use</p>
+      <h2>Simple routine</h2>
+      <% if (product.category === "meal-plan" || product.subcategory.includes("meal")) { %>
+        <ul><li>Choose your delivery schedule.</li><li>Store fresh meals properly.</li><li>Pair with protein snacks if needed.</li></ul>
+      <% } else if (product.category === "bars-snacks") { %>
+        <ul><li>Use between meals.</li><li>Great for office, travel, or post-workout.</li><li>Pair with a shake or meal plan for a complete routine.</li></ul>
+      <% } else { %>
+        <ul><li>Mix one scoop with water or milk.</li><li>Best after workout or between meals.</li><li>Use daily to support your protein target.</li></ul>
+      <% } %>
+    </article>
+  </div>
+</section>
+<section class="mvp-section mvp-section--beige">
+  <div class="container conversion-card">
+    <h2>Build a full routine around this product</h2>
+    <p>Add snacks, fresh protein, or meal support in a guided stack.</p>
+    <a class="btn btn--gold" href="/build-your-stack">Build Your Stack</a>
+  </div>
+</section>
+<% if (relatedProducts.length) { %>
+  <section class="section section--beige">
+    <div class="container">
+      <div class="section__head"><h2>Related Products</h2></div>
+      <div class="product-grid"><% relatedProducts.forEach((product) => { %><%- include("partials/product-card", { product }) %><% }) %></div>
+    </div>
+  </section>
+<% } %>
+<div class="mobile-sticky-product">
+  <strong>AED <%= money(product.price) %></strong>
+  <button class="btn btn--gold" data-add-to-cart="<%= product.id %>">Add to Cart</button>
+  <a class="btn btn--whatsapp" href="https://wa.me/971553271712?text=<%= encodeURIComponent('Hi, is ' + product.name + ' right for my goal?') %>" target="_blank" rel="noreferrer">Ask</a>
+</div>
+<%- include("partials/footer") %>

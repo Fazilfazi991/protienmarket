@@ -1,0 +1,25 @@
+<%- include("partials/header", { pageTitle: "Payment Successful" }) %>
+<section class="section checkout-section">
+  <div class="container payment-result">
+    <div class="checkout-card">
+      <p class="sandbox-badge"><%= order.payment.status === "cash-on-delivery" ? "Cash on Delivery" : "Payment Successful" %></p>
+      <h1><%= order.payment.status === "cash-on-delivery" ? "Order Received" : "Payment Successful" %></h1>
+      <p>Thank you, your order has been received.</p>
+      <h2>Order <%= order.id %></h2>
+      <div class="order-lines">
+        <% order.items.forEach((item) => { %>
+          <div><span><%= item.name %> x <%= item.quantity %></span><strong>AED <%= money(item.lineTotal) %></strong></div>
+        <% }) %>
+      </div>
+      <div class="summary-line total"><span>Total</span><strong>AED <%= money(order.total) %></strong></div>
+      <p><strong><%= order.customer.name %></strong><br><%= order.customer.phone %><br><%= order.customer.address1 %>, <%= order.customer.city %>, <%= order.customer.emirate %></p>
+      <% const whatsappMessage = `Hi, I placed an order on the website.%0A%0AOrder ID: ${order.id}%0AName: ${order.customer.name}%0APhone: ${order.customer.phone}%0ATotal: AED ${money(order.total)}%0APayment Status: ${order.payment.status === "paid" ? "Paid" : "Cash on Delivery"}%0A%0APlease confirm my order.`; %>
+      <div class="button-row">
+        <a class="btn btn--gold" href="/shop">Continue Shopping</a>
+        <a class="btn btn--whatsapp" href="https://wa.me/<%= whatsappNumber %>?text=<%= whatsappMessage %>" target="_blank" rel="noreferrer">Send Order on WhatsApp</a>
+      </div>
+    </div>
+  </div>
+</section>
+<script>localStorage.removeItem("proteinMarketCart");</script>
+<%- include("partials/footer") %>

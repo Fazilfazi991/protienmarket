@@ -1,0 +1,35 @@
+<%- include("partials/header", { pageTitle: "Find My Protein" }) %>
+<section class="mvp-hero">
+  <div class="container mvp-hero__inner">
+    <p class="eyebrow">Guided recommendations</p>
+    <h1>Find My Protein</h1>
+    <p>Answer 5 quick questions and get product suggestions based on your goal, diet, routine, and budget.</p>
+  </div>
+</section>
+<section class="mvp-section quiz-shell" data-quiz-app>
+  <div class="container quiz-layout">
+    <div class="quiz-card">
+      <div class="quiz-progress"><span data-quiz-progress></span></div>
+      <div data-quiz-step></div>
+      <div class="quiz-actions">
+        <button class="btn btn--ghost" type="button" data-quiz-back>Back</button>
+        <button class="btn btn--gold" type="button" data-quiz-next>Next</button>
+      </div>
+    </div>
+    <aside class="quiz-result" data-quiz-result hidden>
+      <p class="eyebrow">Your match</p>
+      <h2 data-result-type></h2>
+      <p data-result-copy></p>
+      <div class="recommendation-grid" data-result-products></div>
+      <div class="stack-summary">
+        <h3>Suggested Stack</h3>
+        <ul data-result-stack></ul>
+        <button class="btn btn--gold" type="button" data-add-quiz-stack>Add Recommended Stack to Cart</button>
+        <a class="btn btn--whatsapp" href="#" target="_blank" rel="noreferrer" data-quiz-whatsapp>Ask Expert on WhatsApp</a>
+        <button class="btn btn--ghost" type="button" data-retake-quiz>Retake Quiz</button>
+      </div>
+    </aside>
+  </div>
+</section>
+<script>window.QUIZ_PRODUCTS = <%- JSON.stringify(products) %>;</script>
+<%- include("partials/footer") %>

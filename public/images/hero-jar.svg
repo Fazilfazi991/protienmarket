@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 560">
+  <rect width="900" height="560" fill="#030303"/>
+  <g fill="#e3a333" opacity=".75">
+    <circle cx="245" cy="250" r="7"/><circle cx="300" cy="190" r="4"/><circle cx="350" cy="305" r="5"/><circle cx="452" cy="230" r="6"/><circle cx="505" cy="285" r="4"/>
+    <path d="M95 300c150-100 225-122 360-65 58 25 95 25 152 11-58 54-117 85-205 76-88-8-178 17-307-22z" opacity=".5"/>
+    <path d="M115 260c133-70 214-71 329-22 46 20 92 16 139 7-82 67-205 56-300 52-66-3-122-5-168-37z" opacity=".35"/>
+  </g>
+  <g transform="translate(570 70)">
+    <ellipse cx="130" cy="44" rx="100" ry="24" fill="#151515"/>
+    <rect x="42" y="38" width="176" height="52" rx="12" fill="#141414"/>
+    <rect x="57" y="84" width="146" height="330" rx="38" fill="#f0eee7"/>
+    <path d="M80 100h91c18 74 29 165 12 292H80z" fill="#111"/>
+    <path d="M171 100h32v292h-94z" fill="#303030"/>
+    <text x="72" y="280" font-family="Arial" font-weight="900" font-size="52" fill="#d8d8d8">PROTEIN</text>
+    <rect x="66" y="105" width="128" height="16" rx="8" fill="#fff" opacity=".65"/>
+    <ellipse cx="130" cy="413" rx="72" ry="15" fill="#b8b1a2"/>
+  </g>
+</svg>

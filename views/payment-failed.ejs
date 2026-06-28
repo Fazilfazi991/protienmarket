@@ -1,0 +1,17 @@
+<%- include("partials/header", { pageTitle: "Payment Failed" }) %>
+<section class="section checkout-section">
+  <div class="container payment-result">
+    <div class="checkout-card">
+      <p class="sandbox-badge">Payment Not Completed</p>
+      <h1>Payment could not be completed</h1>
+      <p>Your cart has not been cleared. You can retry payment or contact us on WhatsApp.</p>
+      <% if (order) { %><p>Order reference: <strong><%= order.id %></strong></p><% } %>
+      <div class="button-row">
+        <a class="btn btn--gold" href="/checkout">Retry Payment</a>
+        <a class="btn" href="/cart">Back to Cart</a>
+        <a class="btn btn--whatsapp" href="https://wa.me/<%= whatsappNumber %>" target="_blank" rel="noreferrer">Ask on WhatsApp</a>
+      </div>
+    </div>
+  </div>
+</section>
+<%- include("partials/footer") %>

@@ -1,0 +1,86 @@
+[
+  {
+    "id": "ORD-1002",
+    "createdAt": "2026-06-28T16:16:33.824Z",
+    "customer": {
+      "name": "Mohammad Fazil",
+      "email": "fazil4fazi@gmail.com",
+      "phone": "0525249896",
+      "address1": "dubai",
+      "address2": "tghv",
+      "city": "dubai",
+      "emirate": "Dubai",
+      "notes": "hcv"
+    },
+    "items": [
+      {
+        "productId": "clear-protein-001",
+        "slug": "citrus-clear-whey-isolate",
+        "name": "Citrus Clear Whey Isolate",
+        "quantity": 1,
+        "unitPrice": 129,
+        "lineTotal": 129
+      },
+      {
+        "productId": "chicken-001",
+        "slug": "grilled-chicken-breast-pack",
+        "name": "Grilled Chicken Breast Pack",
+        "quantity": 1,
+        "unitPrice": 42,
+        "lineTotal": 42
+      }
+    ],
+    "subtotal": 171,
+    "deliveryFee": 15,
+    "discount": 0,
+    "total": 186,
+    "currency": "AED",
+    "payment": {
+      "method": "online",
+      "gateway": "stripe",
+      "status": "pending",
+      "sessionId": "cs_test_b1TTaWSXjgjQVaL79Rxh1RavNyV87pifpq3Soqcg6rrEyOMj62OylEsKuq",
+      "transactionId": "",
+      "paymentUrl": "https://checkout.stripe.com/c/pay/cs_test_b1TTaWSXjgjQVaL79Rxh1RavNyV87pifpq3Soqcg6rrEyOMj62OylEsKuq#fidnandhYHdWcXxpYCc%2FJ2FgY2RwaXEnKSdicGRmZGhqaWBTZHdsZGtxJz8nZmprcXdqaScpJ2R1bE5gfCc%2FJ3VuWnFgdnFaMDRRVn9QbEBISGZcMFJdd0RGZmk9ckZ0ZHJNTzNDRzYyajJ1a0thQTJsY3B8SFVEXFdrZ0pcYWBWRFZiajZyNkJqNG90cHVSc0lKSF1LNVx2TUwyMn9PcFI1NUx%2FRzQyTmpRJyknY3dqaFZgd3Ngdyc%2FcXdwYCknZ2RmbmJ3anBrYUZqaWp3Jz8nJmNjY2NjYycpJ2lkfGpwcVF8dWAnPydocGlxbFpscWBoJyknYGtkZ2lgVWlkZmBtamlhYHd2Jz9xd3BgeCUl"
+    },
+    "orderStatus": "pending-payment"
+  },
+  {
+    "id": "ORD-1001",
+    "createdAt": "2026-06-28T16:15:14.012Z",
+    "customer": {
+      "name": "Demo Buyer",
+      "email": "demo@example.com",
+      "phone": "971553271712",
+      "address1": "Demo Street",
+      "address2": "",
+      "city": "Dubai",
+      "emirate": "Dubai",
+      "notes": "Sandbox test"
+    },
+    "items": [
+      {
+        "productId": "whey-protein-001",
+        "slug": "premium-whey-protein-chocolate",
+        "name": "Premium Whey Protein Chocolate",
+        "quantity": 1,
+        "unitPrice": 139,
+        "lineTotal": 139
+      }
+    ],
+    "subtotal": 139,
+    "deliveryFee": 15,
+    "discount": 0,
+    "total": 154,
+    "currency": "AED",
+    "payment": {
+      "method": "online",
+      "gateway": "stripe",
+      "status": "pending",
+      "sessionId": "cs_test_b1YFq2v2LpTAcIAQKOL7Lwvx94ZOcFF8Rj4ic0Kh6pgi6TiPWjofPe2tvM",
+      "transactionId": "",
+      "paymentUrl": "https://checkout.stripe.com/c/pay/cs_test_b1YFq2v2LpTAcIAQKOL7Lwvx94ZOcFF8Rj4ic0Kh6pgi6TiPWjofPe2tvM#fidnandhYHdWcXxpYCc%2FJ2FgY2RwaXEnKSdicGRmZGhqaWBTZHdsZGtxJz8nZmprcXdqaScpJ2R1bE5gfCc%2FJ3VuWnFgdnFaMDRRVn9QbEBISGZcMFJdd0RGZmk9ckZ0ZHJNTzNDRzYyajJ1a0thQTJsY3B8SFVEXFdrZ0pcYWBWRFZiajZyNkJqNG90cHVSc0lKSF1LNVx2TUwyMn9PcFI1NUx%2FRzQyTmpRJyknY3dqaFZgd3Ngdyc%2FcXdwYCknZ2RmbmJ3anBrYUZqaWp3Jz8nJmNjY2NjYycpJ2lkfGpwcVF8dWAnPydocGlxbFpscWBoJyknYGtkZ2lgVWlkZmBtamlhYHd2Jz9xd3BgeCUl"
+    },
+    "orderStatus": "pending-payment"
+  }
+]
