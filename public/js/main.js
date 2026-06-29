@@ -3,6 +3,13 @@
   const products = window.PRODUCTS || [];
   const getCart = () => JSON.parse(localStorage.getItem(cartKey) || "[]");
   const saveCart = (cart) => localStorage.setItem(cartKey, JSON.stringify(cart));
+  const t = (key, fallback) => window.I18N?.t(key, fallback) || fallback || key;
+  const productName = (product) => window.I18N?.productName(product) || product.name;
+  const productDescription = (product) => window.I18N?.productDescription(product) || product.description;
+  const categoryName = (slug, fallback) => window.I18N?.categoryName(slug, fallback) || fallback || slug;
+  const priceBlock = (amount) => window.ShopMoney?.priceBlock(amount) || `<span class="price-aed ltr-value">AED ${Number(amount || 0).toFixed(2)}</span>`;
+  const formatAED = (amount) => window.ShopMoney?.formatAED(amount) || `AED ${Number(amount || 0).toFixed(2)}`;
+  const usdNote = () => window.SHOP_CONFIG?.displayUsdPrices === false ? "" : `<p class="usd-note">${t("currency.usdNote", "USD shown for reference. Checkout is charged in AED.")}</p>`;
 
   function updateCartCount() {
     const total = getCart().reduce((sum, item) => sum + item.qty, 0);
@@ -35,7 +42,7 @@
   }
 
   function productSuggestionCard(product) {
-    return `<article class="suggestion-card"><img src="${product.image}" alt="${product.name}" loading="lazy"><div><strong>${product.name}</strong><span>AED ${Number(product.price).toFixed(2)}</span></div><button type="button" data-add-to-cart="${product.id}">Add</button></article>`;
+    return `<article class="suggestion-card"><img src="${product.image}" alt="${productName(product)}" loading="lazy"><div><strong>${productName(product)}</strong>${priceBlock(product.price)}</div><button type="button" data-add-to-cart="${product.id}">${t("buttons.addToCart", "Add")}</button></article>`;
   }
 
   function showCartDrawer(addedProduct) {
@@ -43,7 +50,7 @@
     if (oldDrawer) oldDrawer.remove();
     const drawer = document.createElement("aside");
     drawer.className = "mini-cart-drawer";
-    drawer.innerHTML = `<button class="mini-cart-close" type="button" aria-label="Close cart suggestions">×</button><p class="eyebrow">Added to cart</p><h2>Complete your routine</h2><p>${addedProduct.name} was added. These pair well with it.</p><div class="mini-suggestions">${smartSuggestionsFor(addedProduct, 3).map(productSuggestionCard).join("")}</div><a class="btn btn--gold" href="/cart">View Cart</a>`;
+    drawer.innerHTML = `<button class="mini-cart-close" type="button" aria-label="Close cart suggestions">x</button><p class="eyebrow">${t("cart.title", "Cart")}</p><h2>${t("home.continuePlan", "Continue your plan")}</h2><p>${productName(addedProduct)} added. ${t("cart.suggestions", "You may also need")}.</p><div class="mini-suggestions">${smartSuggestionsFor(addedProduct, 3).map(productSuggestionCard).join("")}</div><a class="btn btn--gold" href="/cart">${t("cart.checkout", "Proceed to Checkout")}</a>`;
     document.body.appendChild(drawer);
     drawer.querySelector(".mini-cart-close").addEventListener("click", () => drawer.remove());
     drawer.querySelectorAll("[data-add-to-cart]").forEach((button) => {
@@ -60,16 +67,14 @@
     if (!product) return;
     const cart = getCart();
     const existing = cart.find((item) => item.id === productId);
-    if (existing) {
-      existing.qty += qty;
-    } else {
-      cart.push({ id: productId, qty });
-    }
+    if (existing) existing.qty += qty;
+    else cart.push({ id: productId, qty });
     saveCart(cart);
     updateCartCount();
-    showToast(`${product.name} added to cart`);
+    showToast(`${productName(product)} ${t("buttons.addToCart", "added to cart")}`);
     showCartDrawer(product);
     renderCart();
+    renderCheckoutSummary();
   }
 
   window.addProteinMarketProductToCart = addToCart;
@@ -79,19 +84,19 @@
     if (!panel) return;
     const cart = getCart();
     if (!cart.length) {
-      panel.innerHTML = '<h2>Your cart is empty.</h2><a class="btn btn--gold" href="/shop">Back to Shop</a>';
+      panel.innerHTML = `<h2>${t("cart.empty", "Your cart is empty.")}</h2><a class="btn btn--gold" href="/shop">${t("cart.backShop", "Back to Shop")}</a>`;
       return;
     }
     let total = 0;
     const rows = cart.map((item) => {
       const product = products.find((entry) => entry.id === item.id);
       if (!product) return "";
-      total += product.price * item.qty;
-      return `<div class="cart-row"><img src="${product.image}" alt="${product.name}"><div><strong>${product.name}</strong><br><span>Qty ${item.qty}</span></div><strong>AED ${(product.price * item.qty).toFixed(2)}</strong></div>`;
+      total += Number(product.price) * item.qty;
+      return `<div class="cart-row"><img src="${product.image}" alt="${productName(product)}"><div><strong>${productName(product)}</strong><br><span>${t("cart.qty", "Qty")} ${item.qty}</span></div>${priceBlock(Number(product.price) * item.qty)}</div>`;
     }).join("");
     const delivery = total > 250 ? 0 : 15;
     const grandTotal = total + delivery;
-    panel.innerHTML = `${rows}<div class="cart-totals"><div><span>Subtotal</span><strong>AED ${total.toFixed(2)}</strong></div><div><span>Delivery</span><strong>${delivery ? `AED ${delivery.toFixed(2)}` : "Free"}</strong></div><div class="total"><span>Total</span><strong>AED ${grandTotal.toFixed(2)}</strong></div></div><a class="btn btn--gold" href="/checkout">Proceed to Checkout</a>`;
+    panel.innerHTML = `${rows}<div class="cart-totals"><div><span>${t("cart.subtotal", "Subtotal")}</span>${priceBlock(total)}</div><div><span>${t("cart.deliveryShort", "Delivery")}</span><strong class="ltr-value">${delivery ? formatAED(delivery) : t("cart.free", "Free")}</strong></div><div class="total"><span>${t("cart.total", "Total")}</span>${priceBlock(grandTotal)}</div></div>${usdNote()}<a class="btn btn--gold" href="/checkout">${t("cart.checkout", "Proceed to Checkout")}</a>`;
   }
 
   function cartTotals(cart) {
@@ -108,16 +113,16 @@
     if (!target) return;
     const cart = getCart();
     if (!cart.length) {
-      target.innerHTML = '<p>Your cart is empty.</p><a class="btn btn--gold" href="/shop">Back to Shop</a>';
+      target.innerHTML = `<p>${t("cart.empty", "Your cart is empty.")}</p><a class="btn btn--gold" href="/shop">${t("cart.backShop", "Back to Shop")}</a>`;
       return;
     }
     const rows = cart.map((item) => {
       const product = products.find((entry) => entry.id === item.id);
       if (!product) return "";
-      return `<div class="summary-item"><img src="${product.image}" alt="${product.name}"><div><strong>${product.name}</strong><span>Qty ${item.qty}</span></div><strong>AED ${(Number(product.price) * item.qty).toFixed(2)}</strong></div>`;
+      return `<div class="summary-item"><img src="${product.image}" alt="${productName(product)}"><div><strong>${productName(product)}</strong><span>${t("cart.qty", "Qty")} ${item.qty}</span></div>${priceBlock(Number(product.price) * item.qty)}</div>`;
     }).join("");
     const totals = cartTotals(cart);
-    target.innerHTML = `${rows}<div class="summary-line"><span>Subtotal</span><strong>AED ${totals.subtotal.toFixed(2)}</strong></div><div class="summary-line"><span>Delivery</span><strong>${totals.delivery ? `AED ${totals.delivery.toFixed(2)}` : "Free"}</strong></div><div class="summary-line total"><span>Total</span><strong>AED ${totals.total.toFixed(2)}</strong></div>`;
+    target.innerHTML = `${rows}<div class="summary-line"><span>${t("cart.subtotal", "Subtotal")}</span>${priceBlock(totals.subtotal)}</div><div class="summary-line"><span>${t("cart.delivery", "Delivery Fee")}</span><strong class="ltr-value">${totals.delivery ? formatAED(totals.delivery) : t("cart.free", "Free")}</strong></div><div class="summary-line total"><span>${t("cart.total", "Total")}</span>${priceBlock(totals.total)}</div>${usdNote()}`;
   }
 
   function setupCheckoutForm() {
@@ -129,7 +134,7 @@
       const cart = getCart();
       if (!cart.length) {
         errorBox.hidden = false;
-        errorBox.textContent = "Your cart is empty.";
+        errorBox.textContent = t("cart.empty", "Your cart is empty.");
         return;
       }
       const formData = new FormData(form);
@@ -163,9 +168,13 @@
         errorBox.hidden = false;
         errorBox.textContent = error.message;
         submitButton.disabled = false;
-        submitButton.textContent = "Pay Securely";
+        submitButton.textContent = t("buttons.paySecurely", "Pay Securely");
       }
     });
+  }
+
+  function productCard(product) {
+    return `<article class="product-card" data-product-card data-product-url="/product/${product.slug}" data-name-en="${product.name}" data-name-ar="${product.nameAr || ""}" data-description-en="${product.description}" data-description-ar="${product.descriptionAr || ""}" data-category-key="${product.category}"><a href="/product/${product.slug}"><img src="${product.image}" alt="${productName(product)}" loading="lazy"></a><span class="product-card__category" data-category-label>${categoryName(product.category, product.category.replace("-", " "))}</span><h3><a href="/product/${product.slug}" data-product-name>${productName(product)}</a></h3><p class="product-card__description" data-product-description>${productDescription(product)}</p><p class="price">${priceBlock(product.price)}</p><button class="btn btn--small btn--gold" data-add-to-cart="${product.id}">${t("buttons.addToCart", "Add to Cart")}</button></article>`;
   }
 
   function renderCartSuggestions() {
@@ -173,18 +182,25 @@
     if (!target) return;
     const cart = getCart();
     const first = products.find((product) => product.id === cart[0]?.id);
-    const suggestions = smartSuggestionsFor(first, 4);
-    target.innerHTML = suggestions.map((product) => {
-      return `<article class="product-card" data-product-card data-product-url="/product/${product.slug}"><a href="/product/${product.slug}"><img src="${product.image}" alt="${product.name}" loading="lazy"></a><span class="product-card__category">${product.category.replace("-", " ")}</span><h3><a href="/product/${product.slug}">${product.name}</a></h3><p class="product-card__description">${product.description}</p><p class="price"><strong>AED ${Number(product.price).toFixed(2)}</strong></p><button class="btn btn--small btn--gold" data-add-to-cart="${product.id}">Add to Cart</button></article>`;
-    }).join("");
-    target.querySelectorAll("[data-add-to-cart]").forEach((button) => {
+    target.innerHTML = smartSuggestionsFor(first, 4).map(productCard).join("");
+    bindProductEvents(target);
+  }
+
+  function bindProductEvents(scope = document) {
+    scope.querySelectorAll("[data-add-to-cart]").forEach((button) => {
+      if (button.dataset.cartBound) return;
+      button.dataset.cartBound = "true";
       button.addEventListener("click", (event) => {
         event.preventDefault();
         event.stopPropagation();
-        addToCart(button.dataset.addToCart, 1);
+        const quantityInput = document.querySelector("[data-quantity]");
+        const qty = Math.max(1, Number(quantityInput ? quantityInput.value : 1) || 1);
+        addToCart(button.dataset.addToCart, qty);
       });
     });
-    target.querySelectorAll("[data-product-card]").forEach((card) => {
+    scope.querySelectorAll("[data-product-card]").forEach((card) => {
+      if (card.dataset.cardBound) return;
+      card.dataset.cardBound = "true";
       card.addEventListener("click", (event) => {
         if (event.target.closest("a, button")) return;
         window.location.href = card.dataset.productUrl;
@@ -192,33 +208,9 @@
     });
   }
 
-  window.addEventListener("protein:add-stack", (event) => {
-    const ids = event.detail || [];
-    ids.forEach((id) => addToCart(id, 1));
-    showToast("Your protein stack was added to cart.");
-  });
-
-  document.querySelectorAll("[data-add-to-cart]").forEach((button) => {
-    button.addEventListener("click", (event) => {
-      event.preventDefault();
-      event.stopPropagation();
-      const quantityInput = document.querySelector("[data-quantity]");
-      const qty = Math.max(1, Number(quantityInput ? quantityInput.value : 1) || 1);
-      addToCart(button.dataset.addToCart, qty);
-    });
-  });
-
-  document.querySelectorAll("[data-product-card]").forEach((card) => {
-    card.addEventListener("click", (event) => {
-      if (event.target.closest("a, button")) return;
-      window.location.href = card.dataset.productUrl;
-    });
-  });
-
   function setupCollectionFilters() {
     const collection = document.querySelector("[data-collection]");
     if (!collection) return;
-
     const sidebar = collection.querySelector("[data-filter-sidebar]");
     const cards = Array.from(collection.querySelectorAll("[data-product-grid] [data-product-card]"));
     const grid = collection.querySelector("[data-product-grid]");
@@ -232,19 +224,14 @@
     const filterClose = collection.querySelector("[data-filter-close]");
     const categorySearch = collection.querySelector("[data-category-search]");
     const categoryRows = Array.from(collection.querySelectorAll("[data-filter-category]"));
-
     const activeTags = new Set();
     const activeBundles = new Set();
-
-    function cardHasAny(card, attr, activeValues) {
+    const cardHasAny = (card, attr, activeValues) => {
       if (!activeValues.size) return true;
       const values = (card.dataset[attr] || "").split("|").filter(Boolean);
       return values.some((value) => activeValues.has(value));
-    }
-
-    function getCheckedValues(selector) {
-      return Array.from(collection.querySelectorAll(`${selector}:checked`)).map((item) => item.value);
-    }
+    };
+    const getCheckedValues = (selector) => Array.from(collection.querySelectorAll(`${selector}:checked`)).map((item) => item.value);
 
     function applyFilters() {
       const query = (search?.value || "").trim().toLowerCase();
@@ -254,84 +241,62 @@
       const stockValues = new Set(getCheckedValues("[data-filter-stock]"));
       const rating = Number(collection.querySelector("[data-filter-rating]:checked")?.value || 0);
       let visible = 0;
-
       cards.forEach((card) => {
         const price = Number(card.dataset.price || 0);
         const cardRating = Number(card.dataset.rating || 0);
-        const matches =
-          (!query || card.dataset.name.includes(query)) &&
-          price >= min &&
-          price <= max &&
-          cardHasAny(card, "badges", badges) &&
-          cardHasAny(card, "tags", activeTags) &&
-          (!activeBundles.size || activeBundles.has(card.dataset.bundle)) &&
-          (!stockValues.size || stockValues.has(card.dataset.stock)) &&
-          (!rating || cardRating >= rating);
+        const matches = (!query || card.dataset.name.includes(query)) && price >= min && price <= max && cardHasAny(card, "badges", badges) && cardHasAny(card, "tags", activeTags) && (!activeBundles.size || activeBundles.has(card.dataset.bundle)) && (!stockValues.size || stockValues.has(card.dataset.stock)) && (!rating || cardRating >= rating);
         card.hidden = !matches;
         if (matches) visible += 1;
       });
-
-      if (resultCount) {
-        resultCount.textContent = visible ? `Showing 1-${visible} of ${visible} products` : "Showing 0 of 0 products";
-      }
+      if (resultCount) resultCount.textContent = visible ? `${t("shop.showing", "Showing")} 1-${visible} of ${visible} ${t("shop.products", "products")}` : `${t("shop.showing", "Showing")} 0 of 0 ${t("shop.products", "products")}`;
       if (empty) empty.hidden = visible !== 0;
       if (grid) grid.hidden = visible === 0;
     }
 
     function sortCards() {
       if (!grid || !sort) return;
-      const value = sort.value;
       const sorted = cards.slice().sort((a, b) => {
-        if (value === "price-asc") return Number(a.dataset.price) - Number(b.dataset.price);
-        if (value === "price-desc") return Number(b.dataset.price) - Number(a.dataset.price);
-        if (value === "rating") return Number(b.dataset.rating) - Number(a.dataset.rating);
+        if (sort.value === "price-asc") return Number(a.dataset.price) - Number(b.dataset.price);
+        if (sort.value === "price-desc") return Number(b.dataset.price) - Number(a.dataset.price);
+        if (sort.value === "rating") return Number(b.dataset.rating) - Number(a.dataset.rating);
         return 0;
       });
       sorted.forEach((card) => grid.appendChild(card));
     }
 
     [search, minInput, maxInput].forEach((input) => input?.addEventListener("input", applyFilters));
-    collection.querySelectorAll("[data-filter-badge], [data-filter-stock], [data-filter-rating]").forEach((input) => {
-      input.addEventListener("change", applyFilters);
-    });
-    collection.querySelectorAll("[data-filter-tag]").forEach((button) => {
-      button.addEventListener("click", () => {
-        button.classList.toggle("is-active");
-        activeTags.has(button.dataset.filterTag) ? activeTags.delete(button.dataset.filterTag) : activeTags.add(button.dataset.filterTag);
-        applyFilters();
-      });
-    });
-    collection.querySelectorAll("[data-filter-bundle]").forEach((button) => {
-      button.addEventListener("click", () => {
-        button.classList.toggle("is-active");
-        activeBundles.has(button.dataset.filterBundle) ? activeBundles.delete(button.dataset.filterBundle) : activeBundles.add(button.dataset.filterBundle);
-        applyFilters();
-      });
-    });
-    sort?.addEventListener("change", () => {
-      sortCards();
+    collection.querySelectorAll("[data-filter-badge], [data-filter-stock], [data-filter-rating]").forEach((input) => input.addEventListener("change", applyFilters));
+    collection.querySelectorAll("[data-filter-tag]").forEach((button) => button.addEventListener("click", () => {
+      button.classList.toggle("is-active");
+      activeTags.has(button.dataset.filterTag) ? activeTags.delete(button.dataset.filterTag) : activeTags.add(button.dataset.filterTag);
       applyFilters();
-    });
+    }));
+    collection.querySelectorAll("[data-filter-bundle]").forEach((button) => button.addEventListener("click", () => {
+      button.classList.toggle("is-active");
+      activeBundles.has(button.dataset.filterBundle) ? activeBundles.delete(button.dataset.filterBundle) : activeBundles.add(button.dataset.filterBundle);
+      applyFilters();
+    }));
+    sort?.addEventListener("change", () => { sortCards(); applyFilters(); });
     filterOpen?.addEventListener("click", () => sidebar?.classList.add("is-open"));
     filterClose?.addEventListener("click", () => sidebar?.classList.remove("is-open"));
-    sidebar?.addEventListener("click", (event) => {
-      if (event.target === sidebar) sidebar.classList.remove("is-open");
-    });
+    sidebar?.addEventListener("click", (event) => { if (event.target === sidebar) sidebar.classList.remove("is-open"); });
     categorySearch?.addEventListener("input", () => {
       const query = categorySearch.value.trim().toLowerCase();
-      categoryRows.forEach((row) => {
-        row.hidden = query && !row.dataset.filterCategory.includes(query);
-      });
+      categoryRows.forEach((row) => { row.hidden = query && !row.dataset.filterCategory.includes(query); });
     });
-
+    window.addEventListener("languageChanged", applyFilters);
     applyFilters();
   }
 
+  window.addEventListener("protein:add-stack", (event) => {
+    const ids = event.detail || [];
+    ids.forEach((id) => addToCart(id, 1));
+    showToast("Your protein stack was added to cart.");
+  });
+
   const menuToggle = document.querySelector("[data-menu-toggle]");
   const nav = document.querySelector("[data-nav]");
-  if (menuToggle && nav) {
-    menuToggle.addEventListener("click", () => nav.classList.toggle("is-open"));
-  }
+  if (menuToggle && nav) menuToggle.addEventListener("click", () => nav.classList.toggle("is-open"));
 
   const shopToggle = document.querySelector("[data-shop-toggle]");
   const shopMenu = document.querySelector(".shop-menu");
@@ -350,9 +315,7 @@
   if (searchOverlay && searchOpen && searchClose) {
     searchOpen.addEventListener("click", () => searchOverlay.classList.add("is-open"));
     searchClose.addEventListener("click", () => searchOverlay.classList.remove("is-open"));
-    searchOverlay.addEventListener("click", (event) => {
-      if (event.target === searchOverlay) searchOverlay.classList.remove("is-open");
-    });
+    searchOverlay.addEventListener("click", (event) => { if (event.target === searchOverlay) searchOverlay.classList.remove("is-open"); });
   }
 
   updateCartCount();
@@ -361,4 +324,10 @@
   renderCartSuggestions();
   setupCollectionFilters();
   setupCheckoutForm();
+  bindProductEvents();
+  window.addEventListener("languageChanged", () => {
+    renderCart();
+    renderCheckoutSummary();
+    renderCartSuggestions();
+  });
 })();

@@ -2,6 +2,9 @@
   const root = document.querySelector("[data-quiz-app]");
   if (!root) return;
   const products = window.QUIZ_PRODUCTS || [];
+  const productName = (product) => window.I18N?.productName(product) || product.name;
+  const productDescription = (product) => window.I18N?.productDescription(product) || product.description;
+  const priceBlock = (amount) => window.ShopMoney?.priceBlock(amount) || `<strong>AED ${Number(amount || 0).toFixed(2)}</strong>`;
   const steps = [
     { key: "goal", title: "What is your main goal?", options: ["Lose Fat", "Build Muscle", "Maintain Fitness", "Athletic Performance"] },
     { key: "dietPreference", title: "What is your diet preference?", options: ["No Preference", "Vegetarian", "Vegan", "Non-Vegetarian"] },
@@ -50,7 +53,7 @@
   }
 
   function card(product) {
-    return `<article class="recommendation-card"><img src="${product.image}" alt="${product.name}" loading="lazy"><h3>${product.name}</h3><p>${product.description}</p><strong>AED ${Number(product.price).toFixed(2)}</strong><button class="btn btn--gold" type="button" data-add-quiz-product="${product.id}">Add to Cart</button></article>`;
+    return `<article class="recommendation-card"><img src="${product.image}" alt="${productName(product)}" loading="lazy"><h3>${productName(product)}</h3><p>${productDescription(product)}</p>${priceBlock(product.price)}<button class="btn btn--gold" type="button" data-add-quiz-product="${product.id}">${window.I18N?.t("buttons.addToCart", "Add to Cart") || "Add to Cart"}</button></article>`;
   }
 
   function showResults() {
@@ -60,7 +63,7 @@
     root.querySelector("[data-result-type]").textContent = answers.dietPreference === "Vegan" ? "Vegan Protein Routine" : `${answers.goal} Routine`;
     root.querySelector("[data-result-copy]").textContent = "These products match your goal, preference, budget, and routine using rule-based recommendations.";
     root.querySelector("[data-result-products]").innerHTML = matched.map(card).join("");
-    root.querySelector("[data-result-stack]").innerHTML = stack.map((product) => `<li>${product.name} <strong>AED ${Number(product.price).toFixed(2)}</strong></li>`).join("");
+    root.querySelector("[data-result-stack]").innerHTML = stack.map((product) => `<li>${productName(product)} ${priceBlock(product.price)}</li>`).join("");
     root.querySelector("[data-quiz-whatsapp]").href = `https://wa.me/971553271712?text=${encodeURIComponent("Hi, I completed the Find My Protein quiz. Can you review my recommendations for " + answers.goal + "?")}`;
     result.hidden = false;
   }
@@ -88,6 +91,10 @@
   root.querySelector("[data-add-quiz-stack]").addEventListener("click", () => {
     const ids = Array.from(root.querySelectorAll("[data-result-stack] li")).map((_, i) => products.slice().sort((a, b) => score(b) - score(a))[i]?.id).filter(Boolean);
     window.dispatchEvent(new CustomEvent("protein:add-stack", { detail: ids }));
+  });
+  window.addEventListener("languageChanged", () => {
+    renderStep();
+    if (!result.hidden) showResults();
   });
   renderStep();
 })();

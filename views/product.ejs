@@ -6,19 +6,19 @@
       <img src="<%= product.image %>" alt="<%= product.name %>">
     </div>
     <div class="product-detail__content">
-      <p class="breadcrumb"><a href="/">Home</a> / <a href="/shop">Shop</a><% if (category) { %> / <a href="/category/<%= category.slug %>"><%= category.name %></a><% } %><% if (subcategory) { %> / <a href="/category/<%= category.slug %>/<%= subcategory.slug %>"><%= subcategory.name %></a><% } %></p>
-      <h1><%= product.name %></h1>
+      <p class="breadcrumb"><a href="/">Home</a> / <a href="/shop" data-i18n="nav.shop">Shop</a><% if (category) { %> / <a href="/category/<%= category.slug %>" data-i18n="categories.<%= category.slug %>"><%= category.name %></a><% } %><% if (subcategory) { %> / <a href="/category/<%= category.slug %>/<%= subcategory.slug %>" data-i18n="categories.<%= subcategory.slug %>"><%= subcategory.name %></a><% } %></p>
+      <h1 data-product-detail-name data-name-en="<%= product.name %>" data-name-ar="<%= product.nameAr || "" %>"><%= product.name %></h1>
       <div class="stars" aria-label="<%= product.rating %> out of 5 stars"><% for (let i = 1; i <= 5; i += 1) { %><span class="<%= i <= Math.round(product.rating) ? "filled" : "" %>">&#9733;</span><% } %></div>
       <div class="product-badges">
         <% (product.badges || []).slice(0, 5).forEach((badge) => { %><span><%= badge %></span><% }) %>
         <% if (product.proteinPerServing) { %><span><%= product.proteinPerServing %>g Protein</span><% } %>
       </div>
-      <p class="price price--large"><del>AED <%= money(product.oldPrice) %></del> <strong>AED <%= money(product.price) %></strong></p>
-      <p class="product-description"><%= product.description %></p>
+      <p class="price price--large"><% if (product.oldPrice) { %><del class="ltr-value">AED <%= money(product.oldPrice) %></del><% } %><span class="price-block price-block--large"><strong class="price-aed ltr-value">AED <%= money(product.price) %></strong><% if (shopConfig.displayUsdPrices) { %><span class="price-usd ltr-value">≈ $<%= usd(product.price) %></span><% } %></span></p>
+      <p class="product-description" data-product-detail-description data-description-en="<%= product.description %>" data-description-ar="<%= product.descriptionAr || "" %>"><%= product.description %></p>
       <div class="product-actions">
-        <label for="quantity">Qty</label>
+        <label for="quantity" data-i18n="cart.qty">Qty</label>
         <input id="quantity" type="number" min="1" value="1" data-quantity>
-        <button class="btn btn--gold" data-add-to-cart="<%= product.id %>">Add to Cart</button>
+        <button class="btn btn--gold" data-add-to-cart="<%= product.id %>" data-i18n="buttons.addToCart">Add to Cart</button>
       </div>
       <div class="expert-card">
         <h3>Not sure if this is right?</h3>
@@ -66,8 +66,8 @@
   </section>
 <% } %>
 <div class="mobile-sticky-product">
-  <strong>AED <%= money(product.price) %></strong>
-  <button class="btn btn--gold" data-add-to-cart="<%= product.id %>">Add to Cart</button>
+  <strong class="ltr-value">AED <%= money(product.price) %></strong>
+  <button class="btn btn--gold" data-add-to-cart="<%= product.id %>" data-i18n="buttons.addToCart">Add to Cart</button>
   <a class="btn btn--whatsapp" href="https://wa.me/971553271712?text=<%= encodeURIComponent('Hi, is ' + product.name + ' right for my goal?') %>" target="_blank" rel="noreferrer">Ask</a>
 </div>
 <%- include("partials/footer") %>

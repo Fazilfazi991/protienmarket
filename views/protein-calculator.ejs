@@ -112,7 +112,7 @@
         </div>
 
         <button class="calc-submit" type="submit" data-calculate-button>
-          <span>Calculate My Plan</span>
+          <span data-i18n="calculator.calculate">Calculate My Plan</span>
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg>
         </button>
         <p class="calc-secure"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 11V8a5 5 0 0 1 10 0v3"/><path d="M6 11h12v10H6z"/></svg>Your data is private and secure</p>
@@ -132,7 +132,7 @@
         <div class="empty-feature-list">
           <article class="empty-feature">
             <span class="feature-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 7v10M7 12h10"/></svg></span>
-            <div><h3>Daily protein target</h3><p>Get a science-backed daily protein target based on your goal, activity level, and body composition.</p></div>
+            <div><h3 data-i18n="calculator.dailyTarget">Daily protein target</h3><p>Get a science-backed daily protein target based on your goal, activity level, and body composition.</p></div>
           </article>
           <article class="empty-feature">
             <span class="feature-icon"><svg viewBox="0 0 24 24"><path d="M4 5v14"/><path d="M20 5v14"/><path d="M8 7v10"/><path d="M16 7v10"/><path d="M4 12h16"/></svg></span>
@@ -140,21 +140,21 @@
           </article>
           <article class="empty-feature">
             <span class="feature-icon"><svg viewBox="0 0 24 24"><path d="M8 21h8"/><path d="M9 8h6"/><path d="M10 3h4v5h-4z"/><path d="M7 8h10l-1 13H8z"/></svg></span>
-            <div><h3>Recommended products</h3><p>Discover products and meal options that match your needs from our premium range.</p></div>
+            <div><h3 data-i18n="calculator.recommended">Recommended products</h3><p>Discover products and meal options that match your needs from our premium range.</p></div>
           </article>
         </div>
 
         <div class="empty-callout">
           <span class="feature-icon"><svg viewBox="0 0 24 24"><path d="M12 2l1.8 6.2L20 10l-6.2 1.8L12 18l-1.8-6.2L4 10l6.2-1.8z"/></svg></span>
-          <div><h3>Complete the form and click Calculate My Plan</h3><p>Your personalized plan is just a few steps away.</p></div>
+          <div><h3>Complete the form and click <span data-i18n="calculator.calculate">Calculate My Plan</span></h3><p>Your personalized plan is just a few steps away.</p></div>
         </div>
       </div>
 
       <div class="plan-panel plan-panel-results" data-result-dashboard hidden>
         <div class="result-hero-card">
           <div class="result-hero-copy">
-            <p class="calc-eyebrow">Your Protein Target</p>
-            <h2>Daily Protein Target</h2>
+            <p class="calc-eyebrow" data-i18n="calculator.proteinTarget">Your Protein Target</p>
+            <h2 data-i18n="calculator.dailyTarget">Daily Protein Target</h2>
             <div class="result-target"><span data-protein-target>0</span><strong>g</strong><em>per day</em></div>
             <p>Based on your profile, this is your estimated daily protein target to support your goal.</p>
           </div>
@@ -164,15 +164,15 @@
         </div>
 
         <div class="metric-card-grid">
-          <article class="metric-card"><span>Daily Calories</span><strong data-metric="dailyCalories">-</strong><small>Estimated target</small></article>
+          <article class="metric-card"><span data-i18n="calculator.dailyCalories">Daily Calories</span><strong data-metric="dailyCalories">-</strong><small>Estimated target</small></article>
           <article class="metric-card"><span>Lean Muscle Goal</span><strong data-metric="leanGoal">-</strong><small>Target mass</small></article>
-          <article class="metric-card"><span>Protein per kg</span><strong data-metric="proteinKg">-</strong><small>Per kg body weight</small></article>
+          <article class="metric-card"><span data-i18n="calculator.proteinKg">Protein per kg</span><strong data-metric="proteinKg">-</strong><small>Per kg body weight</small></article>
           <article class="metric-card"><span>Activity Summary</span><strong data-metric="activity">-</strong><small data-metric="activityLabel">-</small></article>
         </div>
 
         <div class="result-lower-grid">
           <article class="distribution-card">
-            <h3>Daily Protein Distribution</h3>
+            <h3 data-i18n="calculator.distribution">Daily Protein Distribution</h3>
             <div class="distribution-layout">
               <div class="protein-donut" data-protein-donut><span><strong data-donut-total>0g</strong><small>Total</small></span></div>
               <div class="meal-list" data-meal-split></div>
@@ -186,13 +186,13 @@
 
         <article class="dashboard-products">
           <div class="dashboard-products__head">
-            <h3>Recommended for Your Goal</h3>
-            <a href="/shop">View all products</a>
+            <h3 data-i18n="calculator.recommended">Recommended for Your Goal</h3>
+            <a href="/shop" data-i18n="coach.view">View all products</a>
           </div>
           <div class="dashboard-product-row" data-recommendation-grid></div>
           <div class="dashboard-ctas">
             <a class="calc-secondary-link" href="/shop">View all products</a>
-            <a class="calc-whatsapp-link" href="#" target="_blank" rel="noreferrer" data-whatsapp-result>Send Result to WhatsApp</a>
+            <a class="calc-whatsapp-link" href="#" target="_blank" rel="noreferrer" data-whatsapp-result data-i18n="buttons.sendWhatsapp">Send Result to WhatsApp</a>
             <a class="calc-secondary-link" href="/build-your-stack">Build My Protein Stack</a>
           </div>
         </article>

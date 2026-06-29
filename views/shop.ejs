@@ -1,30 +1,30 @@
 <%- include("partials/header", { pageTitle: "Shop" }) %>
 <section class="collection-hero">
   <div class="container">
-    <p class="breadcrumb"><a href="/">Home</a> &gt; Shop</p>
-    <h1>Shop</h1>
+    <p class="breadcrumb"><a href="/">Home</a> &gt; <span data-i18n="shop.title">Shop</span></p>
+    <h1 data-i18n="shop.title">Shop</h1>
     <span class="gold-rule"></span>
-    <p>Browse premium powders, fresh proteins, snacks, meal plans, and vegan nutrition crafted for your goals.</p>
+    <p data-i18n="shop.subtitle">Browse premium powders, fresh proteins, snacks, meal plans, and vegan nutrition crafted for your goals.</p>
   </div>
 </section>
 <section class="collection-page" data-collection>
   <div class="container">
     <div class="shop-profile-badge" data-shop-profile-badge hidden></div>
-    <button class="filter-toggle btn btn--gold" type="button" data-filter-open>Filter Products</button>
+    <button class="filter-toggle btn btn--gold" type="button" data-filter-open data-i18n="shop.filterProducts">Filter Products</button>
     <div class="collection-layout">
       <%- include("partials/filter-sidebar", { activeCategory, activeSubcategory, q }) %>
       <div class="collection-results">
         <div class="tabs collection-tabs">
           <a class="<%= activeCategory === "all" ? "active" : "" %>" href="/shop">All</a>
           <% categories.forEach((category) => { %>
-            <a class="<%= activeCategory === category.slug ? "active" : "" %>" href="/shop?category=<%= category.slug %>"><%= category.name %></a>
+            <a class="<%= activeCategory === category.slug ? "active" : "" %>" href="/shop?category=<%= category.slug %>" data-i18n="categories.<%= category.slug %>"><%= category.name %></a>
           <% }) %>
         </div>
         <div class="collection-toolbar">
           <p data-result-count>Showing <%= filteredProducts.length ? `1-${filteredProducts.length} of ${filteredProducts.length}` : "0 of 0" %> products</p>
           <div class="toolbar-actions">
             <span class="view-icons" aria-hidden="true">▦ ▤</span>
-            <label><span>Sort</span><select data-sort-products><option value="default">Default sorting</option><option value="price-asc">Price low to high</option><option value="price-desc">Price high to low</option><option value="rating">Rating</option></select></label>
+            <label><span data-i18n="shop.sort">Sort</span><select data-sort-products><option value="default" data-i18n="shop.defaultSorting">Default sorting</option><option value="price-asc" data-i18n="shop.priceAsc">Price low to high</option><option value="price-desc" data-i18n="shop.priceDesc">Price high to low</option><option value="rating" data-i18n="shop.rating">Rating</option></select></label>
           </div>
         </div>
         <% if (q) { %><p class="result-note">Search results for "<%= q %>".</p><% } %>
@@ -34,23 +34,23 @@
           </div>
           <div class="empty-state empty-state--filtered" data-filter-empty hidden>
             <div class="empty-icon">⌕</div>
-            <h2>No products found in this category yet.</h2>
-            <p>Try clearing your filters or browse the complete shop.</p>
-            <a class="btn btn--gold" href="/shop">Browse All Products</a>
+            <h2 data-i18n="shop.emptyTitle">No products found in this category yet.</h2>
+            <p data-i18n="shop.emptyCopy">Try clearing your filters or browse the complete shop.</p>
+            <a class="btn btn--gold" href="/shop" data-i18n="buttons.browseAll">Browse All Products</a>
           </div>
         <% } else { %>
           <div class="empty-state">
             <div class="empty-icon">⌕</div>
-            <h2>No products found in this category yet.</h2>
+            <h2 data-i18n="shop.emptyTitle">No products found in this category yet.</h2>
             <p>We are curating this collection. In the meantime, explore popular picks below.</p>
-            <a class="btn btn--gold" href="/shop">Browse All Products</a>
+            <a class="btn btn--gold" href="/shop" data-i18n="buttons.browseAll">Browse All Products</a>
           </div>
         <% } %>
       </div>
     </div>
     <% if (!filteredProducts.length) { %>
       <section class="popular-fallback">
-        <div class="section__head"><h2>Popular Products</h2></div>
+        <div class="section__head"><h2 data-i18n="shop.popular">Popular Products</h2></div>
         <div class="collection-product-grid">
           <% popularProducts.forEach((product) => { %><%- include("partials/product-card", { product }) %><% }) %>
         </div>

@@ -5,6 +5,10 @@ const products = require("./data/products.json");
 const menuCategories = require("./data/categories.json");
 const goals = require("./data/goals.json");
 const blogs = require("./data/blogs.json");
+const translations = {
+  en: require("./data/translations/en.json"),
+  ar: require("./data/translations/ar.json")
+};
 const paymentGateway = require("./services/payment-gateway");
 const ordersStore = require("./services/orders");
 
@@ -55,6 +59,12 @@ app.use(express.json());
 const categories = menuCategories;
 
 const money = (value) => Number(value).toFixed(2);
+const shopConfig = {
+  displayUsdPrices: String(process.env.DISPLAY_USD_PRICES || "true").toLowerCase() !== "false",
+  aedToUsdRate: Number(process.env.AED_TO_USD_RATE || 0.2723),
+  currency: "AED"
+};
+const usd = (value) => money(Number(value || 0) * shopConfig.aedToUsdRate);
 
 const categoryCounts = categories.reduce((counts, category) => {
   counts[category.slug] = products.filter((product) => product.category === category.slug).length;
@@ -107,6 +117,9 @@ app.use((req, res, next) => {
   res.locals.blogs = blogs;
   res.locals.currentPath = req.path;
   res.locals.money = money;
+  res.locals.usd = usd;
+  res.locals.shopConfig = shopConfig;
+  res.locals.translations = translations;
   res.locals.categoryCounts = categoryCounts;
   res.locals.priceBounds = priceBounds;
   res.locals.popularProducts = popularProducts;
@@ -146,8 +159,9 @@ function calculateOrder(cartItems) {
   const deliveryFee = subtotal > 250 || subtotal === 0 ? 0 : 15;
   const discount = 0;
   const total = subtotal + deliveryFee - discount;
+  const totalUSDApprox = Number(usd(total));
 
-  return { items, subtotal, deliveryFee, discount, total, currency: "AED" };
+  return { items, subtotal, deliveryFee, discount, total, totalAED: total, totalUSDApprox, currency: "AED" };
 }
 
 function validateCheckoutPayload(body) {

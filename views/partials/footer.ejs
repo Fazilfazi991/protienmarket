@@ -2,8 +2,8 @@
   <section class="contact-strip">
     <div class="contact-strip__inner">
       <div class="contact-mini"><span><svg viewBox="0 0 24 24"><path d="M12 21s7-5.1 7-11a7 7 0 0 0-14 0c0 5.9 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></span><p>3, Claverton Street, Up Town<br>Motor City, Dubai, UAE</p></div>
-      <div class="contact-mini"><span><svg viewBox="0 0 24 24"><path d="M4 6h16v12H4z"/><path d="M4 7l8 6 8-6"/></svg></span><p>support@protein.com</p></div>
-      <div class="contact-mini"><span><svg viewBox="0 0 24 24"><path d="M6 4l4 4-2 2c1.4 2.8 3.2 4.6 6 6l2-2 4 4-2 3c-8.5-.5-14.5-6.5-15-15l3-2z"/></svg></span><p>+971 55 327 1712</p></div>
+      <div class="contact-mini"><span><svg viewBox="0 0 24 24"><path d="M4 6h16v12H4z"/><path d="M4 7l8 6 8-6"/></svg></span><p class="ltr-value">support@protein.com</p></div>
+      <div class="contact-mini"><span><svg viewBox="0 0 24 24"><path d="M6 4l4 4-2 2c1.4 2.8 3.2 4.6 6 6l2-2 4 4-2 3c-8.5-.5-14.5-6.5-15-15l3-2z"/></svg></span><p class="ltr-value">+971 55 327 1712</p></div>
     </div>
   </section>
   <footer class="footer">
@@ -14,37 +14,43 @@
         <div class="socials"><a href="#">f</a><a href="#">x</a><a href="#">ig</a><a href="#">yt</a></div>
       </div>
       <div>
-        <h3>Quick Links</h3>
-        <a href="/find-my-protein">Find My Protein</a>
-        <a href="/build-your-stack">Build My Stack</a>
-        <a href="/protein-calculator">Protein Calculator</a>
-        <a href="/about">About Us</a>
-        <a href="/contact">Contact Us</a>
-        <a href="/blog">Blog</a>
-        <a href="/faq">FAQs</a>
+        <h3 data-i18n="footer.quick">Quick Links</h3>
+        <a href="/find-my-protein" data-i18n="nav.findProtein">Find My Protein</a>
+        <a href="/build-your-stack" data-i18n="buttons.buildStack">Build My Stack</a>
+        <a href="/protein-calculator" data-i18n="calculator.title">Protein Calculator</a>
+        <a href="/about" data-i18n="nav.about">About Us</a>
+        <a href="/contact" data-i18n="nav.contact">Contact Us</a>
+        <a href="/blog" data-i18n="nav.blog">Blog</a>
+        <a href="/faq" data-i18n="nav.faqs">FAQs</a>
       </div>
       <div>
-        <h3>Categories</h3>
+        <h3 data-i18n="footer.categories">Categories</h3>
         <% categories.forEach((category) => { %>
-          <a href="/category/<%= category.slug %>"><%= category.name %></a>
+          <a href="/category/<%= category.slug %>" data-i18n="categories.<%= category.slug %>"><%= category.name %></a>
         <% }) %>
       </div>
       <div>
-        <h3>Subscribe Us</h3>
+        <h3 data-i18n="footer.subscribe">Subscribe Us</h3>
         <p>Sign up for offers and exclusive discounts.</p>
-        <form class="subscribe"><input aria-label="Email" type="email"><button>Subscribe</button></form>
+        <form class="subscribe"><input aria-label="Email" type="email" class="ltr-value"><button data-i18n="buttons.subscribe">Subscribe</button></form>
       </div>
     </div>
     <div class="footer__bottom">
       <p>&copy; 2026 Protein Market. All rights reserved.</p>
-      <nav><a href="#">Privacy Policy</a><a href="#">Terms of Use</a><a href="#">Return Policy</a></nav>
+      <nav><a href="#" data-i18n="footer.privacy">Privacy Policy</a><a href="#" data-i18n="footer.terms">Terms of Use</a><a href="#" data-i18n="footer.return">Return Policy</a></nav>
     </div>
   </footer>
+  <% const footerShopConfig = typeof shopConfig !== "undefined" ? shopConfig : { displayUsdPrices: true, aedToUsdRate: 0.2723, currency: "AED" }; const footerTranslations = typeof translations !== "undefined" ? translations : { en: {}, ar: {} }; %>
   <script>
     window.PRODUCTS = <%- JSON.stringify(products) %>;
+    window.SHOP_CONFIG = <%- JSON.stringify(footerShopConfig) %>;
+    window.TRANSLATIONS = <%- JSON.stringify(footerTranslations) %>;
     window.COACH_PRODUCTS = <%- JSON.stringify(products.map((product) => ({
       id: product.id,
       name: product.name,
+      nameAr: product.nameAr || "",
+      description: product.description,
+      descriptionAr: product.descriptionAr || "",
       slug: product.slug,
       category: product.category,
       subcategory: product.subcategory,
@@ -57,6 +63,7 @@
     window.COACH_WHATSAPP_NUMBER = "<%= whatsappNumber %>";
   </script>
   <%- include("protein-coach") %>
+  <script src="/js/i18n.js"></script>
   <script src="/js/main.js"></script>
   <script src="/js/customer-profile.js"></script>
   <script src="/js/protein-coach.js"></script>

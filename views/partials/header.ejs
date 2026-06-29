@@ -1,19 +1,27 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title><%= typeof pageTitle !== "undefined" ? pageTitle + " | " : "" %>Protein Market</title>
+  <script>
+    (function () {
+      var lang = localStorage.getItem("siteLanguage") === "ar" ? "ar" : "en";
+      var dir = lang === "ar" ? "rtl" : "ltr";
+      document.documentElement.lang = lang;
+      document.documentElement.dir = dir;
+    })();
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/style.css">
 </head>
-<body>
+<body class="lang-en dir-ltr">
   <div class="topbar">
     <div class="container topbar__inner">
-      <span>support@protein.com</span>
-      <span>+971 55 327 1712</span>
+      <span class="ltr-value">support@protein.com</span>
+      <span class="ltr-value">+971 55 327 1712</span>
     </div>
   </div>
   <header class="site-header">
@@ -26,41 +34,47 @@
       </button>
       <nav class="nav__links" data-nav>
         <div class="shop-menu">
-          <a class="shop-menu__trigger" href="/shop" data-shop-toggle>Shop <span class="chevron" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></span></a>
+          <a class="shop-menu__trigger" href="/shop" data-shop-toggle><span data-i18n="nav.shop">Shop</span> <span class="chevron" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></span></a>
           <div class="mega-menu" data-mega-menu>
             <div class="container mega-menu__grid">
               <% categories.forEach((category) => { %>
                 <div class="mega-menu__column">
-                  <a class="mega-menu__heading" href="/category/<%= category.slug %>"><%= category.name %></a>
+                  <a class="mega-menu__heading" href="/category/<%= category.slug %>" data-i18n="categories.<%= category.slug %>"><%= category.name %></a>
                   <% category.children.forEach((child) => { %>
-                    <a class="mega-menu__link" href="/category/<%= category.slug %>/<%= child.slug %>"><%= child.name %></a>
+                    <a class="mega-menu__link" href="/category/<%= category.slug %>/<%= child.slug %>" data-i18n="categories.<%= child.slug %>"><%= child.name %></a>
                   <% }) %>
                 </div>
               <% }) %>
             </div>
           </div>
         </div>
-        <a href="/about">About Us</a>
-        <a href="/find-my-protein">Find My Protein</a>
-        <a href="/contact">Contact Us</a>
-        <a href="/blog">Blog</a>
-        <a href="/faq">FAQs</a>
+        <a href="/about" data-i18n="nav.about">About Us</a>
+        <a href="/find-my-protein" data-i18n="nav.findProtein">Find My Protein</a>
+        <a href="/contact" data-i18n="nav.contact">Contact Us</a>
+        <a href="/blog" data-i18n="nav.blog">Blog</a>
+        <div class="language-switch language-switch--mobile" aria-label="Language switcher">
+          <button type="button" data-lang-toggle="en">EN</button>
+          <button type="button" data-lang-toggle="ar">AR</button>
+        </div>
       </nav>
       <div class="nav__actions">
-        <a class="pill pill--gold" href="/contact">Consult Now</a>
-        <a class="pill pill--gold-dark" href="/protein-calculator">Protein Calc</a>
-        <button class="icon-btn" type="button" aria-label="Account"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.4-4.2 4-6 8-6s6.6 1.8 8 6"/></svg></button>
-        <a class="icon-btn cart-link" href="/cart" aria-label="Cart"><svg viewBox="0 0 24 24"><path d="M4 5h2l2 11h10l2-8H7"/><circle cx="10" cy="20" r="1.5"/><circle cx="17" cy="20" r="1.5"/></svg><span data-cart-count>0</span></a>
-        <button class="icon-btn" type="button" aria-label="Search" data-search-open><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6"/><path d="M16 16l5 5"/></svg></button>
+        <div class="language-switch" aria-label="Language switcher">
+          <button type="button" data-lang-toggle="en">EN</button>
+          <button type="button" data-lang-toggle="ar">AR</button>
+        </div>
+        <a class="pill pill--gold-dark" href="/protein-calculator" data-i18n="nav.proteinCalc">Protein Calc</a>
+        <button class="icon-btn" type="button" aria-label="Account" data-i18n-aria-label="nav.account"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.4-4.2 4-6 8-6s6.6 1.8 8 6"/></svg></button>
+        <a class="icon-btn cart-link" href="/cart" aria-label="Cart" data-i18n-aria-label="nav.cart"><svg viewBox="0 0 24 24"><path d="M4 5h2l2 11h10l2-8H7"/><circle cx="10" cy="20" r="1.5"/><circle cx="17" cy="20" r="1.5"/></svg><span data-cart-count>0</span></a>
+        <button class="icon-btn" type="button" aria-label="Search" data-i18n-aria-label="nav.search" data-search-open><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6"/><path d="M16 16l5 5"/></svg></button>
       </div>
     </div>
   </header>
   <div class="search-overlay" data-search-overlay>
     <form class="search-box" action="/shop" method="get">
       <button type="button" class="search-close" data-search-close aria-label="Close search">x</button>
-      <label for="search-input">Search products</label>
-      <input id="search-input" name="q" type="search" placeholder="Protein, bars, meal plan...">
-      <button class="btn btn--gold" type="submit">Search</button>
+      <label for="search-input" data-i18n="nav.search">Search</label>
+      <input id="search-input" name="q" type="search" placeholder="Protein, bars, meal plan..." data-i18n-placeholder="nav.search">
+      <button class="btn btn--gold" type="submit" data-i18n="nav.search">Search</button>
     </form>
   </div>
   <main>

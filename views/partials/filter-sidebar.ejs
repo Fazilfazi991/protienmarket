@@ -12,14 +12,14 @@
       </label>
     </div>
     <div class="filter-section">
-      <h3>Categories</h3>
+      <h3 data-i18n="footer.categories">Categories</h3>
       <label class="search-field search-field--small">
         <input type="search" placeholder="Search" data-category-search>
       </label>
       <div class="filter-list" data-category-list>
         <% categories.forEach((item) => { %>
           <a class="filter-row <%= activeCategory === item.slug ? "is-active" : "" %>" href="/category/<%= item.slug %>" data-filter-category="<%= item.name.toLowerCase() %>">
-            <span><input type="checkbox" <%= activeCategory === item.slug ? "checked" : "" %> readonly> <%= item.name %> <em>(<%= categoryCounts[item.slug] || 0 %>)</em></span>
+            <span><input type="checkbox" <%= activeCategory === item.slug ? "checked" : "" %> readonly> <span data-i18n="categories.<%= item.slug %>"><%= item.name %></span> <em>(<%= categoryCounts[item.slug] || 0 %>)</em></span>
             <strong>+</strong>
           </a>
         <% }) %>

@@ -1,30 +1,30 @@
 <%- include("partials/header", { pageTitle: "Checkout" }) %>
-<section class="page-hero compact"><div class="container"><p class="breadcrumb"><a href="/">Home</a> / Checkout</p><h1>Secure Checkout</h1><p>Complete your details and pay safely in sandbox mode.</p></div></section>
+<section class="page-hero compact"><div class="container"><p class="breadcrumb"><a href="/">Home</a> / <span data-i18n="buttons.checkout">Checkout</span></p><h1 data-i18n="checkout.title">Secure Checkout</h1><p>Complete your details and pay safely in sandbox mode.</p></div></section>
 <section class="section checkout-section">
   <div class="container checkout-layout">
     <form class="checkout-card" data-checkout-form>
       <% if (paymentMode === "sandbox") { %><p class="sandbox-badge">Sandbox Payment Mode</p><% } %>
-      <h2>Delivery Details</h2>
+      <h2 data-i18n="checkout.deliveryDetails">Delivery Details</h2>
       <div class="form-grid">
-        <label>Full Name<input name="name" required autocomplete="name"></label>
-        <label>Email<input name="email" type="email" required autocomplete="email"></label>
-        <label>Phone<input name="phone" required autocomplete="tel"></label>
-        <label>City<input name="city" required></label>
-        <label class="wide">Address Line 1<input name="address1" required autocomplete="address-line1"></label>
+        <label><span data-i18n="checkout.fullName">Full Name</span><input name="name" required autocomplete="name"></label>
+        <label><span data-i18n="checkout.email">Email</span><input class="ltr-value" name="email" type="email" required autocomplete="email"></label>
+        <label><span data-i18n="checkout.phone">Phone</span><input class="ltr-value" name="phone" required autocomplete="tel"></label>
+        <label><span data-i18n="checkout.city">City</span><input name="city" required></label>
+        <label class="wide"><span data-i18n="checkout.address">Address</span><input name="address1" required autocomplete="address-line1"></label>
         <label class="wide">Address Line 2<input name="address2" autocomplete="address-line2"></label>
-        <label>Emirate<select name="emirate" required><option value="">Select Emirate</option><option>Dubai</option><option>Abu Dhabi</option><option>Sharjah</option><option>Ajman</option><option>Ras Al Khaimah</option><option>Fujairah</option><option>Umm Al Quwain</option></select></label>
+        <label><span data-i18n="checkout.emirate">Emirate</span><select name="emirate" required><option value="">Select Emirate</option><option>Dubai</option><option>Abu Dhabi</option><option>Sharjah</option><option>Ajman</option><option>Ras Al Khaimah</option><option>Fujairah</option><option>Umm Al Quwain</option></select></label>
         <label class="wide">Delivery Notes<textarea name="notes" rows="4"></textarea></label>
       </div>
-      <h2>Payment Method</h2>
+      <h2 data-i18n="checkout.paymentMethod">Payment Method</h2>
       <div class="payment-methods">
-        <label><input type="radio" name="paymentMethod" value="online" checked> Online Payment</label>
-        <label><input type="radio" name="paymentMethod" value="cod"> Cash on Delivery</label>
+        <label><input type="radio" name="paymentMethod" value="online" checked> <span data-i18n="checkout.online">Online Payment</span></label>
+        <label><input type="radio" name="paymentMethod" value="cod"> <span data-i18n="checkout.cod">Cash on Delivery</span></label>
       </div>
       <p class="checkout-error" data-checkout-error hidden></p>
-      <button class="btn btn--gold checkout-submit" type="submit">Pay Securely</button>
+      <button class="btn btn--gold checkout-submit" type="submit" data-i18n="buttons.paySecurely">Pay Securely</button>
     </form>
     <aside class="checkout-summary">
-      <h2>Order Summary</h2>
+      <h2 data-i18n="checkout.summary">Order Summary</h2>
       <div data-checkout-summary></div>
     </aside>
   </div>

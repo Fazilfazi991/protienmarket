@@ -5,8 +5,9 @@
       <h1>Order <%= order.id %></h1>
       <p>Status: <strong><%= order.orderStatus %></strong></p>
       <p>Payment: <strong><%= order.payment.status %></strong></p>
-      <div class="order-lines"><% order.items.forEach((item) => { %><div><span><%= item.name %> x <%= item.quantity %></span><strong>AED <%= money(item.lineTotal) %></strong></div><% }) %></div>
-      <div class="summary-line total"><span>Total</span><strong>AED <%= money(order.total) %></strong></div>
+      <div class="order-lines"><% order.items.forEach((item) => { %><div><span><%= item.name %> x <%= item.quantity %></span><span class="price-block"><strong class="price-aed ltr-value">AED <%= money(item.lineTotal) %></strong><% if (shopConfig.displayUsdPrices) { %><span class="price-usd ltr-value">≈ $<%= usd(item.lineTotal) %></span><% } %></span></div><% }) %></div>
+      <div class="summary-line total"><span data-i18n="cart.total">Total</span><span class="price-block"><strong class="price-aed ltr-value">AED <%= money(order.total) %></strong><% if (shopConfig.displayUsdPrices) { %><span class="price-usd ltr-value">≈ $<%= usd(order.total) %></span><% } %></span></div>
+      <% if (shopConfig.displayUsdPrices) { %><p class="usd-note" data-i18n="currency.usdNote">USD shown for reference. Checkout is charged in AED.</p><% } %>
     </div>
   </div>
 </section>

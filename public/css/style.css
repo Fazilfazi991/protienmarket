@@ -4783,3 +4783,234 @@ img {
     min-height: 0;
   }
 }
+
+/* I18n, RTL, and reference USD pricing */
+.language-switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px;
+  border: 1px solid rgba(255,255,255,.18);
+  border-radius: 999px;
+  background: rgba(255,255,255,.08);
+}
+
+.language-switch button {
+  min-width: 34px;
+  height: 30px;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.language-switch button.is-active {
+  background: var(--gold);
+  color: var(--white);
+}
+
+.language-switch--mobile {
+  display: none;
+  margin-top: 10px;
+  width: max-content;
+}
+
+.price-block {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  line-height: 1.25;
+}
+
+.price-aed {
+  color: var(--gold);
+  font-weight: 800;
+}
+
+.price-usd {
+  display: block;
+  margin-top: 2px;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.price-block--large .price-aed {
+  font-size: 34px;
+}
+
+.usd-note {
+  margin: 10px 0 0;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.ltr-value {
+  direction: ltr;
+  unicode-bidi: isolate;
+}
+
+body.dir-rtl {
+  direction: rtl;
+  text-align: right;
+}
+
+body.dir-rtl .nav,
+body.dir-rtl .nav__links,
+body.dir-rtl .nav__actions,
+body.dir-rtl .button-row,
+body.dir-rtl .product-actions,
+body.dir-rtl .toolbar-actions,
+body.dir-rtl .cart-row,
+body.dir-rtl .summary-item,
+body.dir-rtl .summary-line,
+body.dir-rtl .cart-totals > div {
+  direction: rtl;
+}
+
+body.dir-rtl .price-block,
+body.dir-rtl .price,
+body.dir-rtl .stars,
+body.dir-rtl .cart-link span {
+  direction: ltr;
+}
+
+body.dir-rtl .hero__copy,
+body.dir-rtl .split h2,
+body.dir-rtl .split p,
+body.dir-rtl .blog-preview h2,
+body.dir-rtl .blog-preview > .container > p,
+body.dir-rtl .collection-hero,
+body.dir-rtl .product-detail__content,
+body.dir-rtl .checkout-card,
+body.dir-rtl .checkout-summary {
+  text-align: right;
+}
+
+body.dir-rtl .shop-menu__trigger .chevron,
+body.dir-rtl .view-details,
+body.dir-rtl .breadcrumb {
+  transform: scaleX(-1);
+}
+
+body.dir-rtl .breadcrumb > *,
+body.dir-rtl .view-details {
+  transform: scaleX(-1);
+}
+
+body.dir-rtl .mega-menu__grid {
+  direction: rtl;
+  text-align: right;
+}
+
+@media (max-width: 1020px) {
+  .language-switch:not(.language-switch--mobile) {
+    display: none;
+  }
+
+  .language-switch--mobile {
+    display: inline-flex;
+  }
+}
+
+/* Header alignment refinement */
+.site-header .nav {
+  min-height: 92px;
+  gap: clamp(18px, 2vw, 32px);
+  flex-wrap: nowrap;
+}
+
+.site-header .logo {
+  flex: 0 0 auto;
+}
+
+.site-header .logo img {
+  width: clamp(148px, 9.5vw, 188px);
+  max-height: 72px;
+  object-fit: contain;
+}
+
+.site-header .nav__links {
+  min-width: 0;
+  gap: clamp(18px, 1.6vw, 34px);
+  justify-content: center;
+  white-space: nowrap;
+}
+
+.site-header .nav__links > a,
+.site-header .shop-menu__trigger {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0;
+  line-height: 1.15;
+}
+
+.site-header .nav__actions {
+  flex: 0 0 auto;
+  gap: clamp(10px, 1vw, 14px);
+}
+
+.site-header .language-switch {
+  min-height: 44px;
+}
+
+.site-header .language-switch button {
+  min-width: 38px;
+  height: 34px;
+}
+
+.site-header .nav__actions .pill {
+  height: 50px;
+  min-height: 50px;
+  padding: 0 clamp(26px, 2.1vw, 36px);
+  white-space: nowrap;
+}
+
+.site-header .icon-btn {
+  width: 42px;
+  min-width: 42px;
+  height: 42px;
+}
+
+.site-header .cart-link span {
+  top: 1px;
+  right: 1px;
+}
+
+@media (max-width: 1180px) {
+  .site-header .nav {
+    gap: 18px;
+  }
+
+  .site-header .nav__links {
+    gap: 18px;
+    font-size: 15px;
+  }
+
+  .site-header .nav__actions .pill {
+    padding: 0 24px;
+  }
+}
+
+@media (max-width: 1020px) {
+  .site-header .nav {
+    min-height: 82px;
+    flex-wrap: wrap;
+  }
+
+  .site-header .nav__links {
+    white-space: normal;
+  }
+
+  .site-header .nav__links > a,
+  .site-header .shop-menu__trigger {
+    min-height: 0;
+    padding: 12px 0;
+  }
+}

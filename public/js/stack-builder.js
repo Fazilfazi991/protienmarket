@@ -2,6 +2,9 @@
   const root = document.querySelector("[data-stack-builder]");
   if (!root) return;
   const products = window.STACK_PRODUCTS || [];
+  const productName = (product) => window.I18N?.productName(product) || product.name;
+  const priceBlock = (amount) => window.ShopMoney?.priceBlock(amount) || `<span>AED ${Number(amount || 0).toFixed(2)}</span>`;
+  const formatAED = (amount) => window.ShopMoney?.formatAED(amount) || `AED ${Number(amount || 0).toFixed(2)}`;
   const state = {};
   const steps = [
     ["goal", "Choose goal", ["Lose Fat", "Build Muscle", "Maintenance", "Vegan", "Meal Plan Support"]],
@@ -29,8 +32,8 @@
   function renderPreview() {
     const selected = pick();
     const total = selected.reduce((sum, p) => sum + p.price, 0);
-    root.querySelector("[data-stack-preview]").innerHTML = selected.length ? selected.map((p) => `<div class="stack-line"><img src="${p.image}" alt="${p.name}"><span>${p.name}</span><strong>AED ${Number(p.price).toFixed(2)}</strong></div>`).join("") : "<p>Pick your goal to start building.</p>";
-    root.querySelector("[data-stack-builder-total]").textContent = `AED ${total.toFixed(2)}`;
+    root.querySelector("[data-stack-preview]").innerHTML = selected.length ? selected.map((p) => `<div class="stack-line"><img src="${p.image}" alt="${productName(p)}"><span>${productName(p)}</span>${priceBlock(p.price)}</div>`).join("") : "<p>Pick your goal to start building.</p>";
+    root.querySelector("[data-stack-builder-total]").innerHTML = priceBlock(total);
     root.querySelector("[data-stack-save]").textContent = selected.length > 1 ? "Estimated stack saving: AED 25.00" : "";
     root.querySelector("[data-builder-whatsapp]").href = `https://wa.me/971553271712?text=${encodeURIComponent("Hi, can you review my protein stack for " + (state.goal || "my goal") + "?")}`;
   }
@@ -54,6 +57,10 @@
   root.querySelector("[data-edit-stack]").addEventListener("click", () => renderStep(0));
   root.querySelector("[data-add-builder-stack]").addEventListener("click", () => {
     window.dispatchEvent(new CustomEvent("protein:add-stack", { detail: pick().map((p) => p.id) }));
+  });
+  window.addEventListener("languageChanged", () => {
+    renderPreview();
+    renderStep(steps.findIndex(([key]) => !state[key]) >= 0 ? steps.findIndex(([key]) => !state[key]) : steps.length - 1);
   });
   renderStep(0);
   renderPreview();

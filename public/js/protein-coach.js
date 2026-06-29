@@ -10,6 +10,9 @@
   const products = window.COACH_PRODUCTS || [];
   const whatsappNumber = window.COACH_WHATSAPP_NUMBER || "971553271712";
   const cartKey = "proteinMarketCart";
+  const t = (key, fallback) => window.I18N?.t(key, fallback) || fallback || key;
+  const productName = (product) => window.I18N?.productName(product) || product.name;
+  const priceBlock = (amount) => window.ShopMoney?.priceBlock(amount) || `<span>AED ${Number(amount || 0).toFixed(2)}</span>`;
 
   const coachQuestions = [
     {
@@ -115,8 +118,8 @@
     body.dataset.ready = "true";
     body.innerHTML = `
       <div class="coach-intro coach-view">
-        <p class="coach-kicker">Your quick match</p>
-        <h3>Find your best protein match</h3>
+        <p class="coach-kicker">${t("coach.title", "Protein Coach")}</p>
+        <h3>${t("coach.quick", "Find the right product in 30 seconds")}</h3>
         <p>Answer 5 quick questions and we'll suggest products that fit your goal.</p>
         <button class="coach-primary" type="button" data-coach-start>Start</button>
         <a class="coach-secondary-link" href="/shop">Skip and browse shop</a>
@@ -135,7 +138,7 @@
         </div>
         <div class="coach-progress"><span style="width:${progress}%"></span></div>
         <p class="coach-microcopy">${question.microcopy}</p>
-        <h3>${question.question}</h3>
+        <h3>${t(`coach.${question.id === "productType" ? "product" : question.id}`, question.question)}</h3>
         <div class="coach-options">
           ${question.options.map((option) => `
             <button class="coach-option" type="button" data-coach-answer="${option.value}">
@@ -286,7 +289,7 @@
     body.innerHTML = `
       <div class="coach-result coach-view">
         <p class="coach-kicker">Your match is ready.</p>
-        <h3>Here's what fits you best</h3>
+        <h3>${t("coach.results", "Here's what fits you best")}</h3>
         <p class="coach-result-subtitle">Based on your goal and preferences.</p>
         <a class="coach-match-card" href="${category.href}">
           <strong>${category.title}</strong>
@@ -295,11 +298,11 @@
         <div class="coach-products">
           ${recommendations.map((product) => `
             <article class="coach-product-card">
-              <img src="${product.image}" alt="${product.name}" loading="lazy">
+              <img src="${product.image}" alt="${productName(product)}" loading="lazy">
               <div>
                 <span>${reasonFor(product, state.answers)}</span>
-                <strong>${product.name}</strong>
-                <small>AED ${Number(product.price).toFixed(2)}</small>
+                <strong>${productName(product)}</strong>
+                <small>${priceBlock(product.price)}</small>
               </div>
               <a href="/product/${product.slug}">View</a>
               <button type="button" data-coach-add="${product.id}">Add</button>
@@ -307,9 +310,9 @@
           `).join("")}
         </div>
         <div class="coach-actions">
-          <a class="coach-primary" href="${category.href}">View Recommended Products</a>
-          <button type="button" data-coach-reset>Retake Quiz</button>
-          <a class="coach-whatsapp" href="https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappText)}" target="_blank" rel="noreferrer">Ask on WhatsApp</a>
+          <a class="coach-primary" href="${category.href}">${t("coach.view", "View Recommended Products")}</a>
+          <button type="button" data-coach-reset>${t("coach.retake", "Retake Quiz")}</button>
+          <a class="coach-whatsapp" href="https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappText)}" target="_blank" rel="noreferrer">${t("coach.ask", "Ask on WhatsApp")}</a>
         </div>
         <p class="coach-added" data-coach-added hidden>Added to cart.</p>
       </div>
@@ -334,7 +337,7 @@
     const added = body.querySelector("[data-coach-added]");
     if (added) {
       added.hidden = false;
-      added.textContent = `${product.name} added to cart.`;
+      added.textContent = `${productName(product)} added to cart.`;
       window.setTimeout(() => { added.hidden = true; }, 1800);
     }
   }
@@ -360,4 +363,11 @@
   window.setTimeout(() => {
     if (!sessionStorage.getItem("proteinCoachClosed")) tooltip.classList.add("is-visible");
   }, 2000);
+  window.addEventListener("languageChanged", () => {
+    if (panel.hidden) return;
+    if (!body.dataset.ready) return;
+    if (state.recommendations.length) renderResults();
+    else if (Object.keys(state.answers).length) renderQuestion();
+    else renderIntro();
+  });
 })();

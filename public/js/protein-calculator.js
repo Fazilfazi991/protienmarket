@@ -12,6 +12,9 @@
   const recommendationsGrid = document.querySelector("[data-recommendation-grid]");
   const whatsappLink = document.querySelector("[data-whatsapp-result]");
   let currentRecommendations = [];
+  let currentValues = null;
+  const productName = (product) => window.I18N?.productName(product) || product.name;
+  const priceBlock = (amount) => window.ShopMoney?.priceBlock(amount) || `<strong>AED ${Number(amount || 0).toFixed(2)}</strong>`;
 
   const goalMultipliers = {
     "Fat Loss": 2,
@@ -250,10 +253,10 @@
       <article class="dashboard-product">
         <img src="${product.image}" alt="${product.name}">
         <div>
-          <h4>${product.name}</h4>
+          <h4>${productName(product)}</h4>
           <p>${tagFor(product, values)}</p>
           <span>${"&#9733;".repeat(Math.round(product.rating || 4))} <em>${Number(product.rating || 4).toFixed(1)}</em></span>
-          <strong>${money(product.price)}</strong>
+          ${priceBlock(product.price)}
         </div>
         <button type="button" aria-label="Add ${product.name} to cart" data-calc-add-to-cart="${product.id}">+</button>
       </article>
@@ -293,6 +296,7 @@
     renderMeals(result);
     renderProducts(values, recommendations);
     updateWhatsapp(values, result, recommendations);
+    currentValues = values;
   }
 
   function runCalculation(shouldScroll) {
@@ -340,4 +344,14 @@
   } catch (error) {
     localStorage.removeItem(resultKey);
   }
+  window.addEventListener("languageChanged", () => {
+    try {
+      const saved = JSON.parse(localStorage.getItem(resultKey) || "null");
+      if (!saved?.values) return;
+      const recommendations = (saved.recommendations || []).map((id) => products.find((product) => product.id === id)).filter(Boolean);
+      if (recommendations.length && !dashboard.hidden) renderProducts(saved.values, recommendations);
+    } catch (error) {
+      localStorage.removeItem(resultKey);
+    }
+  });
 })();
