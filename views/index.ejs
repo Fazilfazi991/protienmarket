@@ -36,18 +36,35 @@
   </div>
 </section>
 
-<section class="section goal-section">
+<section class="shop-goal-section">
   <div class="container">
     <div class="profile-return" data-profile-return hidden></div>
-    <h2 data-i18n="home.shopByGoal">Shop By Goal</h2>
-    <p class="section-intro" data-i18n="home.goalIntro">Choose your fitness goal and we'll show the right products, stacks, and meal options.</p>
-    <div class="goal-card-grid">
+    <div class="section-heading">
+      <h2 data-i18n="home.shopByGoal">Shop By Goal</h2>
+      <div class="gold-divider" aria-hidden="true"></div>
+      <p data-i18n="home.goalIntro">Choose your fitness goal and we'll show the right products, stacks, and meal options.</p>
+    </div>
+    <%
+      const goalImages = {
+        "lose-fat": "/images/goals/goal-lose-fat.webp",
+        "build-muscle": "/images/goals/goal-build-muscle.webp",
+        "stay-fit": "/images/goals/goal-stay-fit.webp",
+        "vegan-lifestyle": "/images/goals/goal-vegan-lifestyle.webp",
+        "busy-professional": "/images/goals/goal-busy-professional.webp",
+        "athlete-recovery": "/images/goals/goal-athlete-recovery.webp"
+      };
+    %>
+    <div class="goal-grid">
       <% goals.forEach((goal) => { %>
         <a class="goal-card" href="/goal/<%= goal.slug %>">
-          <span><%= goal.icon %></span>
-          <h3><%= goal.title %></h3>
-          <p><%= goal.description %></p>
-          <strong data-i18n="buttons.exploreGoal">Explore Goal</strong>
+          <div class="goal-card-image">
+            <img src="<%= goalImages[goal.slug] %>" alt="<%= goal.title %>" loading="lazy" width="170" height="170" data-i18n-alt="goals.<%= goal.slug %>.title">
+          </div>
+          <div class="goal-card-content">
+            <h3 data-i18n="goals.<%= goal.slug %>.title"><%= goal.title %></h3>
+            <p data-i18n="goals.<%= goal.slug %>.description"><%= goal.description %></p>
+            <strong class="goal-card-cta"><span data-i18n="buttons.exploreGoal">Explore Goal</span> <span aria-hidden="true">-&gt;</span></strong>
+          </div>
         </a>
       <% }) %>
     </div>
@@ -73,15 +90,15 @@
 <section class="section mvp-cta-row">
   <div class="container cta-grid">
     <article class="conversion-card">
-      <p class="eyebrow">Guided shopping</p>
-      <h2>Not sure which protein is right for you?</h2>
-      <p>Answer 5 quick questions and get product suggestions based on your goal, diet, and routine.</p>
+      <p class="eyebrow" data-i18n="home.guidedEyebrow">Guided shopping</p>
+      <h2 data-i18n="home.guidedTitle">Not sure which protein is right for you?</h2>
+      <p data-i18n="home.guidedCopy">Answer 5 quick questions and get product suggestions based on your goal, diet, and routine.</p>
       <div class="button-row"><a class="btn btn--gold" href="/find-my-protein" data-i18n="buttons.startQuiz">Start Quiz</a><a class="btn btn--ghost" href="/protein-calculator" data-i18n="buttons.calculateProtein">Calculate Protein</a></div>
     </article>
     <article class="conversion-card conversion-card--dark">
-      <p class="eyebrow">Smart bundle</p>
-      <h2>Build Your Protein Stack</h2>
-      <p>Choose your goal and create a simple combo of protein, snacks, and meal support.</p>
+      <p class="eyebrow" data-i18n="home.bundleEyebrow">Smart bundle</p>
+      <h2 data-i18n="home.bundleTitle">Build Your Protein Stack</h2>
+      <p data-i18n="home.bundleCopy">Choose your goal and create a simple combo of protein, snacks, and meal support.</p>
       <a class="btn btn--gold" href="/build-your-stack" data-i18n="buttons.buildStack">Build My Stack</a>
     </article>
   </div>
@@ -106,12 +123,12 @@
   <div class="container split">
     <div>
       <h2 data-i18n="home.consultTitle">One on one Health coach/ Personal Consultation</h2>
-      <p>At Protein Market, we believe that true strength comes from within and it starts with the right nutrition. Our mission is simple: to empower every individual to achieve their best by providing clean, high-quality protein products that fuel ambition and support a healthier lifestyle.</p>
-      <p>Join us on this journey to redefine strength and well-being. Because when you fuel better, you feel better.</p>
+      <p data-i18n="home.consultCopy1">At Protein Market, we believe that true strength comes from within and it starts with the right nutrition. Our mission is simple: to empower every individual to achieve their best by providing clean, high-quality protein products that fuel ambition and support a healthier lifestyle.</p>
+      <p data-i18n="home.consultCopy2">Join us on this journey to redefine strength and well-being. Because when you fuel better, you feel better.</p>
       <div class="button-row">
         <a class="btn btn--gold" href="/contact" data-i18n="nav.consult">Consult Now</a>
         <a class="btn btn--insta" href="https://instagram.com/" target="_blank" rel="noreferrer">Instagram</a>
-        <a class="btn btn--whatsapp" href="https://wa.me/971553271712" target="_blank" rel="noreferrer">Chat With us</a>
+        <a class="btn btn--whatsapp" href="https://wa.me/971553271712" target="_blank" rel="noreferrer" data-i18n="buttons.chatWithUs">Chat With us</a>
       </div>
     </div>
     <img class="wide-image" src="/images/section-consultation.webp" alt="Personal nutrition consultation" loading="lazy">
@@ -121,12 +138,12 @@
 <section class="section why">
   <div class="container">
     <h2 data-i18n="home.whyTitle">Why Choose Us?</h2>
-    <p class="section-intro">Choosing the right protein is not just about the label, it is about trust, quality, and results. Here is why The Protein Market is your ideal choice for premium protein products.</p>
+    <p class="section-intro" data-i18n="home.whyIntro">Choosing the right protein is not just about the label, it is about trust, quality, and results. Here is why The Protein Market is your ideal choice for premium protein products.</p>
     <div class="why-grid">
-      <article><span><svg viewBox="0 0 24 24"><path d="M12 3l7 3v5c0 4.7-2.8 8.8-7 10-4.2-1.2-7-5.3-7-10V6l7-3z"/><path d="M8.5 12l2.2 2.2 4.8-5"/></svg></span><div><h3>Quality Guaranteed</h3><p>Only the finest ingredients, pure, potent, and rigorously tested for quality.</p></div></article>
-      <article><span><svg viewBox="0 0 24 24"><path d="M3 7h11v9H3z"/><path d="M14 10h4l3 3v3h-7z"/><circle cx="7" cy="18" r="2"/><circle cx="18" cy="18" r="2"/></svg></span><div><h3>UAE-Wide Delivery</h3><p>Fast and reliable delivery to your doorstep, anywhere in the UAE.</p></div></article>
-      <article><span><svg viewBox="0 0 24 24"><path d="M20 4c-8 0-14 5-14 12 0 2 1 3 1 3s1-5 7-8"/><path d="M20 4c0 8-5 14-12 14"/></svg></span><div><h3>Freshness & Sustainability</h3><p>Packed for peak freshness with sustainable practices you can trust.</p></div></article>
-      <article><span><svg viewBox="0 0 24 24"><path d="M7 8h10"/><path d="M5 6v4"/><path d="M19 6v4"/><path d="M9 14h6"/><path d="M12 10v9"/></svg></span><div><h3>Fitness-Focused Meal Plans</h3><p>Expertly crafted meal plans to fuel your workouts and support your goals.</p></div></article>
+      <article><span><svg viewBox="0 0 24 24"><path d="M12 3l7 3v5c0 4.7-2.8 8.8-7 10-4.2-1.2-7-5.3-7-10V6l7-3z"/><path d="M8.5 12l2.2 2.2 4.8-5"/></svg></span><div><h3 data-i18n="home.qualityTitle">Quality Guaranteed</h3><p data-i18n="home.qualityCopy">Only the finest ingredients, pure, potent, and rigorously tested for quality.</p></div></article>
+      <article><span><svg viewBox="0 0 24 24"><path d="M3 7h11v9H3z"/><path d="M14 10h4l3 3v3h-7z"/><circle cx="7" cy="18" r="2"/><circle cx="18" cy="18" r="2"/></svg></span><div><h3 data-i18n="home.deliveryTitle">UAE-Wide Delivery</h3><p data-i18n="home.deliveryCopy">Fast and reliable delivery to your doorstep, anywhere in the UAE.</p></div></article>
+      <article><span><svg viewBox="0 0 24 24"><path d="M20 4c-8 0-14 5-14 12 0 2 1 3 1 3s1-5 7-8"/><path d="M20 4c0 8-5 14-12 14"/></svg></span><div><h3 data-i18n="home.freshnessTitle">Freshness & Sustainability</h3><p data-i18n="home.freshnessCopy">Packed for peak freshness with sustainable practices you can trust.</p></div></article>
+      <article><span><svg viewBox="0 0 24 24"><path d="M7 8h10"/><path d="M5 6v4"/><path d="M19 6v4"/><path d="M9 14h6"/><path d="M12 10v9"/></svg></span><div><h3 data-i18n="home.mealPlansTitle">Fitness-Focused Meal Plans</h3><p data-i18n="home.mealPlansCopy">Expertly crafted meal plans to fuel your workouts and support your goals.</p></div></article>
     </div>
   </div>
 </section>
@@ -135,20 +152,20 @@
   <img src="/images/section-fitness-cta.webp" alt="Athlete drinking protein" loading="lazy">
   <div>
     <h2 data-i18n="home.journeyTitle">Ready to Transform Your Fitness Journey?</h2>
-    <p>Discover the power of clean, high-quality protein designed to fuel your workouts, enhance recovery, and elevate your daily nutrition.</p>
-    <a class="btn btn--gold" href="/shop">Start Your Transformation Today -></a>
+    <p data-i18n="home.journeyCopy">Discover the power of clean, high-quality protein designed to fuel your workouts, enhance recovery, and elevate your daily nutrition.</p>
+    <a class="btn btn--gold" href="/shop" data-i18n="buttons.startTransformation">Start Your Transformation Today -></a>
   </div>
 </section>
 
 <section class="section blog-preview">
   <div class="container">
     <h2 data-i18n="home.blogTitle">Insights on Protein, Health, and Fitness</h2>
-    <p>In today&apos;s fast-paced world, maintaining a healthy lifestyle is more important than ever. Stay tuned for expert tips, nutritional insights, and fitness strategies.</p>
+    <p data-i18n="home.blogIntro">In today&apos;s fast-paced world, maintaining a healthy lifestyle is more important than ever. Stay tuned for expert tips, nutritional insights, and fitness strategies.</p>
     <div class="blog-grid">
       <% featuredBlogs.forEach((post) => { %>
         <article class="blog-card">
-          <img src="<%= post.image %>" alt="<%= post.title %>" loading="lazy">
-          <div><time><%= post.date %></time><h3><%= post.title %></h3><p><%= post.excerpt %></p><a href="/blog/<%= post.slug %>" data-i18n="buttons.readMore">READ MORE</a></div>
+          <img src="<%= post.image %>" alt="<%= post.title %>" loading="lazy" data-i18n-alt="blogs.<%= post.slug %>.title">
+          <div><time><%= post.date %></time><h3 data-i18n="blogs.<%= post.slug %>.title"><%= post.title %></h3><p data-i18n="blogs.<%= post.slug %>.excerpt"><%= post.excerpt %></p><a href="/blog/<%= post.slug %>" data-i18n="buttons.readMore">READ MORE</a></div>
         </article>
       <% }) %>
     </div>

@@ -1,9 +1,9 @@
 <%- include("partials/header", { pageTitle: "Blog" }) %>
 <section class="page-hero compact blog-hero">
   <div class="container">
-    <p class="eyebrow">Protein Market Journal</p>
-    <h1>Blog</h1>
-    <p>Nutrition ideas, product guides, and simple training support.</p>
+    <p class="eyebrow" data-i18n="blog.eyebrow">Protein Market Journal</p>
+    <h1 data-i18n="nav.blog">Blog</h1>
+    <p data-i18n="blog.subtitle">Nutrition ideas, product guides, and simple training support.</p>
   </div>
 </section>
 
@@ -12,14 +12,14 @@
     <div class="blog-grid blog-grid--listing">
       <% allBlogs.forEach((post) => { %>
         <article class="blog-card blog-card--listing">
-          <a class="blog-card__media" href="/blog/<%= post.slug %>" aria-label="Read <%= post.title %>">
-            <img src="<%= post.image %>" alt="<%= post.title %>" loading="lazy">
+          <a class="blog-card__media" href="/blog/<%= post.slug %>" aria-label="Read <%= post.title %>" data-i18n-aria-label="blogs.<%= post.slug %>.readLabel">
+            <img src="<%= post.image %>" alt="<%= post.title %>" loading="lazy" data-i18n-alt="blogs.<%= post.slug %>.title">
           </a>
           <div class="blog-card__body">
             <time datetime="<%= post.date %>"><%= post.date %></time>
-            <h2><a href="/blog/<%= post.slug %>"><%= post.title %></a></h2>
-            <p><%= post.excerpt %></p>
-            <a class="blog-card__link" href="/blog/<%= post.slug %>">Read Article</a>
+            <h2><a href="/blog/<%= post.slug %>" data-i18n="blogs.<%= post.slug %>.title"><%= post.title %></a></h2>
+            <p data-i18n="blogs.<%= post.slug %>.excerpt"><%= post.excerpt %></p>
+            <a class="blog-card__link" href="/blog/<%= post.slug %>" data-i18n="buttons.readArticle">Read Article</a>
           </div>
         </article>
       <% }) %>

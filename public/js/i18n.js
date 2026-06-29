@@ -39,6 +39,9 @@
     document.querySelectorAll("[data-i18n-aria-label]").forEach((node) => {
       node.setAttribute("aria-label", t(node.dataset.i18nAriaLabel, node.getAttribute("aria-label") || ""));
     });
+    document.querySelectorAll("[data-i18n-alt]").forEach((node) => {
+      node.setAttribute("alt", t(node.dataset.i18nAlt, node.getAttribute("alt") || ""));
+    });
     document.querySelectorAll("[data-lang-toggle]").forEach((button) => {
       const active = button.dataset.langToggle === lang;
       button.classList.toggle("is-active", active);
