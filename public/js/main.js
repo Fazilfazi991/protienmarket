@@ -46,9 +46,18 @@
   }
 
   function closeCartDrawer() {
+    const hadLock = document.body.classList.contains("cart-drawer-open");
     document.querySelector(".mini-cart-drawer")?.remove();
     document.querySelector(".mini-cart-backdrop")?.remove();
+    const scrollY = Number(document.body.dataset.cartScrollY || 0);
+    document.documentElement.classList.remove("cart-drawer-open");
     document.body.classList.remove("cart-drawer-open");
+    document.body.style.position = "";
+    document.body.style.top = "";
+    document.body.style.left = "";
+    document.body.style.width = "";
+    delete document.body.dataset.cartScrollY;
+    if (hadLock) window.scrollTo(0, scrollY);
   }
 
   function showCartDrawer(addedProduct) {
@@ -63,7 +72,14 @@
     drawer.innerHTML = `<button class="mini-cart-close" type="button" aria-label="Close cart suggestions">x</button><div class="mini-cart-content"><p class="eyebrow">${t("cart.title", "Cart")}</p><h2>${t("home.continuePlan", "Continue your plan")}</h2><p>${productName(addedProduct)} added. ${t("cart.suggestions", "You may also need")}.</p><div class="mini-suggestions">${smartSuggestionsFor(addedProduct, 3).map(productSuggestionCard).join("")}</div></div><div class="mini-cart-footer"><div class="mini-cart-subtotal"><span>${t("cart.subtotal", "Subtotal")}</span>${priceBlock(totals.subtotal)}</div><a class="btn btn--gold" href="/cart">${t("cart.checkout", "Proceed to Checkout")}</a></div>`;
     document.body.appendChild(backdrop);
     document.body.appendChild(drawer);
+    const scrollY = window.scrollY || document.documentElement.scrollTop || 0;
+    document.body.dataset.cartScrollY = String(scrollY);
+    document.documentElement.classList.add("cart-drawer-open");
     document.body.classList.add("cart-drawer-open");
+    document.body.style.position = "fixed";
+    document.body.style.top = `-${scrollY}px`;
+    document.body.style.left = "0";
+    document.body.style.width = "100%";
     backdrop.addEventListener("click", closeCartDrawer);
     drawer.querySelector(".mini-cart-close").addEventListener("click", closeCartDrawer);
     drawer.querySelectorAll("[data-add-to-cart]").forEach((button) => {

@@ -5428,8 +5428,10 @@ button {
   font-weight: 700;
 }
 
+html.cart-drawer-open,
 body.cart-drawer-open {
   overflow: hidden;
+  overscroll-behavior: none;
 }
 
 .mini-cart-backdrop {
@@ -5453,7 +5455,7 @@ body.cart-drawer-open {
   height: 100vh;
   max-height: 100vh;
   flex-direction: column;
-  overflow-y: auto;
+  overflow: hidden;
   padding: 32px;
   color: var(--text);
   background: var(--white);
@@ -5498,6 +5500,25 @@ body.dir-rtl .mini-cart-close {
   flex: 1 1 auto;
   flex-direction: column;
   min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding-right: 8px;
+  margin-right: -8px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(32, 32, 32, .34) transparent;
+}
+
+.mini-cart-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.mini-cart-content::-webkit-scrollbar-thumb {
+  background: rgba(32, 32, 32, .28);
+  border-radius: 999px;
+}
+
+.mini-cart-content::-webkit-scrollbar-track {
+  background: transparent;
 }
 
 .mini-cart-drawer .eyebrow {
@@ -5525,7 +5546,8 @@ body.dir-rtl .mini-cart-close {
 .mini-suggestions {
   display: grid;
   gap: 12px;
-  margin: 10px 0 24px;
+  margin: 10px 0 0;
+  padding-bottom: 24px;
 }
 
 .suggestion-card {
@@ -5589,14 +5611,15 @@ body.dir-rtl .mini-cart-close {
 }
 
 .mini-cart-footer {
-  position: sticky;
-  bottom: -32px;
+  position: relative;
+  bottom: auto;
   z-index: 1;
   display: grid;
+  flex: 0 0 auto;
   gap: 16px;
-  margin: auto -32px -32px;
+  margin: 0 -32px -32px;
   padding: 18px 32px 24px;
-  background: linear-gradient(180deg, rgba(255,255,255,.88), #fff 22%);
+  background: #fff;
   border-top: 1px solid rgba(232, 222, 210, .95);
   box-shadow: 0 -14px 30px rgba(16, 12, 8, .06);
 }
@@ -5657,8 +5680,8 @@ body.dir-rtl .mini-cart-close {
   }
 
   .mini-cart-footer {
-    bottom: -20px;
-    margin: auto -20px -20px;
+    bottom: auto;
+    margin: 0 -20px -20px;
     padding: 16px 20px 20px;
   }
 }
