@@ -45,14 +45,27 @@
     return `<article class="suggestion-card"><img src="${product.image}" alt="${productName(product)}" loading="lazy"><div><strong>${productName(product)}</strong>${priceBlock(product.price)}</div><button type="button" data-add-to-cart="${product.id}">${t("buttons.addToCart", "Add")}</button></article>`;
   }
 
+  function closeCartDrawer() {
+    document.querySelector(".mini-cart-drawer")?.remove();
+    document.querySelector(".mini-cart-backdrop")?.remove();
+    document.body.classList.remove("cart-drawer-open");
+  }
+
   function showCartDrawer(addedProduct) {
-    const oldDrawer = document.querySelector(".mini-cart-drawer");
-    if (oldDrawer) oldDrawer.remove();
+    closeCartDrawer();
+    const cart = getCart();
+    const totals = cartTotals(cart);
+    const backdrop = document.createElement("div");
+    backdrop.className = "mini-cart-backdrop";
     const drawer = document.createElement("aside");
     drawer.className = "mini-cart-drawer";
-    drawer.innerHTML = `<button class="mini-cart-close" type="button" aria-label="Close cart suggestions">x</button><p class="eyebrow">${t("cart.title", "Cart")}</p><h2>${t("home.continuePlan", "Continue your plan")}</h2><p>${productName(addedProduct)} added. ${t("cart.suggestions", "You may also need")}.</p><div class="mini-suggestions">${smartSuggestionsFor(addedProduct, 3).map(productSuggestionCard).join("")}</div><a class="btn btn--gold" href="/cart">${t("cart.checkout", "Proceed to Checkout")}</a>`;
+    drawer.setAttribute("aria-label", t("cart.title", "Cart"));
+    drawer.innerHTML = `<button class="mini-cart-close" type="button" aria-label="Close cart suggestions">x</button><div class="mini-cart-content"><p class="eyebrow">${t("cart.title", "Cart")}</p><h2>${t("home.continuePlan", "Continue your plan")}</h2><p>${productName(addedProduct)} added. ${t("cart.suggestions", "You may also need")}.</p><div class="mini-suggestions">${smartSuggestionsFor(addedProduct, 3).map(productSuggestionCard).join("")}</div></div><div class="mini-cart-footer"><div class="mini-cart-subtotal"><span>${t("cart.subtotal", "Subtotal")}</span>${priceBlock(totals.subtotal)}</div><a class="btn btn--gold" href="/cart">${t("cart.checkout", "Proceed to Checkout")}</a></div>`;
+    document.body.appendChild(backdrop);
     document.body.appendChild(drawer);
-    drawer.querySelector(".mini-cart-close").addEventListener("click", () => drawer.remove());
+    document.body.classList.add("cart-drawer-open");
+    backdrop.addEventListener("click", closeCartDrawer);
+    drawer.querySelector(".mini-cart-close").addEventListener("click", closeCartDrawer);
     drawer.querySelectorAll("[data-add-to-cart]").forEach((button) => {
       button.addEventListener("click", (event) => {
         event.preventDefault();
