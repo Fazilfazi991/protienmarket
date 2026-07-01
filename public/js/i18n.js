@@ -81,6 +81,7 @@
 
   function localizeLinks() {
     document.querySelectorAll("a[href]").forEach((link) => {
+      if (link.dataset.langLink) return;
       link.setAttribute("href", localizeUrl(link.getAttribute("href")));
     });
     document.querySelectorAll("form[action]").forEach((form) => {
