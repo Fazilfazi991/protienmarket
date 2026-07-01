@@ -213,6 +213,7 @@
     const first = products.find((product) => product.id === cart[0]?.id);
     target.innerHTML = smartSuggestionsFor(first, 4).map(productCard).join("");
     bindProductEvents(target);
+    setupScrollReveal(target);
   }
 
   function bindProductEvents(scope = document) {
@@ -317,6 +318,62 @@
     applyFilters();
   }
 
+  function setupScrollReveal(scope = document) {
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const revealSelectors = [
+      ".hero__copy > *",
+      ".section__head > *",
+      ".section-intro",
+      ".shop-goal-section .section-heading > *",
+      ".shop-goal-section .goal-card",
+      ".category-tile",
+      ".product-card",
+      ".blog-card",
+      ".contact-mini",
+      ".footer__grid > *",
+      ".collection-hero .container > *",
+      ".collection-toolbar",
+      ".filter-panel",
+      ".product-detail__media",
+      ".product-detail__content > *",
+      ".checkout-card",
+      ".checkout-summary",
+      ".protein-calc-shell",
+      ".calc-form-card",
+      ".plan-panel",
+      ".coach-card",
+      ".coach-panel"
+    ];
+    const nodes = Array.from(scope.querySelectorAll(revealSelectors.join(","))).filter((node) => !node.dataset.scrollRevealReady);
+
+    if (!nodes.length) return;
+
+    nodes.forEach((node, index) => {
+      node.dataset.scrollRevealReady = "true";
+      node.dataset.scrollReveal = node.matches(".product-card, .goal-card, .blog-card, .category-tile, .contact-mini") ? "fade-card" : "fade-up";
+      node.style.setProperty("--reveal-delay", `${Math.min(index % 6, 5) * 55}ms`);
+      if (reduceMotion) node.classList.add("is-visible");
+    });
+
+    if (reduceMotion) return;
+
+    if (!("IntersectionObserver" in window)) {
+      nodes.forEach((node) => node.classList.add("is-visible"));
+      return;
+    }
+
+    const observer = setupScrollReveal.observer || new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add("is-visible");
+        setupScrollReveal.observer?.unobserve(entry.target);
+      });
+    }, { rootMargin: "0px 0px -12% 0px", threshold: 0.14 });
+
+    setupScrollReveal.observer = observer;
+    nodes.forEach((node) => observer.observe(node));
+  }
+
   window.addEventListener("protein:add-stack", (event) => {
     const ids = event.detail || [];
     ids.forEach((id) => addToCart(id, 1));
@@ -354,9 +411,11 @@
   setupCollectionFilters();
   setupCheckoutForm();
   bindProductEvents();
+  setupScrollReveal();
   window.addEventListener("languageChanged", () => {
     renderCart();
     renderCheckoutSummary();
     renderCartSuggestions();
+    setupScrollReveal();
   });
 })();

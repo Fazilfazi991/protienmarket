@@ -5685,3 +5685,41 @@ body.dir-rtl .mini-cart-close {
     padding: 16px 20px 20px;
   }
 }
+
+/* Subtle scroll reveal motion */
+[data-scroll-reveal] {
+  opacity: 0;
+  transform: translateY(26px);
+  transition:
+    opacity .7s cubic-bezier(.2, .7, .2, 1),
+    transform .7s cubic-bezier(.2, .7, .2, 1),
+    box-shadow .25s ease,
+    border-color .25s ease;
+  transition-delay: var(--reveal-delay, 0ms);
+  will-change: opacity, transform;
+}
+
+[data-scroll-reveal="fade-card"] {
+  transform: translateY(24px) scale(.985);
+}
+
+[data-scroll-reveal].is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+.product-card[data-scroll-reveal].is-visible:hover,
+.collection-product-grid .product-card[data-scroll-reveal].is-visible:hover,
+.product-grid .product-card[data-scroll-reveal].is-visible:hover,
+.shop-goal-section .goal-card[data-scroll-reveal].is-visible:hover {
+  transform: translateY(-4px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-scroll-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+    will-change: auto;
+  }
+}
