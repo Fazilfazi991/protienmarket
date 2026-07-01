@@ -5977,6 +5977,24 @@ body.dir-rtl .mini-cart-close {
   grid-row: span 2;
   width: 42px;
   height: 42px;
+  background: #fff4e1;
+  border: 1px solid rgba(227,163,51,.18);
+}
+
+.protein-coach .coach-option img,
+.coach-chip img,
+.coach-note img,
+.coach-privacy img,
+.coach-actions img {
+  display: block;
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+}
+
+.protein-coach .coach-option span img {
+  width: 24px;
+  height: 24px;
 }
 
 .protein-coach .coach-option strong {
@@ -5994,12 +6012,21 @@ body.dir-rtl .mini-cart-close {
 }
 
 .coach-group h4 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
   margin: 0 0 10px;
   color: #2c2925;
   font-size: 13px;
   font-weight: 800;
   letter-spacing: .06em;
   text-transform: uppercase;
+}
+
+.coach-group h4 img {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
 }
 
 .coach-chip-grid {
@@ -6009,13 +6036,34 @@ body.dir-rtl .mini-cart-close {
 }
 
 .coach-chip {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: flex-start;
   min-height: 48px;
+  padding: 10px 12px;
   border: 1px solid var(--line);
   border-radius: 14px;
   background: #fff;
   color: var(--text);
+  text-align: left;
   font: 700 14px/1.2 Inter, Arial, sans-serif;
   cursor: pointer;
+}
+
+.coach-chip span {
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #fff4e1;
+}
+
+.coach-chip strong {
+  min-width: 0;
+  font: inherit;
 }
 
 .coach-chip.is-selected,
@@ -6047,11 +6095,22 @@ body.dir-rtl .mini-cart-close {
   font-weight: 800;
 }
 
+.coach-note span img {
+  filter: brightness(0) invert(1);
+}
+
 .coach-note p,
 .coach-privacy {
   margin: 0 !important;
   color: #5d5952 !important;
   font-size: 13px !important;
+}
+
+.coach-privacy {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 12px !important;
 }
 
 .protein-coach .coach-nav-row {
@@ -6098,6 +6157,18 @@ body.dir-rtl .mini-cart-close {
   color: var(--text);
   font-size: 15px;
   line-height: 1.2;
+}
+
+.coach-actions a,
+.coach-actions button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+}
+
+.coach-actions a.coach-primary img {
+  filter: brightness(0) invert(1);
 }
 
 @media (max-width: 560px) {

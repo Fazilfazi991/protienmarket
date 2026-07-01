@@ -13,6 +13,8 @@
   const t = (key, fallback) => window.I18N?.t(key, fallback) || fallback || key;
   const productName = (product) => window.I18N?.productName(product) || product.name;
   const priceBlock = (amount) => window.ShopMoney?.priceBlock(amount) || `<span>AED ${Number(amount || 0).toFixed(2)}</span>`;
+  const iconBase = "/protein_market_icon_pack/protein_market_icons/svg/";
+  const icon = (name) => `${iconBase}${name}.svg`;
 
   const coachSteps = [
     {
@@ -23,12 +25,12 @@
       question: "What's your main goal?",
       layout: "goal-grid",
       options: [
-        { label: "Lose Fat", value: "lose-fat", icon: "LF", description: "Burn fat and get leaner" },
-        { label: "Build Muscle", value: "build-muscle", icon: "BM", description: "Gain lean muscle and strength" },
-        { label: "Stay Fit", value: "stay-fit", icon: "SF", description: "Maintain fitness and energy" },
-        { label: "Improve Recovery", value: "recovery", icon: "IR", description: "Recover faster after training" },
-        { label: "Eat Healthier", value: "eat-healthier", icon: "EH", description: "Build a cleaner daily routine" },
-        { label: "Not Sure", value: "not-sure", icon: "?", description: "Let us guide your match" }
+        { label: "Lose Fat", value: "lose-fat", icon: icon("goal_lose_fat"), description: "Burn fat and get leaner" },
+        { label: "Build Muscle", value: "build-muscle", icon: icon("goal_build_muscle"), description: "Gain lean muscle and strength" },
+        { label: "Stay Fit", value: "stay-fit", icon: icon("goal_stay_fit"), description: "Maintain fitness and energy" },
+        { label: "Improve Recovery", value: "recovery", icon: icon("goal_recovery"), description: "Recover faster after training" },
+        { label: "Eat Healthier", value: "eat-healthier", icon: icon("goal_eat_healthier"), description: "Build a cleaner daily routine" },
+        { label: "Not Sure", value: "not-sure", icon: icon("goal_not_sure"), description: "Let us guide your match" }
       ]
     },
     {
@@ -40,6 +42,7 @@
         {
           id: "age",
           label: "Age range",
+          icon: icon("age_group"),
           options: [
             { label: "18-25", value: "18-25" },
             { label: "26-35", value: "26-35" },
@@ -50,6 +53,7 @@
         {
           id: "gender",
           label: "Gender",
+          icon: icon("gender"),
           options: [
             { label: "Male", value: "male" },
             { label: "Female", value: "female" }
@@ -65,10 +69,10 @@
       title: "How often do you train?",
       question: "Choose the closest fit for your current routine.",
       options: [
-        { label: "Beginner (1-2 days)", value: "1-2", icon: "B", description: "Starting your fitness journey." },
-        { label: "Moderate (3-4 days)", value: "3-4", icon: "M", description: "Train regularly and build consistency." },
-        { label: "Serious (5-6 days)", value: "5-6", icon: "S", description: "Train hard most days." },
-        { label: "Athlete (Daily)", value: "daily", icon: "A", description: "Train daily or professionally." }
+        { label: "Beginner (1-2 days)", value: "1-2", icon: icon("activity_beginner"), description: "Starting your fitness journey." },
+        { label: "Moderate (3-4 days)", value: "3-4", icon: icon("activity_beginner"), description: "Train regularly and build consistency." },
+        { label: "Serious (5-6 days)", value: "5-6", icon: icon("activity_athlete"), description: "Train hard most days." },
+        { label: "Athlete (Daily)", value: "daily", icon: icon("activity_athlete"), description: "Train daily or professionally." }
       ],
       note: "Activity level directly impacts your daily protein requirements."
     },
@@ -82,32 +86,32 @@
           id: "diet",
           label: "Diet options",
           options: [
-            { label: "Non-Vegetarian", value: "non-vegetarian" },
-            { label: "Vegetarian", value: "vegetarian" },
-            { label: "Vegan", value: "vegan" },
-            { label: "Keto", value: "keto" },
-            { label: "Gluten-Free", value: "gluten-free" }
+            { label: "Non-Vegetarian", value: "non-vegetarian", icon: icon("diet_nonveg") },
+            { label: "Vegetarian", value: "vegetarian", icon: icon("diet_vegetarian") },
+            { label: "Vegan", value: "vegan", icon: icon("diet_vegan") },
+            { label: "Keto", value: "keto", icon: icon("diet_keto") },
+            { label: "Gluten-Free", value: "gluten-free", icon: icon("diet_gluten_free") }
           ]
         },
         {
           id: "productType",
           label: "Product interests",
           options: [
-            { label: "Whey Protein", value: "protein-powder" },
-            { label: "Clear Protein", value: "clear-protein" },
-            { label: "Fresh Protein Meals", value: "fresh-protein" },
-            { label: "Protein Snacks", value: "bars-snacks" },
-            { label: "Meal Plans", value: "meal-plans" }
+            { label: "Whey Protein", value: "protein-powder", icon: icon("product_whey") },
+            { label: "Clear Protein", value: "clear-protein", icon: icon("product_clear") },
+            { label: "Fresh Protein Meals", value: "fresh-protein", icon: icon("product_meal") },
+            { label: "Protein Snacks", value: "bars-snacks", icon: icon("product_snack") },
+            { label: "Meal Plans", value: "meal-plans", icon: icon("product_meal") }
           ]
         },
         {
           id: "budget",
           label: "Budget selector",
           options: [
-            { label: "Under AED 150", value: "under-150" },
-            { label: "AED 150-300", value: "150-300" },
-            { label: "AED 300-500", value: "300-500" },
-            { label: "Premium AED 500+", value: "500-plus" }
+            { label: "Under AED 150", value: "under-150", icon: icon("budget_wallet") },
+            { label: "AED 150-300", value: "150-300", icon: icon("budget_wallet") },
+            { label: "AED 300-500", value: "300-500", icon: icon("budget_wallet") },
+            { label: "Premium AED 500+", value: "500-plus", icon: icon("budget_wallet") }
           ]
         }
       ],
@@ -181,8 +185,8 @@
         ${step.subtitle ? `<p>${step.subtitle}</p>` : ""}
         <p class="coach-question-copy">${step.question}</p>
         ${step.groups ? renderGroupedStep(step) : renderOptionGrid(step)}
-        ${step.note ? `<div class="coach-note"><span>i</span><p>${step.note}</p></div>` : ""}
-        ${step.privacy ? `<p class="coach-privacy">${step.privacy}</p>` : ""}
+        ${step.note ? `<div class="coach-note"><span><img src="${icon("recommendation")}" alt="" aria-hidden="true"></span><p>${step.note}</p></div>` : ""}
+        ${step.privacy ? `<p class="coach-privacy"><img src="${icon("secure_private")}" alt="" aria-hidden="true">${step.privacy}</p>` : ""}
         <div class="coach-nav-row">
           ${state.currentStep > 0 ? '<button type="button" data-coach-back>Back</button>' : '<span></span>'}
           <button class="coach-next" type="button" data-coach-next ${canContinue ? "" : "disabled"}>${state.currentStep === coachSteps.length - 1 ? "Generate My Plan" : "Continue"}</button>
@@ -196,7 +200,7 @@
       <div class="coach-options ${step.layout || ""}">
         ${step.options.map((option) => `
           <button class="coach-option ${state.answers[step.id] === option.value ? "is-selected" : ""}" type="button" data-coach-answer="${option.value}" data-coach-answer-id="${step.id}">
-            <span>${option.icon}</span>
+            <span><img src="${option.icon}" alt="" aria-hidden="true"></span>
             <strong>${option.label}</strong>
             ${option.description ? `<small>${option.description}</small>` : ""}
           </button>
@@ -208,11 +212,11 @@
   function renderGroupedStep(step) {
     return step.groups.map((group) => `
       <div class="coach-group">
-        <h4>${group.label}</h4>
+        <h4>${group.icon ? `<img src="${group.icon}" alt="" aria-hidden="true">` : ""}${group.label}</h4>
         <div class="coach-chip-grid">
           ${group.options.map((option) => `
             <button class="coach-chip ${state.answers[group.id] === option.value ? "is-selected" : ""}" type="button" data-coach-answer="${option.value}" data-coach-answer-id="${group.id}">
-              ${option.label}
+              ${option.icon ? `<span><img src="${option.icon}" alt="" aria-hidden="true"></span>` : ""}<strong>${option.label}</strong>
             </button>
           `).join("")}
         </div>
@@ -387,9 +391,9 @@
           `).join("")}
         </div>
         <div class="coach-actions">
-          <a class="coach-primary" href="${category.href}">${t("coach.view", "View Recommended Products")}</a>
-          <button type="button" data-coach-reset>${t("coach.retake", "Retake Quiz")}</button>
-          <a class="coach-whatsapp" href="https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappText)}" target="_blank" rel="noreferrer">${t("coach.ask", "Ask on WhatsApp")}</a>
+          <a class="coach-primary" href="${category.href}"><img src="${icon("cart")}" alt="" aria-hidden="true">${t("coach.view", "View Recommended Products")}</a>
+          <button type="button" data-coach-reset><img src="${icon("back_arrow")}" alt="" aria-hidden="true">${t("coach.retake", "Retake Quiz")}</button>
+          <a class="coach-whatsapp" href="https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappText)}" target="_blank" rel="noreferrer"><img src="${icon("whatsapp")}" alt="" aria-hidden="true">${t("coach.ask", "Ask on WhatsApp")}</a>
         </div>
         <p class="coach-added" data-coach-added hidden>Added to cart.</p>
       </div>
