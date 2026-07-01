@@ -1,0 +1,309 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Admin Dashboard Demo | Protein Market</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/admin.css">
+</head>
+<body>
+<%
+  const summaryCards = [
+    ["Total Orders", "128", "+18%"],
+    ["Total Revenue", "AED 42,850", "+12%"],
+    ["Pending Orders", "14", "Today"],
+    ["Completed Orders", "96", "+24"],
+    ["WhatsApp Leads", "37", "+9"],
+    ["Active Products", "54", "Live"],
+    ["Low Stock Products", "6", "Action"],
+    ["Quiz Completions", "312", "+41"],
+    ["Protein Calculator Uses", "428", "+63"],
+    ["Stack Builder Uses", "189", "+22"]
+  ];
+
+  const demoOrders = [
+    {
+      id: "ORD-1284",
+      name: "Sara Ahmed",
+      phone: "+971 55 801 2274",
+      email: "sara@example.com",
+      items: "Clear Whey + Fit Diet Meal Plan",
+      total: "AED 465",
+      payment: "Paid",
+      status: "Processing",
+      delivery: "Dubai delivery",
+      date: "Today",
+      address: "Dubai Marina, Dubai, UAE",
+      notes: "Prefers delivery after 6 PM.",
+      products: [["Citrus Clear Whey", "1", "AED 189"], ["Fit Diet Meal Plan", "6 days", "AED 276"]]
+    },
+    {
+      id: "ORD-1283",
+      name: "Omar Khan",
+      phone: "+971 50 442 1910",
+      email: "omar@example.com",
+      items: "Mass Gainer + Protein Bars",
+      total: "AED 312",
+      payment: "Pending",
+      status: "Out for Delivery",
+      delivery: "Same-day courier",
+      date: "Today",
+      address: "Al Barsha, Dubai, UAE",
+      notes: "Call before arrival.",
+      products: [["Vanilla Lean Mass Gainer", "1", "AED 219"], ["Protein Bars", "3", "AED 93"]]
+    },
+    {
+      id: "ORD-1282",
+      name: "Maya Joseph",
+      phone: "+971 52 633 8801",
+      email: "maya@example.com",
+      items: "Vegan Protein + Vegan Snacks",
+      total: "AED 238",
+      payment: "Paid",
+      status: "Delivered",
+      delivery: "Standard delivery",
+      date: "Yesterday",
+      address: "Motor City, Dubai, UAE",
+      notes: "Vegan only.",
+      products: [["Vegan Protein Vanilla", "1", "AED 169"], ["Vegan Snack Box", "1", "AED 69"]]
+    },
+    {
+      id: "ORD-1281",
+      name: "Noura Ali",
+      phone: "+971 58 112 4009",
+      email: "noura@example.com",
+      items: "Meal Plan Subscription",
+      total: "AED 540",
+      payment: "Failed",
+      status: "Cancelled",
+      delivery: "Meal plan route",
+      date: "Jun 30",
+      address: "JVC, Dubai, UAE",
+      notes: "Payment retry required.",
+      products: [["Fit Diet Meal Plan", "12 days", "AED 540"]]
+    }
+  ];
+
+  const productsDemo = [
+    ["/images/products/generated/citrus-clear-whey-isolate.webp", "Citrus Clear Whey Isolate", "Clear Protein", "AED 189", "AED 169", "4", "Lose Fat", "Non-Veg", "Visible"],
+    ["/images/product-vegan-protein.webp", "Vegan Protein Vanilla", "Vegan Protein", "AED 169", "-", "3", "Stay Fit", "Vegan", "Visible"],
+    ["/images/products/generated/keto-protein-bites-chocolate-coconut.webp", "Keto Protein Bites", "Protein Snacks", "AED 29", "AED 24", "18", "Lose Fat", "Keto", "Visible"],
+    ["/images/product-meal-plan.webp", "Fit Diet Meal Plan", "Meal Plans", "AED 45/day", "-", "12 slots", "Lose Fat", "Fresh", "Active"]
+  ];
+
+  const lowStock = ["Citrus Clear Whey Isolate - 4 left", "Vegan Protein Vanilla - 3 left", "Protein Bar Chocolate - 8 left", "Fit Diet Meal Plan - limited slots"];
+  const rules = [
+    ["Fat Loss Rule", "goal = Lose Fat", "Clear Whey, Thermogenic Protein, Fit Diet Meal Plan, Low Sugar Snacks", "Active"],
+    ["Muscle Builder Rule", "goal = Build Muscle", "Whey Protein, Mass Gainer, Protein Bars, High Protein Meal Plan", "Active"],
+    ["Vegan Rule", "diet = Vegan", "Vegan Protein Powder, Vegan Snacks, Vegan Meal Plan", "Active"]
+  ];
+  const quizRows = [
+    ["Visitor #1024", "Lose Fat", "Non-Vegetarian", "Moderate", "AED 150-300", "Clear Whey + Fit Meal Plan", "Yes", "Today"],
+    ["Visitor #1025", "Build Muscle", "Non-Vegetarian", "Athlete", "AED 300+", "Mass Gainer + Bars", "No", "Today"],
+    ["Visitor #1026", "Stay Fit", "Vegan", "Light", "AED 150-300", "Vegan Protein + Snack", "Yes", "Yesterday"]
+  ];
+  const stackTemplates = [
+    ["Fat Loss Starter Stack", "Clear Whey, Thermogenic Protein, Low Sugar Snack, Fit Meal Plan", "10%", "Enabled"],
+    ["Muscle Builder Stack", "Whey Protein, Mass Gainer, Protein Bars, Muscle Meal Plan", "15%", "Enabled"],
+    ["Vegan Essentials Stack", "Vegan Protein, Vegan Snack, Vegan Meal Plan", "12%", "Enabled"]
+  ];
+  const leads = [
+    ["Visitor #219", "+971 55 430 1120", "Calculator", "Fat Loss", "Clear Whey", "Need help choosing protein...", "New"],
+    ["Aisha M.", "+971 50 881 4490", "Coach", "Vegan", "Vegan Protein", "Can you send vegan options?", "Contacted"],
+    ["Visitor #220", "+971 52 614 7502", "Cart Abandonment", "Build Muscle", "Mass Gainer", "Left stack in cart.", "Converted"]
+  ];
+  const mealPlans = [
+    ["Fit Diet Meal Plan", "Fat Loss", "AED 45/day", "Mon-Sat", "12 slots available", "Active"],
+    ["Muscle Meal Plan", "Build Muscle", "AED 58/day", "Mon-Sat", "8 slots available", "Active"],
+    ["Vegan Meal Plan", "Vegan", "AED 52/day", "Mon-Fri", "5 slots available", "Active"]
+  ];
+  const blogsDemo = [
+    ["How Much Protein Do You Need Daily?", "Nutrition", "Draft", "-"],
+    ["Whey vs Clear Whey", "Education", "Published", "Jun 18, 2026"],
+    ["Best Protein for Fat Loss", "Goals", "Published", "Jun 12, 2026"],
+    ["Protein Timing Guide", "Fitness", "Draft", "-"]
+  ];
+  const coupons = [
+    ["WELCOME10", "10% off", "First-time users", "Aug 31, 2026", "Active"],
+    ["STACK15", "15% off bundles", "Bundle orders", "Sep 15, 2026", "Active"],
+    ["MEAL25", "AED 25 off", "Meal plans", "Jul 31, 2026", "Paused"]
+  ];
+  const customersDemo = [
+    ["Sara Ahmed", "+971 55 801 2274", "sara@example.com", "8", "AED 2,940", "Today", "High Value"],
+    ["Omar Khan", "+971 50 442 1910", "omar@example.com", "3", "AED 910", "Today", "Protein Buyer"],
+    ["Maya Joseph", "+971 52 633 8801", "maya@example.com", "5", "AED 1,420", "Yesterday", "Meal Plan Customer"]
+  ];
+%>
+  <div class="admin-shell">
+    <aside class="admin-sidebar" data-admin-sidebar>
+      <a class="admin-brand" href="/admin" aria-label="Admin dashboard home">
+        <img src="/images/protein_main_logo.png" alt="Protein Market">
+        <span>Admin Demo</span>
+      </a>
+      <nav>
+        <% ["Overview", "Orders", "Products", "Inventory", "Recommendations", "Calculator Insights", "Coach / Quiz", "Stack Builder", "WhatsApp Leads", "Meal Plans", "Customers", "Blog", "Offers", "Settings"].forEach((item, index) => { %>
+          <a href="#<%= item.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "") %>" class="<%= index === 0 ? "is-active" : "" %>"><%= item %></a>
+        <% }) %>
+      </nav>
+    </aside>
+
+    <div class="admin-main">
+      <header class="admin-topbar">
+        <button class="admin-menu" type="button" data-admin-menu aria-label="Open admin menu"><span></span><span></span><span></span></button>
+        <div>
+          <p>Admin Dashboard Demo - hidden client preview page</p>
+          <h1>The Protein Market Control Center</h1>
+        </div>
+        <label class="admin-search">
+          <span>Search</span>
+          <input type="search" placeholder="Orders, customers, products...">
+        </label>
+        <div class="admin-profile"><span>PM</span><strong>Admin</strong></div>
+      </header>
+
+      <main class="admin-content">
+        <section class="admin-hero" id="overview">
+          <div>
+            <span class="admin-chip">Client preview</span>
+            <h2>One dashboard for orders, recommendations, leads, meal plans, and content.</h2>
+            <p>This static concept is future-ready for live orders, product management, calculator analytics, rule-based recommendations, WhatsApp CRM, and offer management.</p>
+          </div>
+          <button class="admin-primary" type="button">Add Product</button>
+        </section>
+
+        <section class="metric-grid" aria-label="Dashboard overview">
+          <% summaryCards.forEach((card) => { %>
+            <article class="metric-card">
+              <span><%= card[0] %></span>
+              <strong><%= card[1] %></strong>
+              <em><%= card[2] %></em>
+            </article>
+          <% }) %>
+        </section>
+
+        <section class="admin-section" id="orders">
+          <div class="section-head">
+            <div><p>Operations</p><h2>Recent Orders</h2></div>
+            <button type="button">Export</button>
+          </div>
+          <div class="table-card">
+            <table>
+              <thead><tr><th>Order ID</th><th>Customer</th><th>Phone</th><th>Items</th><th>Total</th><th>Payment</th><th>Status</th><th>Delivery</th><th>Date</th><th>Action</th></tr></thead>
+              <tbody>
+                <% demoOrders.forEach((order) => { %>
+                  <tr>
+                    <td><%= order.id %></td><td><%= order.name %></td><td><%= order.phone %></td><td><%= order.items %></td><td><%= order.total %></td>
+                    <td><span class="status status--<%= order.payment.toLowerCase() %>"><%= order.payment %></span></td>
+                    <td><span class="status"><%= order.status %></span></td><td><%= order.delivery %></td><td><%= order.date %></td>
+                    <td><button class="tiny-btn" type="button" data-order='<%- JSON.stringify(order) %>'>View Order</button></td>
+                  </tr>
+                <% }) %>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="admin-section" id="products">
+          <div class="section-head"><div><p>Catalog</p><h2>Product Management</h2></div><button type="button">Add Product</button></div>
+          <div class="product-admin-grid">
+            <% productsDemo.forEach((item) => { %>
+              <article class="product-admin-card">
+                <img src="<%= item[0] %>" alt="">
+                <div><h3><%= item[1] %></h3><p><%= item[2] %> - <%= item[6] %> - <%= item[7] %></p><strong><%= item[3] %></strong><small>Sale: <%= item[4] %> | Stock: <%= item[5] %></small></div>
+                <span class="status"><%= item[8] %></span>
+                <div class="card-actions"><button>Edit</button><button>Duplicate</button><button>Hide/Show</button><button>Delete</button></div>
+              </article>
+            <% }) %>
+          </div>
+        </section>
+
+        <section class="admin-two-col">
+          <div class="admin-section" id="inventory">
+            <div class="section-head"><div><p>Alerts</p><h2>Inventory Alerts</h2></div></div>
+            <div class="alert-list"><% lowStock.forEach((item) => { %><article><span>!</span><strong><%= item %></strong><button>Restock</button></article><% }) %></div>
+          </div>
+          <div class="admin-section" id="recommendations">
+            <div class="section-head"><div><p>Automation</p><h2>Recommendation Rules</h2></div><button>Create Rule</button></div>
+            <div class="mini-table"><% rules.forEach((rule) => { %><article><strong><%= rule[0] %></strong><span><%= rule[1] %></span><p><%= rule[2] %></p><button>Edit</button></article><% }) %></div>
+          </div>
+        </section>
+
+        <section class="admin-section" id="calculator-insights">
+          <div class="section-head"><div><p>Analytics</p><h2>Protein Calculator Insights</h2></div></div>
+          <div class="insight-grid">
+            <% [["Total Users", "428"], ["Average Protein Target", "132g/day"], ["Most Common Goal", "Fat Loss"], ["Most Common Diet", "Non-Vegetarian"], ["Top Product", "Clear Whey Isolate"]].forEach((card) => { %>
+              <article><span><%= card[0] %></span><strong><%= card[1] %></strong></article>
+            <% }) %>
+          </div>
+          <div class="chart-grid">
+            <article><h3>Goal distribution</h3><div class="bar"><span style="width:42%"></span></div><div class="bar"><span style="width:31%"></span></div><div class="bar"><span style="width:18%"></span></div></article>
+            <article><h3>Activity level distribution</h3><div class="bar"><span style="width:25%"></span></div><div class="bar"><span style="width:48%"></span></div><div class="bar"><span style="width:33%"></span></div></article>
+            <article><h3>Product interest distribution</h3><div class="bar"><span style="width:55%"></span></div><div class="bar"><span style="width:36%"></span></div><div class="bar"><span style="width:22%"></span></div></article>
+          </div>
+        </section>
+
+        <section class="admin-section" id="coach-quiz">
+          <div class="section-head"><div><p>Lead intelligence</p><h2>Protein Coach / Quiz Responses</h2></div></div>
+          <%- include("partials/admin-table", { heads: ["Visitor", "Goal", "Diet", "Activity", "Budget", "Recommended Stack", "WhatsApp", "Date"], rows: quizRows }) %>
+        </section>
+
+        <section class="admin-section" id="stack-builder">
+          <div class="section-head"><div><p>Bundles</p><h2>Build Your Stack Management</h2></div><button>Create Stack</button></div>
+          <div class="stack-grid"><% stackTemplates.forEach((stack) => { %><article><h3><%= stack[0] %></h3><p><%= stack[1] %></p><span>Discount: <%= stack[2] %></span><div class="card-actions"><button>Edit</button><button>Set Discount</button><button><%= stack[3] %></button></div></article><% }) %></div>
+        </section>
+
+        <section class="admin-section" id="whatsapp-leads">
+          <div class="section-head"><div><p>CRM</p><h2>WhatsApp Lead Management</h2></div></div>
+          <%- include("partials/admin-table", { heads: ["Lead", "Phone", "Source", "Goal", "Interested", "Message", "Status"], rows: leads }) %>
+          <div class="button-row"><button>Open WhatsApp</button><button>Mark Contacted</button><button>Add Note</button></div>
+        </section>
+
+        <section class="admin-two-col">
+          <div class="admin-section" id="meal-plans">
+            <div class="section-head"><div><p>Fresh plans</p><h2>Meal Plan Management</h2></div></div>
+            <%- include("partials/admin-table", { heads: ["Plan", "Goal", "Price", "Delivery", "Slots", "Status"], rows: mealPlans }) %>
+          </div>
+          <div class="admin-section" id="offers">
+            <div class="section-head"><div><p>Promotions</p><h2>Coupon and Offer Management</h2></div></div>
+            <%- include("partials/admin-table", { heads: ["Code", "Discount", "Limit", "Expiry", "Status"], rows: coupons }) %>
+          </div>
+        </section>
+
+        <section class="admin-two-col">
+          <div class="admin-section" id="blog">
+            <div class="section-head"><div><p>Education</p><h2>Blog / Content Management</h2></div><button>New Post</button></div>
+            <%- include("partials/admin-table", { heads: ["Title", "Category", "Status", "Published"], rows: blogsDemo }) %>
+          </div>
+          <div class="admin-section" id="customers">
+            <div class="section-head"><div><p>Audience</p><h2>Customer Management</h2></div></div>
+            <%- include("partials/admin-table", { heads: ["Name", "Phone", "Email", "Orders", "Spent", "Last Order", "Tags"], rows: customersDemo }) %>
+          </div>
+        </section>
+
+        <section class="admin-section" id="settings">
+          <div class="section-head"><div><p>Future controls</p><h2>Settings Page Preview</h2></div></div>
+          <div class="settings-grid">
+            <% ["Store information", "WhatsApp number", "Delivery settings", "Payment gateway settings", "Language settings", "Admin users", "Notification settings"].forEach((setting) => { %>
+              <article><strong><%= setting %></strong><p>Configure and manage <%= setting.toLowerCase() %>.</p><button>Open</button></article>
+            <% }) %>
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <div class="order-drawer" data-order-drawer hidden>
+    <div class="drawer-panel">
+      <button class="drawer-close" type="button" data-drawer-close aria-label="Close order preview">x</button>
+      <p>Order Detail Preview</p>
+      <h2 data-drawer-id>ORD-1284</h2>
+      <div class="drawer-content" data-drawer-content></div>
+    </div>
+  </div>
+
+  <script src="/js/admin-demo.js"></script>
+</body>
+</html>

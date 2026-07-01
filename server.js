@@ -343,6 +343,10 @@ app.get("/order/:orderId", (req, res) => {
   res.render("order-confirmation", { order });
 });
 
+app.get("/admin", (req, res) => {
+  res.render("admin");
+});
+
 app.get("/admin/orders", (req, res) => {
   res.render("admin-orders", { orders: ordersStore.readOrders() });
 });

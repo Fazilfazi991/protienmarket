@@ -1,0 +1,20 @@
+<div class="table-card table-card--compact">
+  <table>
+    <thead>
+      <tr>
+        <% heads.forEach((head) => { %>
+          <th><%= head %></th>
+        <% }) %>
+      </tr>
+    </thead>
+    <tbody>
+      <% rows.forEach((row) => { %>
+        <tr>
+          <% row.forEach((cell) => { %>
+            <td><%= cell %></td>
+          <% }) %>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</div>
