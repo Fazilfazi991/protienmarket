@@ -5723,3 +5723,413 @@ body.dir-rtl .mini-cart-close {
     will-change: auto;
   }
 }
+
+/* Calculator form alignment refinement */
+.calculator-dashboard .calc-form-card {
+  overflow: hidden;
+}
+
+.protein-calc-shell.calculator-dashboard {
+  grid-template-columns: minmax(560px, 620px) minmax(0, 1fr);
+}
+
+.calculator-dashboard .calc-fieldset {
+  padding: 28px 32px 30px;
+}
+
+.calculator-dashboard .calc-fieldset + .calc-fieldset {
+  border-top: 1px solid rgba(255, 255, 255, .08);
+}
+
+.calculator-dashboard .calc-fieldset h2 {
+  margin: 0 0 22px;
+  color: #fff;
+  font-size: 19px;
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+}
+
+.calculator-dashboard .calc-fields {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 26px;
+  row-gap: 24px;
+  align-items: stretch;
+}
+
+.calculator-dashboard .calc-field {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  min-height: 114px;
+  padding: 20px 52px 18px 24px;
+  border: 1px solid rgba(255, 255, 255, .12);
+  border-radius: 18px;
+  background: linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.025));
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.035);
+}
+
+.calculator-dashboard .calc-field::before {
+  left: auto;
+  right: 26px;
+  top: 50%;
+  width: 14px;
+  height: 14px;
+  border-radius: 0;
+  border: 0;
+  background: none;
+  transform: translateY(-50%) rotate(45deg);
+  clip-path: polygon(50% 78%, 0 24%, 100% 24%);
+  opacity: .95;
+}
+
+.calculator-dashboard .calc-field:has(input)::before {
+  display: none;
+}
+
+.calculator-dashboard .calc-field__label {
+  display: block;
+  margin: 0 0 8px;
+  color: rgba(255,255,255,.66);
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.calculator-dashboard .calc-field input,
+.calculator-dashboard .calc-field select {
+  width: 100%;
+  min-width: 0;
+  height: auto;
+  min-height: 34px;
+  padding: 0;
+  color: #fff;
+  font-size: 24px;
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: 0;
+  background: transparent;
+  border: 0;
+}
+
+.calculator-dashboard .calc-field select {
+  padding-right: 4px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.calculator-dashboard .calc-field input::placeholder,
+.calculator-dashboard .calc-field select:invalid {
+  color: rgba(255,255,255,.52);
+}
+
+.calculator-dashboard .calc-submit {
+  width: calc(100% - 64px);
+  min-height: 70px;
+  margin: 26px 32px 0;
+  border-radius: 22px;
+  letter-spacing: .02em;
+}
+
+.calculator-dashboard .calc-secure {
+  margin: 14px 32px 28px;
+}
+
+@media (max-width: 1180px) {
+  .protein-calc-shell.calculator-dashboard {
+    grid-template-columns: 1fr;
+  }
+
+  .calculator-dashboard .calc-fieldset {
+    padding: 24px;
+  }
+
+  .calculator-dashboard .calc-fields {
+    gap: 20px;
+  }
+
+  .calculator-dashboard .calc-field {
+    padding: 18px 46px 16px 20px;
+  }
+}
+
+@media (min-width: 1181px) and (max-width: 1320px) {
+  .protein-calc-shell.calculator-dashboard {
+    grid-template-columns: minmax(520px, 560px) minmax(0, 1fr);
+  }
+
+  .calculator-dashboard .calc-fields {
+    column-gap: 18px;
+  }
+
+  .calculator-dashboard .calc-field {
+    padding-right: 44px;
+  }
+
+  .calculator-dashboard .calc-field__label {
+    font-size: 14px;
+  }
+
+  .calculator-dashboard .calc-field input,
+  .calculator-dashboard .calc-field select {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 720px) {
+  .calculator-dashboard .calc-fields {
+    grid-template-columns: 1fr;
+  }
+
+  .calculator-dashboard .calc-fieldset {
+    padding: 22px 18px;
+  }
+
+  .calculator-dashboard .calc-field {
+    min-height: 100px;
+    padding: 18px 46px 16px 18px;
+  }
+
+  .calculator-dashboard .calc-submit {
+    width: calc(100% - 36px);
+    margin: 22px 18px 0;
+  }
+
+  .calculator-dashboard .calc-secure {
+    margin: 14px 18px 24px;
+  }
+}
+
+/* Premium Protein Coach wizard refresh */
+.protein-coach .coach-panel {
+  width: min(94vw, 520px);
+  max-height: min(860px, calc(100vh - 118px));
+  border-radius: 28px;
+  border: 1px solid rgba(227,163,51,.26);
+  background: var(--light-beige);
+}
+
+.protein-coach .coach-header {
+  grid-template-columns: minmax(116px, 148px) 54px 1fr 46px;
+  gap: 14px;
+  padding: 20px 22px;
+}
+
+.coach-brand-logo {
+  width: 100%;
+  max-height: 52px;
+  object-fit: contain;
+}
+
+.protein-coach .coach-avatar {
+  width: 54px;
+  height: 54px;
+  background: #fff4dc;
+  overflow: hidden;
+}
+
+.protein-coach .coach-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.protein-coach .coach-header h2 {
+  font-size: 22px;
+}
+
+.protein-coach .coach-body {
+  max-height: calc(min(860px, 100vh - 118px) - 96px);
+}
+
+.protein-coach .coach-view {
+  padding: 26px 26px 28px;
+}
+
+.protein-coach .coach-view h3 {
+  max-width: 420px;
+  margin-bottom: 12px;
+  font-size: clamp(28px, 5vw, 38px);
+  line-height: 1.1;
+}
+
+.coach-question-copy {
+  color: #5d5952 !important;
+  font-weight: 600;
+}
+
+.protein-coach .coach-options.goal-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.protein-coach .coach-option {
+  min-height: 118px;
+  display: grid;
+  grid-template-columns: 42px 1fr;
+  align-content: center;
+  column-gap: 14px;
+  padding: 18px;
+  border-radius: 18px;
+}
+
+.protein-coach .coach-option span {
+  grid-row: span 2;
+  width: 42px;
+  height: 42px;
+}
+
+.protein-coach .coach-option strong {
+  font-size: 17px;
+}
+
+.protein-coach .coach-option small {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.35;
+}
+
+.coach-group {
+  margin-top: 18px;
+}
+
+.coach-group h4 {
+  margin: 0 0 10px;
+  color: #2c2925;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+
+.coach-chip-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.coach-chip {
+  min-height: 48px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: #fff;
+  color: var(--text);
+  font: 700 14px/1.2 Inter, Arial, sans-serif;
+  cursor: pointer;
+}
+
+.coach-chip.is-selected,
+.coach-chip:hover {
+  border-color: var(--gold);
+  background: #fff8ed;
+  color: #111;
+}
+
+.coach-note {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  margin-top: 18px;
+  padding: 14px;
+  border: 1px solid rgba(227,163,51,.24);
+  border-radius: 16px;
+  background: #fff8ed;
+}
+
+.coach-note span {
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--gold);
+  color: #fff;
+  font-weight: 800;
+}
+
+.coach-note p,
+.coach-privacy {
+  margin: 0 !important;
+  color: #5d5952 !important;
+  font-size: 13px !important;
+}
+
+.protein-coach .coach-nav-row {
+  margin-top: 22px;
+}
+
+.coach-next {
+  min-width: 160px;
+  background: var(--gold) !important;
+  border-color: var(--gold) !important;
+  color: #fff !important;
+}
+
+.coach-next:disabled {
+  opacity: .45;
+  cursor: not-allowed;
+}
+
+.coach-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.coach-summary-grid article {
+  padding: 12px;
+  border-radius: 14px;
+  background: #fff;
+  border: 1px solid var(--line);
+}
+
+.coach-summary-grid span {
+  display: block;
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.coach-summary-grid strong {
+  display: block;
+  margin-top: 4px;
+  color: var(--text);
+  font-size: 15px;
+  line-height: 1.2;
+}
+
+@media (max-width: 560px) {
+  .protein-coach .coach-panel {
+    right: -12px;
+    bottom: 64px;
+    width: 100vw;
+    max-height: calc(100vh - 88px);
+    border-radius: 24px 24px 0 0;
+  }
+
+  .protein-coach .coach-header {
+    grid-template-columns: 120px 44px 1fr 42px;
+    padding: 16px;
+  }
+
+  .protein-coach .coach-header h2,
+  .protein-coach .coach-header p {
+    display: none;
+  }
+
+  .protein-coach .coach-body {
+    max-height: calc(100vh - 176px);
+  }
+
+  .protein-coach .coach-view {
+    padding: 22px 18px 26px;
+  }
+
+  .protein-coach .coach-options.goal-grid,
+  .coach-chip-grid,
+  .coach-summary-grid {
+    grid-template-columns: 1fr;
+  }
+}

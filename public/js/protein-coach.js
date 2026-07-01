@@ -14,67 +14,104 @@
   const productName = (product) => window.I18N?.productName(product) || product.name;
   const priceBlock = (amount) => window.ShopMoney?.priceBlock(amount) || `<span>AED ${Number(amount || 0).toFixed(2)}</span>`;
 
-  const coachQuestions = [
+  const coachSteps = [
     {
       id: "goal",
+      eyebrow: "Your goal",
+      title: "Let's find your perfect protein match",
+      subtitle: "Answer a few questions and we'll build a personalized recommendation.",
       question: "What's your main goal?",
-      microcopy: "Let's find your best protein match.",
+      layout: "goal-grid",
       options: [
-        { label: "Lose fat", value: "lose-fat", icon: "-" },
-        { label: "Build muscle", value: "build-muscle", icon: "+" },
-        { label: "Stay fit", value: "stay-fit", icon: "OK" },
-        { label: "Improve recovery", value: "recovery", icon: "R" },
-        { label: "Eat healthier", value: "eat-healthier", icon: "H" },
-        { label: "Not sure", value: "not-sure", icon: "?" }
+        { label: "Lose Fat", value: "lose-fat", icon: "LF", description: "Burn fat and get leaner" },
+        { label: "Build Muscle", value: "build-muscle", icon: "BM", description: "Gain lean muscle and strength" },
+        { label: "Stay Fit", value: "stay-fit", icon: "SF", description: "Maintain fitness and energy" },
+        { label: "Improve Recovery", value: "recovery", icon: "IR", description: "Recover faster after training" },
+        { label: "Eat Healthier", value: "eat-healthier", icon: "EH", description: "Build a cleaner daily routine" },
+        { label: "Not Sure", value: "not-sure", icon: "?", description: "Let us guide your match" }
       ]
     },
     {
-      id: "productType",
-      question: "What type of product are you looking for?",
-      microcopy: "Nice, got it.",
-      options: [
-        { label: "Protein powder", value: "protein-powder", icon: "P" },
-        { label: "Meal plans", value: "meal-plans", icon: "M" },
-        { label: "Bars & snacks", value: "bars-snacks", icon: "B" },
-        { label: "Fresh protein", value: "fresh-protein", icon: "F" },
-        { label: "Vegan options", value: "vegan-options", icon: "V" },
-        { label: "Not sure", value: "not-sure", icon: "?" }
-      ]
-    },
-    {
-      id: "diet",
-      question: "Any diet preference?",
-      microcopy: "Almost there.",
-      options: [
-        { label: "No preference", value: "no-preference", icon: "*" },
-        { label: "Vegan", value: "vegan", icon: "V" },
-        { label: "Vegetarian", value: "vegetarian", icon: "VG" },
-        { label: "Non-vegetarian", value: "non-vegetarian", icon: "N" },
-        { label: "Gluten-free", value: "gluten-free", icon: "GF" },
-        { label: "Low sugar", value: "low-sugar", icon: "LS" }
-      ]
+      id: "profile",
+      eyebrow: "About you",
+      title: "Tell us about yourself",
+      question: "A little context helps us personalize your plan.",
+      groups: [
+        {
+          id: "age",
+          label: "Age range",
+          options: [
+            { label: "18-25", value: "18-25" },
+            { label: "26-35", value: "26-35" },
+            { label: "36-45", value: "36-45" },
+            { label: "45+", value: "45-plus" }
+          ]
+        },
+        {
+          id: "gender",
+          label: "Gender",
+          options: [
+            { label: "Male", value: "male" },
+            { label: "Female", value: "female" }
+          ]
+        }
+      ],
+      note: "Your age helps us estimate your nutrition requirements more accurately.",
+      privacy: "Your information remains private and secure."
     },
     {
       id: "training",
-      question: "How often do you train?",
-      microcopy: "One last stretch.",
+      eyebrow: "Activity level",
+      title: "How often do you train?",
+      question: "Choose the closest fit for your current routine.",
       options: [
-        { label: "0-1 days/week", value: "0-1", icon: "1" },
-        { label: "2-3 days/week", value: "2-3", icon: "3" },
-        { label: "4-5 days/week", value: "4-5", icon: "5" },
-        { label: "6+ days/week", value: "6+", icon: "6+" }
-      ]
+        { label: "Beginner (1-2 days)", value: "1-2", icon: "B", description: "Starting your fitness journey." },
+        { label: "Moderate (3-4 days)", value: "3-4", icon: "M", description: "Train regularly and build consistency." },
+        { label: "Serious (5-6 days)", value: "5-6", icon: "S", description: "Train hard most days." },
+        { label: "Athlete (Daily)", value: "daily", icon: "A", description: "Train daily or professionally." }
+      ],
+      note: "Activity level directly impacts your daily protein requirements."
     },
     {
-      id: "budget",
-      question: "What's your budget?",
-      microcopy: "One last thing.",
-      options: [
-        { label: "Under AED 150", value: "under-150", icon: "AED" },
-        { label: "AED 150-300", value: "150-300", icon: "AED" },
-        { label: "AED 300-500", value: "300-500", icon: "AED" },
-        { label: "AED 500+", value: "500-plus", icon: "AED" }
-      ]
+      id: "lifestyle",
+      eyebrow: "Diet & preferences",
+      title: "Tell us about your lifestyle",
+      question: "We'll only recommend products that fit your preferences and budget.",
+      groups: [
+        {
+          id: "diet",
+          label: "Diet options",
+          options: [
+            { label: "Non-Vegetarian", value: "non-vegetarian" },
+            { label: "Vegetarian", value: "vegetarian" },
+            { label: "Vegan", value: "vegan" },
+            { label: "Keto", value: "keto" },
+            { label: "Gluten-Free", value: "gluten-free" }
+          ]
+        },
+        {
+          id: "productType",
+          label: "Product interests",
+          options: [
+            { label: "Whey Protein", value: "protein-powder" },
+            { label: "Clear Protein", value: "clear-protein" },
+            { label: "Fresh Protein Meals", value: "fresh-protein" },
+            { label: "Protein Snacks", value: "bars-snacks" },
+            { label: "Meal Plans", value: "meal-plans" }
+          ]
+        },
+        {
+          id: "budget",
+          label: "Budget selector",
+          options: [
+            { label: "Under AED 150", value: "under-150" },
+            { label: "AED 150-300", value: "150-300" },
+            { label: "AED 300-500", value: "300-500" },
+            { label: "Premium AED 500+", value: "500-plus" }
+          ]
+        }
+      ],
+      note: "We'll only recommend products that fit your preferences and budget."
     }
   ];
 
@@ -110,8 +147,9 @@
   }
 
   function optionLabel(questionId, value) {
-    const question = coachQuestions.find((item) => item.id === questionId);
-    return question?.options.find((option) => option.value === value)?.label || value;
+    const step = coachSteps.find((item) => item.id === questionId || item.groups?.some((group) => group.id === questionId));
+    const options = step?.options || step?.groups?.find((group) => group.id === questionId)?.options || [];
+    return options.find((option) => option.value === value)?.label || value;
   }
 
   function renderIntro() {
@@ -128,47 +166,75 @@
   }
 
   function renderQuestion() {
-    const question = coachQuestions[state.currentStep];
-    const progress = ((state.currentStep + 1) / coachQuestions.length) * 100;
+    const step = coachSteps[state.currentStep];
+    const progress = ((state.currentStep + 1) / (coachSteps.length + 1)) * 100;
+    const canContinue = step.groups ? step.groups.every((group) => state.answers[group.id]) : Boolean(state.answers[step.id]);
     body.innerHTML = `
       <div class="coach-question coach-view">
         <div class="coach-step-row">
-          <span>Step ${state.currentStep + 1} of ${coachQuestions.length}</span>
+          <span>Step ${state.currentStep + 1} of 5</span>
           <button type="button" data-coach-reset>Restart</button>
         </div>
         <div class="coach-progress"><span style="width:${progress}%"></span></div>
-        <p class="coach-microcopy">${question.microcopy}</p>
-        <h3>${t(`coach.${question.id === "productType" ? "product" : question.id}`, question.question)}</h3>
-        <div class="coach-options">
-          ${question.options.map((option) => `
-            <button class="coach-option" type="button" data-coach-answer="${option.value}">
-              <span>${option.icon}</span>
-              <strong>${option.label}</strong>
-            </button>
-          `).join("")}
-        </div>
+        <p class="coach-microcopy">${step.eyebrow}</p>
+        <h3>${step.title}</h3>
+        ${step.subtitle ? `<p>${step.subtitle}</p>` : ""}
+        <p class="coach-question-copy">${step.question}</p>
+        ${step.groups ? renderGroupedStep(step) : renderOptionGrid(step)}
+        ${step.note ? `<div class="coach-note"><span>i</span><p>${step.note}</p></div>` : ""}
+        ${step.privacy ? `<p class="coach-privacy">${step.privacy}</p>` : ""}
         <div class="coach-nav-row">
           ${state.currentStep > 0 ? '<button type="button" data-coach-back>Back</button>' : '<span></span>'}
+          <button class="coach-next" type="button" data-coach-next ${canContinue ? "" : "disabled"}>${state.currentStep === coachSteps.length - 1 ? "Generate My Plan" : "Continue"}</button>
         </div>
       </div>
     `;
   }
 
-  function selectAnswer(value) {
-    const question = coachQuestions[state.currentStep];
-    state.answers[question.id] = value;
+  function renderOptionGrid(step) {
+    return `
+      <div class="coach-options ${step.layout || ""}">
+        ${step.options.map((option) => `
+          <button class="coach-option ${state.answers[step.id] === option.value ? "is-selected" : ""}" type="button" data-coach-answer="${option.value}" data-coach-answer-id="${step.id}">
+            <span>${option.icon}</span>
+            <strong>${option.label}</strong>
+            ${option.description ? `<small>${option.description}</small>` : ""}
+          </button>
+        `).join("")}
+      </div>
+    `;
+  }
+
+  function renderGroupedStep(step) {
+    return step.groups.map((group) => `
+      <div class="coach-group">
+        <h4>${group.label}</h4>
+        <div class="coach-chip-grid">
+          ${group.options.map((option) => `
+            <button class="coach-chip ${state.answers[group.id] === option.value ? "is-selected" : ""}" type="button" data-coach-answer="${option.value}" data-coach-answer-id="${group.id}">
+              ${option.label}
+            </button>
+          `).join("")}
+        </div>
+      </div>
+    `).join("");
+  }
+
+  function selectAnswer(id, value) {
+    state.answers[id] = value;
     const selected = body.querySelector(`[data-coach-answer="${CSS.escape(value)}"]`);
     if (selected) selected.classList.add("is-selected");
+    renderQuestion();
+  }
 
-    window.setTimeout(() => {
-      if (state.currentStep < coachQuestions.length - 1) {
-        state.currentStep += 1;
-        renderQuestion();
-      } else {
-        body.innerHTML = '<div class="coach-loading coach-view"><span></span><h3>Building your match...</h3><p>Your match is almost ready.</p></div>';
-        window.setTimeout(renderResults, 350);
-      }
-    }, 160);
+  function nextStep() {
+    if (state.currentStep < coachSteps.length - 1) {
+      state.currentStep += 1;
+      renderQuestion();
+      return;
+    }
+    body.innerHTML = '<div class="coach-loading coach-view"><span></span><h3>Building your plan...</h3><p>Your personalized stack is almost ready.</p></div>';
+    window.setTimeout(renderResults, 350);
   }
 
   function goBack() {
@@ -234,11 +300,12 @@
     if (answers.productType === "fresh-protein" && product.category === "fresh-protein") score += 28;
     if (answers.productType === "vegan-options" && product.category === "vegan-protein") score += 28;
     if (answers.productType === "protein-powder" && ["protein", "vegan-protein"].includes(product.category)) score += 24;
+    if (answers.productType === "clear-protein" && product.subcategory === "clear-protein") score += 28;
 
     const limit = budgetLimit(answers.budget);
     if (Number(product.price) <= limit) score += 16;
     if (answers.budget === "500-plus" && product.bundle) score += 12;
-    if (answers.training === "4-5" || answers.training === "6+") {
+    if (answers.training === "5-6" || answers.training === "daily") {
       if (/recovery|performance|mass|whey|meal/.test(text)) score += 8;
     }
     if (product.inStock === false) score -= 50;
@@ -288,9 +355,19 @@
 
     body.innerHTML = `
       <div class="coach-result coach-view">
+        <div class="coach-step-row">
+          <span>Step 5 of 5</span>
+          <button type="button" data-coach-reset>Restart</button>
+        </div>
+        <div class="coach-progress"><span style="width:100%"></span></div>
         <p class="coach-kicker">Your match is ready.</p>
-        <h3>${t("coach.results", "Here's what fits you best")}</h3>
+        <h3>Your Personalized Nutrition Plan</h3>
         <p class="coach-result-subtitle">Based on your goal and preferences.</p>
+        <div class="coach-summary-grid">
+          <article><span>Goal</span><strong>${optionLabel("goal", state.answers.goal)}</strong></article>
+          <article><span>Protein Target</span><strong>130g/day</strong></article>
+          <article><span>Calories</span><strong>2100 kcal</strong></article>
+        </div>
         <a class="coach-match-card" href="${category.href}">
           <strong>${category.title}</strong>
           <span>${category.copy}</span>
@@ -349,12 +426,14 @@
   body.addEventListener("click", (event) => {
     const start = event.target.closest("[data-coach-start]");
     const answer = event.target.closest("[data-coach-answer]");
+    const next = event.target.closest("[data-coach-next]");
     const back = event.target.closest("[data-coach-back]");
     const reset = event.target.closest("[data-coach-reset]");
     const add = event.target.closest("[data-coach-add]");
 
     if (start) startCoach();
-    if (answer) selectAnswer(answer.dataset.coachAnswer);
+    if (answer) selectAnswer(answer.dataset.coachAnswerId, answer.dataset.coachAnswer);
+    if (next && !next.disabled) nextStep();
     if (back) goBack();
     if (reset) resetCoach();
     if (add) addProductToCart(add.dataset.coachAdd);
