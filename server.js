@@ -173,9 +173,20 @@ function validateCheckoutPayload(body) {
 }
 
 app.get("/", (req, res) => {
+  const featuredSlugs = [
+    "citrus-clear-whey-isolate",
+    "berry-clear-protein-refresher",
+    "gluten-free-energy-bar-berry-blast",
+    "crunchy-roasted-chickpeas",
+    "keto-protein-bites-chocolate-coconut"
+  ];
+  const featuredProducts = featuredSlugs
+    .map((slug) => products.find((product) => product.slug === slug || product.name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "") === slug))
+    .filter(Boolean);
+
   res.render("index", {
     goals,
-    featuredProducts: products.slice(0, 5),
+    featuredProducts,
     featuredBlogs: blogs.slice(0, 3)
   });
 });
