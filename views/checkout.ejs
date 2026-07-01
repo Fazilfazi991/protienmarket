@@ -1,30 +1,30 @@
 <%- include("partials/header", { pageTitle: "Checkout" }) %>
-<section class="page-hero compact"><div class="container"><p class="breadcrumb"><a href="/">Home</a> / <span data-i18n="buttons.checkout">Checkout</span></p><h1 data-i18n="checkout.title">Secure Checkout</h1><p>Complete your details and pay safely in sandbox mode.</p></div></section>
+<section class="page-hero compact"><div class="container"><p class="breadcrumb"><a href="<%= localePath('/') %>">Home</a> / <span data-i18n="buttons.checkout"><%= t('buttons.checkout') %></span></p><h1 data-i18n="checkout.title"><%= t('checkout.title') %></h1><p data-i18n="checkout.intro"><%= t('checkout.intro') %></p></div></section>
 <section class="section checkout-section">
   <div class="container checkout-layout">
     <form class="checkout-card" data-checkout-form>
-      <% if (paymentMode === "sandbox") { %><p class="sandbox-badge">Sandbox Payment Mode</p><% } %>
-      <h2 data-i18n="checkout.deliveryDetails">Delivery Details</h2>
+      <% if (paymentMode === "sandbox") { %><p class="sandbox-badge" data-i18n="checkout.sandbox"><%= t('checkout.sandbox') %></p><% } %>
+      <h2 data-i18n="checkout.deliveryDetails"><%= t('checkout.deliveryDetails') %></h2>
       <div class="form-grid">
-        <label><span data-i18n="checkout.fullName">Full Name</span><input name="name" required autocomplete="name"></label>
-        <label><span data-i18n="checkout.email">Email</span><input class="ltr-value" name="email" type="email" required autocomplete="email"></label>
-        <label><span data-i18n="checkout.phone">Phone</span><input class="ltr-value" name="phone" required autocomplete="tel"></label>
-        <label><span data-i18n="checkout.city">City</span><input name="city" required></label>
-        <label class="wide"><span data-i18n="checkout.address">Address</span><input name="address1" required autocomplete="address-line1"></label>
-        <label class="wide">Address Line 2<input name="address2" autocomplete="address-line2"></label>
-        <label><span data-i18n="checkout.emirate">Emirate</span><select name="emirate" required><option value="">Select Emirate</option><option>Dubai</option><option>Abu Dhabi</option><option>Sharjah</option><option>Ajman</option><option>Ras Al Khaimah</option><option>Fujairah</option><option>Umm Al Quwain</option></select></label>
-        <label class="wide">Delivery Notes<textarea name="notes" rows="4"></textarea></label>
+        <label><span data-i18n="checkout.fullName"><%= t('checkout.fullName') %></span><input name="name" required autocomplete="name"></label>
+        <label><span data-i18n="checkout.email"><%= t('checkout.email') %></span><input class="ltr-value" name="email" type="email" required autocomplete="email"></label>
+        <label><span data-i18n="checkout.phone"><%= t('checkout.phone') %></span><input class="ltr-value" name="phone" required autocomplete="tel"></label>
+        <label><span data-i18n="checkout.city"><%= t('checkout.city') %></span><input name="city" required></label>
+        <label class="wide"><span data-i18n="checkout.address"><%= t('checkout.address') %></span><input name="address1" required autocomplete="address-line1"></label>
+        <label class="wide"><span data-i18n="checkout.address2"><%= t('checkout.address2') %></span><input name="address2" autocomplete="address-line2"></label>
+        <label><span data-i18n="checkout.emirate"><%= t('checkout.emirate') %></span><select name="emirate" required><option value="" data-i18n="checkout.selectEmirate"><%= t('checkout.selectEmirate') %></option><option>Dubai</option><option>Abu Dhabi</option><option>Sharjah</option><option>Ajman</option><option>Ras Al Khaimah</option><option>Fujairah</option><option>Umm Al Quwain</option></select></label>
+        <label class="wide"><span data-i18n="checkout.deliveryNotes"><%= t('checkout.deliveryNotes') %></span><textarea name="notes" rows="4"></textarea></label>
       </div>
-      <h2 data-i18n="checkout.paymentMethod">Payment Method</h2>
+      <h2 data-i18n="checkout.paymentMethod"><%= t('checkout.paymentMethod') %></h2>
       <div class="payment-methods">
-        <label><input type="radio" name="paymentMethod" value="online" checked> <span data-i18n="checkout.online">Online Payment</span></label>
-        <label><input type="radio" name="paymentMethod" value="cod"> <span data-i18n="checkout.cod">Cash on Delivery</span></label>
+        <label><input type="radio" name="paymentMethod" value="online" checked> <span data-i18n="checkout.online"><%= t('checkout.online') %></span></label>
+        <label><input type="radio" name="paymentMethod" value="cod"> <span data-i18n="checkout.cod"><%= t('checkout.cod') %></span></label>
       </div>
       <p class="checkout-error" data-checkout-error hidden></p>
-      <button class="btn btn--gold checkout-submit" type="submit" data-i18n="buttons.paySecurely">Pay Securely</button>
+      <button class="btn btn--gold checkout-submit" type="submit" data-i18n="buttons.paySecurely"><%= t('buttons.paySecurely') %></button>
     </form>
     <aside class="checkout-summary">
-      <h2 data-i18n="checkout.summary">Order Summary</h2>
+      <h2 data-i18n="checkout.summary"><%= t('checkout.summary') %></h2>
       <div data-checkout-summary></div>
     </aside>
   </div>

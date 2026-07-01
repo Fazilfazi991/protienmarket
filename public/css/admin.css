@@ -29,6 +29,34 @@ body {
   font-family: Inter, Arial, sans-serif;
 }
 
+html[lang="ar"] body,
+.lang-ar {
+  font-family: Tajawal, Inter, Arial, sans-serif;
+  text-align: right;
+}
+
+html[lang="ar"] h1,
+html[lang="ar"] h2,
+html[lang="ar"] h3,
+html[lang="ar"] button,
+html[lang="ar"] input {
+  font-family: Tajawal, Inter, Arial, sans-serif;
+}
+
+.dir-rtl .admin-shell,
+.dir-rtl .admin-topbar,
+.dir-rtl .section-head,
+.dir-rtl .admin-hero,
+.dir-rtl .admin-profile,
+.dir-rtl .product-admin-card {
+  direction: rtl;
+}
+
+.dir-rtl th,
+.dir-rtl td {
+  text-align: right;
+}
+
 button,
 input,
 select {

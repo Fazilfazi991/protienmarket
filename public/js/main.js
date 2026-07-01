@@ -10,6 +10,11 @@
   const priceBlock = (amount) => window.ShopMoney?.priceBlock(amount) || `<span class="price-aed ltr-value">AED ${Number(amount || 0).toFixed(2)}</span>`;
   const formatAED = (amount) => window.ShopMoney?.formatAED(amount) || `AED ${Number(amount || 0).toFixed(2)}`;
   const usdNote = () => window.SHOP_CONFIG?.displayUsdPrices === false ? "" : `<p class="usd-note">${t("currency.usdNote", "USD shown for reference. Checkout is charged in AED.")}</p>`;
+  const localePath = (path) => {
+    const lang = window.LOCALE || "en";
+    if (!path || !path.startsWith("/") || path.startsWith("/api/") || /^\/(en|ar)(\/|$)/.test(path)) return path;
+    return `/${lang}${path === "/" ? "" : path}`;
+  };
 
   function updateCartCount() {
     const total = getCart().reduce((sum, item) => sum + item.qty, 0);
@@ -69,7 +74,7 @@
     const drawer = document.createElement("aside");
     drawer.className = "mini-cart-drawer";
     drawer.setAttribute("aria-label", t("cart.title", "Cart"));
-    drawer.innerHTML = `<button class="mini-cart-close" type="button" aria-label="Close cart suggestions">x</button><div class="mini-cart-content"><p class="eyebrow">${t("cart.title", "Cart")}</p><h2>${t("home.continuePlan", "Continue your plan")}</h2><p>${productName(addedProduct)} added. ${t("cart.suggestions", "You may also need")}.</p><div class="mini-suggestions">${smartSuggestionsFor(addedProduct, 3).map(productSuggestionCard).join("")}</div></div><div class="mini-cart-footer"><div class="mini-cart-subtotal"><span>${t("cart.subtotal", "Subtotal")}</span>${priceBlock(totals.subtotal)}</div><a class="btn btn--gold" href="/cart">${t("cart.checkout", "Proceed to Checkout")}</a></div>`;
+    drawer.innerHTML = `<button class="mini-cart-close" type="button" aria-label="Close cart suggestions">x</button><div class="mini-cart-content"><p class="eyebrow">${t("cart.title", "Cart")}</p><h2>${t("home.continuePlan", "Continue your plan")}</h2><p>${productName(addedProduct)} added. ${t("cart.suggestions", "You may also need")}.</p><div class="mini-suggestions">${smartSuggestionsFor(addedProduct, 3).map(productSuggestionCard).join("")}</div></div><div class="mini-cart-footer"><div class="mini-cart-subtotal"><span>${t("cart.subtotal", "Subtotal")}</span>${priceBlock(totals.subtotal)}</div><a class="btn btn--gold" href="${localePath("/cart")}">${t("cart.checkout", "Proceed to Checkout")}</a></div>`;
     document.body.appendChild(backdrop);
     document.body.appendChild(drawer);
     const scrollY = window.scrollY || document.documentElement.scrollTop || 0;
@@ -113,7 +118,7 @@
     if (!panel) return;
     const cart = getCart();
     if (!cart.length) {
-      panel.innerHTML = `<h2>${t("cart.empty", "Your cart is empty.")}</h2><a class="btn btn--gold" href="/shop">${t("cart.backShop", "Back to Shop")}</a>`;
+      panel.innerHTML = `<h2>${t("cart.empty", "Your cart is empty.")}</h2><a class="btn btn--gold" href="${localePath("/shop")}">${t("cart.backShop", "Back to Shop")}</a>`;
       return;
     }
     let total = 0;
@@ -125,7 +130,7 @@
     }).join("");
     const delivery = total > 250 ? 0 : 15;
     const grandTotal = total + delivery;
-    panel.innerHTML = `${rows}<div class="cart-totals"><div><span>${t("cart.subtotal", "Subtotal")}</span>${priceBlock(total)}</div><div><span>${t("cart.deliveryShort", "Delivery")}</span><strong class="ltr-value">${delivery ? formatAED(delivery) : t("cart.free", "Free")}</strong></div><div class="total"><span>${t("cart.total", "Total")}</span>${priceBlock(grandTotal)}</div></div>${usdNote()}<a class="btn btn--gold" href="/checkout">${t("cart.checkout", "Proceed to Checkout")}</a>`;
+    panel.innerHTML = `${rows}<div class="cart-totals"><div><span>${t("cart.subtotal", "Subtotal")}</span>${priceBlock(total)}</div><div><span>${t("cart.deliveryShort", "Delivery")}</span><strong class="ltr-value">${delivery ? formatAED(delivery) : t("cart.free", "Free")}</strong></div><div class="total"><span>${t("cart.total", "Total")}</span>${priceBlock(grandTotal)}</div></div>${usdNote()}<a class="btn btn--gold" href="${localePath("/checkout")}">${t("cart.checkout", "Proceed to Checkout")}</a>`;
   }
 
   function cartTotals(cart) {
@@ -142,7 +147,7 @@
     if (!target) return;
     const cart = getCart();
     if (!cart.length) {
-      target.innerHTML = `<p>${t("cart.empty", "Your cart is empty.")}</p><a class="btn btn--gold" href="/shop">${t("cart.backShop", "Back to Shop")}</a>`;
+      target.innerHTML = `<p>${t("cart.empty", "Your cart is empty.")}</p><a class="btn btn--gold" href="${localePath("/shop")}">${t("cart.backShop", "Back to Shop")}</a>`;
       return;
     }
     const rows = cart.map((item) => {
@@ -203,7 +208,7 @@
   }
 
   function productCard(product) {
-    return `<article class="product-card" data-product-card data-product-url="/product/${product.slug}" data-name-en="${product.name}" data-name-ar="${product.nameAr || ""}" data-description-en="${product.description}" data-description-ar="${product.descriptionAr || ""}" data-category-key="${product.category}"><a href="/product/${product.slug}"><img src="${product.image}" alt="${productName(product)}" loading="lazy"></a><span class="product-card__category" data-category-label>${categoryName(product.category, product.category.replace("-", " "))}</span><h3><a href="/product/${product.slug}" data-product-name>${productName(product)}</a></h3><p class="product-card__description" data-product-description>${productDescription(product)}</p><p class="price">${priceBlock(product.price)}</p><button class="btn btn--small btn--gold" data-add-to-cart="${product.id}">${t("buttons.addToCart", "Add to Cart")}</button></article>`;
+    return `<article class="product-card" data-product-card data-product-url="${localePath(`/product/${product.slug}`)}" data-name-en="${product.name}" data-name-ar="${product.nameAr || ""}" data-description-en="${product.description}" data-description-ar="${product.descriptionAr || ""}" data-category-key="${product.category}"><a href="${localePath(`/product/${product.slug}`)}"><img src="${product.image}" alt="${productName(product)}" loading="lazy"></a><span class="product-card__category" data-category-label>${categoryName(product.category, product.category.replace("-", " "))}</span><h3><a href="${localePath(`/product/${product.slug}`)}" data-product-name>${productName(product)}</a></h3><p class="product-card__description" data-product-description>${productDescription(product)}</p><p class="price">${priceBlock(product.price)}</p><button class="btn btn--small btn--gold" data-add-to-cart="${product.id}">${t("buttons.addToCart", "Add to Cart")}</button></article>`;
   }
 
   function renderCartSuggestions() {

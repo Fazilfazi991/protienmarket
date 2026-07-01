@@ -6,8 +6,8 @@ const menuCategories = require("./data/categories.json");
 const goals = require("./data/goals.json");
 const blogs = require("./data/blogs.json");
 const translations = {
-  en: require("./data/translations/en.json"),
-  ar: require("./data/translations/ar.json")
+  en: require("./locales/en.json"),
+  ar: require("./locales/ar.json")
 };
 const paymentGateway = require("./services/payment-gateway");
 const ordersStore = require("./services/orders");
@@ -57,6 +57,63 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 const categories = menuCategories;
+const supportedLocales = ["en", "ar"];
+const defaultLocale = "en";
+
+function getTranslation(locale, key, fallback = "") {
+  const read = (source) => String(key || "").split(".").reduce((value, part) => value && value[part], source);
+  return read(translations[locale]) || read(translations[defaultLocale]) || fallback || key;
+}
+
+function stripLocale(pathname = "/") {
+  const parts = pathname.split("/");
+  return supportedLocales.includes(parts[1]) ? `/${parts.slice(2).join("/")}`.replace(/\/$/, "") || "/" : pathname;
+}
+
+function withLocale(locale, pathname = "/") {
+  const cleanPath = stripLocale(pathname).replace(/^\/?/, "/");
+  return `/${locale}${cleanPath === "/" ? "" : cleanPath}`;
+}
+
+app.get("/", (req, res) => res.redirect(302, `/${defaultLocale}`));
+
+app.use((req, res, next) => {
+  const firstSegment = req.path.split("/")[1];
+  const locale = supportedLocales.includes(firstSegment) ? firstSegment : defaultLocale;
+  const localizedPath = stripLocale(req.path);
+
+  req.locale = locale;
+  req.localizedPath = localizedPath;
+  req.originalLocalizedUrl = req.originalUrl;
+
+  res.locals.locale = locale;
+  res.locals.dir = locale === "ar" ? "rtl" : "ltr";
+  res.locals.isArabic = locale === "ar";
+  res.locals.defaultLocale = defaultLocale;
+  res.locals.supportedLocales = supportedLocales;
+  res.locals.t = (key, fallback = "") => getTranslation(locale, key, fallback);
+  res.locals.localePath = (pathname = "/") => withLocale(locale, pathname);
+  res.locals.switchLocalePath = (targetLocale) => {
+    const queryIndex = req.originalUrl.indexOf("?");
+    const query = queryIndex >= 0 ? req.originalUrl.slice(queryIndex) : "";
+    return withLocale(targetLocale, localizedPath) + query;
+  };
+  res.locals.seo = {
+    title: getTranslation(locale, "seo.defaultTitle", "Protein Market"),
+    description: getTranslation(locale, "seo.defaultDescription", "Premium protein, meal plans, and nutrition support in the UAE."),
+    canonicalPath: withLocale(locale, localizedPath),
+    alternateEn: withLocale("en", localizedPath),
+    alternateAr: withLocale("ar", localizedPath)
+  };
+
+  if (supportedLocales.includes(firstSegment)) {
+    const queryIndex = req.url.indexOf("?");
+    const query = queryIndex >= 0 ? req.url.slice(queryIndex) : "";
+    req.url = `${localizedPath}${query}`;
+  }
+
+  next();
+});
 
 const money = (value) => Number(value).toFixed(2);
 const shopConfig = {

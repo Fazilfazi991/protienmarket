@@ -13,6 +13,11 @@
   const t = (key, fallback) => window.I18N?.t(key, fallback) || fallback || key;
   const productName = (product) => window.I18N?.productName(product) || product.name;
   const priceBlock = (amount) => window.ShopMoney?.priceBlock(amount) || `<span>AED ${Number(amount || 0).toFixed(2)}</span>`;
+  const localePath = (path) => {
+    const lang = window.LOCALE || "en";
+    if (!path || !path.startsWith("/") || /^\/(en|ar)(\/|$)/.test(path)) return path;
+    return `/${lang}${path === "/" ? "" : path}`;
+  };
   const iconBase = "/protein_market_icon_pack/protein_market_icons/svg/";
   const icon = (name) => `${iconBase}${name}.svg`;
 
@@ -162,9 +167,9 @@
       <div class="coach-intro coach-view">
         <p class="coach-kicker">${t("coach.title", "Protein Coach")}</p>
         <h3>${t("coach.quick", "Find the right product in 30 seconds")}</h3>
-        <p>Answer 5 quick questions and we'll suggest products that fit your goal.</p>
-        <button class="coach-primary" type="button" data-coach-start>Start</button>
-        <a class="coach-secondary-link" href="/shop">Skip and browse shop</a>
+        <p>${t("coach.introCopy", "Answer 5 quick questions and we'll suggest products that fit your goal.")}</p>
+        <button class="coach-primary" type="button" data-coach-start>${t("coach.start", "Start")}</button>
+        <a class="coach-secondary-link" href="${localePath("/shop")}">${t("coach.skip", "Skip and browse shop")}</a>
       </div>
     `;
   }
@@ -322,16 +327,16 @@
       return {
         title: "Best match: Vegan Protein",
         copy: "Start with plant protein, vegan snacks, or a plant-based meal plan.",
-        href: "/category/vegan-protein"
+        href: localePath("/category/vegan-protein")
       };
     }
-    if (answers.productType === "meal-plans") return { title: "Best match: Meal Plans", copy: "Choose calorie-aware plans that keep your nutrition consistent.", href: "/category/meal-plan" };
-    if (answers.productType === "bars-snacks") return { title: "Best match: Bars & Snacks", copy: "Use protein snacks for easy fuel between meals.", href: "/category/bars-snacks" };
-    if (answers.productType === "fresh-protein") return { title: "Best match: Fresh Protein", copy: "Fresh protein works well for clean lunches and dinner prep.", href: "/category/fresh-protein" };
-    if (answers.goal === "lose-fat") return { title: "Best match: Fat Loss Protein", copy: "Start with clear protein, thermogenic protein, or a lean meal plan.", href: "/category/protein/thermogenic" };
-    if (answers.goal === "build-muscle") return { title: "Best match: Muscle Gain Stack", copy: "Whey, mass gainers, and protein snacks fit your goal best.", href: "/goal/build-muscle" };
-    if (answers.goal === "recovery") return { title: "Best match: Recovery Support", copy: "Whey, fresh protein, and balanced meals can support recovery.", href: "/goal/athletic-performance" };
-    return { title: "Best match: Daily Protein", copy: "A simple protein routine with snacks or meal support is a great start.", href: "/shop" };
+    if (answers.productType === "meal-plans") return { title: "Best match: Meal Plans", copy: "Choose calorie-aware plans that keep your nutrition consistent.", href: localePath("/category/meal-plan") };
+    if (answers.productType === "bars-snacks") return { title: "Best match: Bars & Snacks", copy: "Use protein snacks for easy fuel between meals.", href: localePath("/category/bars-snacks") };
+    if (answers.productType === "fresh-protein") return { title: "Best match: Fresh Protein", copy: "Fresh protein works well for clean lunches and dinner prep.", href: localePath("/category/fresh-protein") };
+    if (answers.goal === "lose-fat") return { title: "Best match: Fat Loss Protein", copy: "Start with clear protein, thermogenic protein, or a lean meal plan.", href: localePath("/category/protein/thermogenic") };
+    if (answers.goal === "build-muscle") return { title: "Best match: Muscle Gain Stack", copy: "Whey, mass gainers, and protein snacks fit your goal best.", href: localePath("/goal/build-muscle") };
+    if (answers.goal === "recovery") return { title: "Best match: Recovery Support", copy: "Whey, fresh protein, and balanced meals can support recovery.", href: localePath("/goal/athlete-recovery") };
+    return { title: "Best match: Daily Protein", copy: "A simple protein routine with snacks or meal support is a great start.", href: localePath("/shop") };
   }
 
   function getRecommendations(answers) {
@@ -385,7 +390,7 @@
                 <strong>${productName(product)}</strong>
                 <small>${priceBlock(product.price)}</small>
               </div>
-              <a href="/product/${product.slug}">View</a>
+              <a href="${localePath(`/product/${product.slug}`)}">${t("buttons.viewDetails", "View")}</a>
               <button type="button" data-coach-add="${product.id}">Add</button>
             </article>
           `).join("")}

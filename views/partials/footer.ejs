@@ -15,18 +15,18 @@
       </div>
       <div>
         <h3 data-i18n="footer.quick">Quick Links</h3>
-        <a href="/find-my-protein" data-i18n="nav.findProtein">Find My Protein</a>
-        <a href="/build-your-stack" data-i18n="buttons.buildStack">Build My Stack</a>
-        <a href="/protein-calculator" data-i18n="calculator.title">Protein Calculator</a>
-        <a href="/about" data-i18n="nav.about">About Us</a>
-        <a href="/contact" data-i18n="nav.contact">Contact Us</a>
-        <a href="/blog" data-i18n="nav.blog">Blog</a>
-        <a href="/faq" data-i18n="nav.faqs">FAQs</a>
+        <a href="<%= localePath('/find-my-protein') %>" data-i18n="nav.findProtein"><%= t('nav.findProtein') %></a>
+        <a href="<%= localePath('/build-your-stack') %>" data-i18n="buttons.buildStack"><%= t('buttons.buildStack') %></a>
+        <a href="<%= localePath('/protein-calculator') %>" data-i18n="calculator.title"><%= t('calculator.title') %></a>
+        <a href="<%= localePath('/about') %>" data-i18n="nav.about"><%= t('nav.about') %></a>
+        <a href="<%= localePath('/contact') %>" data-i18n="nav.contact"><%= t('nav.contact') %></a>
+        <a href="<%= localePath('/blog') %>" data-i18n="nav.blog"><%= t('nav.blog') %></a>
+        <a href="<%= localePath('/faq') %>" data-i18n="nav.faqs"><%= t('nav.faqs') %></a>
       </div>
       <div>
         <h3 data-i18n="footer.categories">Categories</h3>
         <% categories.forEach((category) => { %>
-          <a href="/category/<%= category.slug %>" data-i18n="categories.<%= category.slug %>"><%= category.name %></a>
+          <a href="<%= localePath('/category/' + category.slug) %>" data-i18n="categories.<%= category.slug %>"><%= t('categories.' + category.slug, category.name) %></a>
         <% }) %>
       </div>
       <div>
@@ -42,6 +42,8 @@
   </footer>
   <% const footerShopConfig = typeof shopConfig !== "undefined" ? shopConfig : { displayUsdPrices: true, aedToUsdRate: 0.2723, currency: "AED" }; const footerTranslations = typeof translations !== "undefined" ? translations : { en: {}, ar: {} }; %>
   <script>
+    window.LOCALE = "<%= locale %>";
+    window.LOCALE_PREFIX = "/<%= locale %>";
     window.PRODUCTS = <%- JSON.stringify(products) %>;
     window.SHOP_CONFIG = <%- JSON.stringify(footerShopConfig) %>;
     window.TRANSLATIONS = <%- JSON.stringify(footerTranslations) %>;

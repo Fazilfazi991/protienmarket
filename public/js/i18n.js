@@ -8,6 +8,8 @@
   }
 
   function currentLang() {
+    const serverLocale = window.LOCALE;
+    if (supported.includes(serverLocale)) return serverLocale;
     const saved = localStorage.getItem(storageKey);
     return supported.includes(saved) ? saved : "en";
   }
@@ -68,16 +70,41 @@
     });
   }
 
+  function localizeUrl(value) {
+    const lang = currentLang();
+    if (!value || value.startsWith("#") || value.startsWith("mailto:") || value.startsWith("tel:") || value.startsWith("http") || value.startsWith("//")) return value;
+    if (!value.startsWith("/")) return value;
+    if (value.startsWith("/css/") || value.startsWith("/js/") || value.startsWith("/images/") || value.startsWith("/api/")) return value;
+    if (/^\/(en|ar)(\/|$)/.test(value)) return value.replace(/^\/(en|ar)(?=\/|$)/, `/${lang}`);
+    return `/${lang}${value === "/" ? "" : value}`;
+  }
+
+  function localizeLinks() {
+    document.querySelectorAll("a[href]").forEach((link) => {
+      link.setAttribute("href", localizeUrl(link.getAttribute("href")));
+    });
+    document.querySelectorAll("form[action]").forEach((form) => {
+      form.setAttribute("action", localizeUrl(form.getAttribute("action")));
+    });
+  }
+
   function applyLanguage(lang) {
     const normalized = supported.includes(lang) ? lang : "en";
     updateDirection(normalized);
     translatePage(normalized);
     applyProductTranslations();
+    localizeLinks();
   }
 
   function setLanguage(lang) {
     const normalized = supported.includes(lang) ? lang : "en";
+    const current = currentLang();
     localStorage.setItem(storageKey, normalized);
+    if (normalized !== current) {
+      const cleanPath = window.location.pathname.replace(/^\/(en|ar)(?=\/|$)/, "") || "/";
+      window.location.href = `/${normalized}${cleanPath === "/" ? "" : cleanPath}${window.location.search}${window.location.hash}`;
+      return;
+    }
     applyLanguage(normalized);
     window.dispatchEvent(new CustomEvent("languageChanged", { detail: { lang: normalized } }));
   }

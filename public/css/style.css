@@ -23,6 +23,79 @@ body {
   color: var(--black);
   line-height: 1.6;
 }
+
+html[lang="en"] body,
+.lang-en {
+  font-family: Inter, Arial, sans-serif;
+}
+
+html[lang="ar"] body,
+.lang-ar {
+  font-family: Tajawal, Inter, Arial, sans-serif;
+}
+
+html[lang="ar"] h1,
+html[lang="ar"] h2,
+html[lang="ar"] h3,
+html[lang="ar"] h4,
+html[lang="ar"] .btn,
+html[lang="ar"] .pill,
+html[lang="ar"] button,
+html[lang="ar"] input,
+html[lang="ar"] select,
+html[lang="ar"] textarea {
+  font-family: Tajawal, Inter, Arial, sans-serif;
+}
+
+.dir-rtl {
+  text-align: right;
+}
+
+.dir-rtl .ltr-value {
+  direction: ltr;
+  unicode-bidi: isolate;
+}
+
+.dir-rtl .nav,
+.dir-rtl .topbar__inner,
+.dir-rtl .button-row,
+.dir-rtl .product-actions,
+.dir-rtl .footer__bottom,
+.dir-rtl .coach-header,
+.dir-rtl .coach-step-row,
+.dir-rtl .coach-nav-row,
+.dir-rtl .checkout-layout {
+  direction: rtl;
+}
+
+.dir-rtl .mega-menu__grid,
+.dir-rtl .split,
+.dir-rtl .hero__grid,
+.dir-rtl .product-detail__grid,
+.dir-rtl .collection-layout {
+  direction: rtl;
+}
+
+.dir-rtl .hero-product {
+  right: auto;
+  left: clamp(16px, 5vw, 86px);
+}
+
+.language-switch a {
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: inherit;
+  padding: 7px 10px;
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.language-switch a.is-active {
+  background: var(--gold);
+  color: var(--black);
+}
 a { color: inherit; text-decoration: none; }
 img { display: block; max-width: 100%; }
 .container { width: min(1180px, calc(100% - 40px)); margin: 0 auto; }

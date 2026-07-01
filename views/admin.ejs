@@ -1,15 +1,15 @@
 <!doctype html>
-<html lang="en">
+<html lang="<%= locale || 'en' %>" dir="<%= dir || 'ltr' %>">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Admin Dashboard Demo | Protein Market</title>
+  <title><%= t ? t('seo.adminTitle') : 'Admin Dashboard Demo' %> | Protein Market</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/admin.css">
 </head>
-<body>
+<body class="lang-<%= locale || 'en' %> dir-<%= dir || 'ltr' %>">
 <%
   const summaryCards = [
     ["Total Orders", "128", "+18%"],
@@ -154,8 +154,8 @@
       <header class="admin-topbar">
         <button class="admin-menu" type="button" data-admin-menu aria-label="Open admin menu"><span></span><span></span><span></span></button>
         <div>
-          <p>Admin Dashboard Demo - hidden client preview page</p>
-          <h1>The Protein Market Control Center</h1>
+          <p><%= t ? t('admin.demo') : 'Admin Dashboard Demo - hidden client preview page' %></p>
+          <h1><%= t ? t('admin.title') : 'The Protein Market Control Center' %></h1>
         </div>
         <label class="admin-search">
           <span>Search</span>
@@ -167,7 +167,7 @@
       <main class="admin-content">
         <section class="admin-hero" id="overview">
           <div>
-            <span class="admin-chip">Client preview</span>
+            <span class="admin-chip"><%= t ? t('admin.preview') : 'Client preview' %></span>
             <h2>One dashboard for orders, recommendations, leads, meal plans, and content.</h2>
             <p>This static concept is future-ready for live orders, product management, calculator analytics, rule-based recommendations, WhatsApp CRM, and offer management.</p>
           </div>
