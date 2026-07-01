@@ -198,7 +198,7 @@
                     <td><%= order.id %></td><td><%= order.name %></td><td><%= order.phone %></td><td><%= order.items %></td><td><%= order.total %></td>
                     <td><span class="status status--<%= order.payment.toLowerCase() %>"><%= order.payment %></span></td>
                     <td><span class="status"><%= order.status %></span></td><td><%= order.delivery %></td><td><%= order.date %></td>
-                    <td><button class="tiny-btn" type="button" data-order='<%- JSON.stringify(order) %>'>View Order</button></td>
+                    <td><button class="tiny-btn" type="button">View Order</button></td>
                   </tr>
                 <% }) %>
               </tbody>
@@ -292,15 +292,6 @@
           </div>
         </section>
       </main>
-    </div>
-  </div>
-
-  <div class="order-drawer" data-order-drawer hidden>
-    <div class="drawer-panel">
-      <button class="drawer-close" type="button" data-drawer-close aria-label="Close order preview">x</button>
-      <p>Order Detail Preview</p>
-      <h2 data-drawer-id>ORD-1284</h2>
-      <div class="drawer-content" data-drawer-content></div>
     </div>
   </div>
 
