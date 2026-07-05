@@ -127,18 +127,30 @@
   const state = {
     currentStep: 0,
     answers: {},
-    recommendations: []
+    recommendations: [],
+    motion: "forward"
   };
+
+  function lockPageScroll(locked) {
+    document.documentElement.classList.toggle("coach-modal-open", locked);
+    document.body.classList.toggle("coach-modal-open", locked);
+  }
+
+  function scrollCoachTop() {
+    body.scrollTo({ top: 0, behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
+  }
 
   function openCoach() {
     panel.hidden = false;
     root.classList.add("is-open");
+    lockPageScroll(true);
     if (!body.dataset.ready) renderIntro();
   }
 
   function closeCoach() {
     panel.hidden = true;
     root.classList.remove("is-open");
+    lockPageScroll(false);
     sessionStorage.setItem("proteinCoachClosed", "1");
   }
 
@@ -146,12 +158,14 @@
     state.currentStep = 0;
     state.answers = {};
     state.recommendations = [];
+    state.motion = "back";
     renderIntro();
   }
 
   function startCoach() {
     state.currentStep = 0;
     state.answers = {};
+    state.motion = "forward";
     renderQuestion();
   }
 
@@ -179,12 +193,7 @@
     const progress = ((state.currentStep + 1) / (coachSteps.length + 1)) * 100;
     const canContinue = step.groups ? step.groups.every((group) => state.answers[group.id]) : Boolean(state.answers[step.id]);
     body.innerHTML = `
-      <div class="coach-question coach-view">
-        <div class="coach-step-row">
-          <span>Step ${state.currentStep + 1} of 5</span>
-          <button type="button" data-coach-reset>Restart</button>
-        </div>
-        <div class="coach-progress"><span style="width:${progress}%"></span></div>
+      <div class="coach-question coach-view coach-view--${state.motion}">
         <p class="coach-microcopy">${step.eyebrow}</p>
         <h3>${step.title}</h3>
         ${step.subtitle ? `<p>${step.subtitle}</p>` : ""}
@@ -192,12 +201,19 @@
         ${step.groups ? renderGroupedStep(step) : renderOptionGrid(step)}
         ${step.note ? `<div class="coach-note"><span><img src="${icon("recommendation")}" alt="" aria-hidden="true"></span><p>${step.note}</p></div>` : ""}
         ${step.privacy ? `<p class="coach-privacy"><img src="${icon("secure_private")}" alt="" aria-hidden="true">${step.privacy}</p>` : ""}
-        <div class="coach-nav-row">
-          ${state.currentStep > 0 ? '<button type="button" data-coach-back>Back</button>' : '<span></span>'}
-          <button class="coach-next" type="button" data-coach-next ${canContinue ? "" : "disabled"}>${state.currentStep === coachSteps.length - 1 ? "Generate My Plan" : "Continue"}</button>
-        </div>
+        <footer class="coach-wizard-footer">
+          <div class="coach-footer-progress">
+            <span>Step ${state.currentStep + 1} of 5</span>
+            <div class="coach-progress"><span style="width:${progress}%"></span></div>
+          </div>
+          <div class="coach-nav-row">
+            ${state.currentStep > 0 ? '<button type="button" data-coach-back>Back</button>' : '<span></span>'}
+            <button class="coach-next" type="button" data-coach-next ${canContinue ? "" : "disabled"}>${state.currentStep === coachSteps.length - 1 ? "Generate My Plan" : "Continue ->"}</button>
+          </div>
+        </footer>
       </div>
     `;
+    scrollCoachTop();
   }
 
   function renderOptionGrid(step) {
@@ -238,6 +254,7 @@
 
   function nextStep() {
     if (state.currentStep < coachSteps.length - 1) {
+      state.motion = "forward";
       state.currentStep += 1;
       renderQuestion();
       return;
@@ -248,6 +265,7 @@
 
   function goBack() {
     if (state.currentStep > 0) {
+      state.motion = "back";
       state.currentStep -= 1;
       renderQuestion();
     }

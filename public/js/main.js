@@ -113,12 +113,37 @@
 
   window.addProteinMarketProductToCart = addToCart;
 
+  function setCartItemQuantity(productId, qty) {
+    const nextQty = Math.max(0, Number(qty) || 0);
+    const cart = getCart();
+    const updated = cart
+      .map((item) => item.id === productId ? { ...item, qty: nextQty } : item)
+      .filter((item) => item.qty > 0);
+    saveCart(updated);
+    updateCartCount();
+    renderCart();
+    renderCheckoutSummary();
+  }
+
+  function removeCartItem(productId) {
+    setCartItemQuantity(productId, 0);
+    showToast(t("cart.itemRemoved", "Item removed from cart."));
+  }
+
+  function clearCart() {
+    saveCart([]);
+    updateCartCount();
+    renderCart();
+    renderCheckoutSummary();
+    showToast(t("cart.cleared", "Cart cleared."));
+  }
+
   function renderCart() {
     const panel = document.querySelector("[data-cart-panel]");
     if (!panel) return;
     const cart = getCart();
     if (!cart.length) {
-      panel.innerHTML = `<h2>${t("cart.empty", "Your cart is empty.")}</h2><a class="btn btn--gold" href="${localePath("/shop")}">${t("cart.backShop", "Back to Shop")}</a>`;
+      panel.innerHTML = `<div class="cart-panel-header"><h2>${t("cart.title", "Cart")}</h2></div><div class="cart-empty"><h3>${t("cart.empty", "Your cart is empty.")}</h3><a class="btn btn--gold" href="${localePath("/shop")}">${t("cart.backShop", "Back to Shop")}</a></div>`;
       return;
     }
     let total = 0;
@@ -126,11 +151,38 @@
       const product = products.find((entry) => entry.id === item.id);
       if (!product) return "";
       total += Number(product.price) * item.qty;
-      return `<div class="cart-row"><img src="${product.image}" alt="${productName(product)}"><div><strong>${productName(product)}</strong><br><span>${t("cart.qty", "Qty")} ${item.qty}</span></div>${priceBlock(Number(product.price) * item.qty)}</div>`;
+      return `
+        <div class="cart-row" data-cart-row="${item.id}">
+          <img src="${product.image}" alt="${productName(product)}">
+          <div class="cart-row__content">
+            <strong>${productName(product)}</strong>
+            <div class="cart-qty-control" aria-label="${t("cart.qty", "Qty")}">
+              <button type="button" data-cart-decrease="${item.id}" aria-label="Decrease quantity">-</button>
+              <span class="ltr-value">${item.qty}</span>
+              <button type="button" data-cart-increase="${item.id}" aria-label="Increase quantity">+</button>
+            </div>
+            <button class="cart-remove" type="button" data-cart-remove="${item.id}">${t("cart.remove", "Remove")}</button>
+          </div>
+          <div class="cart-row__price">${priceBlock(Number(product.price) * item.qty)}</div>
+        </div>
+      `;
     }).join("");
     const delivery = total > 250 ? 0 : 15;
     const grandTotal = total + delivery;
-    panel.innerHTML = `${rows}<div class="cart-totals"><div><span>${t("cart.subtotal", "Subtotal")}</span>${priceBlock(total)}</div><div><span>${t("cart.deliveryShort", "Delivery")}</span><strong class="ltr-value">${delivery ? formatAED(delivery) : t("cart.free", "Free")}</strong></div><div class="total"><span>${t("cart.total", "Total")}</span>${priceBlock(grandTotal)}</div></div>${usdNote()}<a class="btn btn--gold" href="${localePath("/checkout")}">${t("cart.checkout", "Proceed to Checkout")}</a>`;
+    panel.innerHTML = `
+      <div class="cart-panel-header">
+        <h2>${t("cart.title", "Cart")}</h2>
+        <button type="button" data-cart-clear>${t("cart.clear", "Clear Cart")}</button>
+      </div>
+      <div class="cart-row-list">${rows}</div>
+      <div class="cart-totals">
+        <div><span>${t("cart.subtotal", "Subtotal")}</span>${priceBlock(total)}</div>
+        <div><span>${t("cart.deliveryShort", "Delivery")}</span><strong class="ltr-value">${delivery ? formatAED(delivery) : t("cart.free", "Free")}</strong></div>
+        <div class="total"><span>${t("cart.total", "Total")}</span>${priceBlock(grandTotal)}</div>
+        ${usdNote()}
+        <a class="btn btn--gold" href="${localePath("/checkout")}">${t("cart.checkout", "Proceed to Checkout")}</a>
+      </div>
+    `;
   }
 
   function cartTotals(cart) {
@@ -408,6 +460,23 @@
     searchClose.addEventListener("click", () => searchOverlay.classList.remove("is-open"));
     searchOverlay.addEventListener("click", (event) => { if (event.target === searchOverlay) searchOverlay.classList.remove("is-open"); });
   }
+
+  document.addEventListener("click", (event) => {
+    const increase = event.target.closest("[data-cart-increase]");
+    const decrease = event.target.closest("[data-cart-decrease]");
+    const remove = event.target.closest("[data-cart-remove]");
+    const clear = event.target.closest("[data-cart-clear]");
+    if (increase) {
+      const current = getCart().find((item) => item.id === increase.dataset.cartIncrease);
+      if (current) setCartItemQuantity(current.id, current.qty + 1);
+    }
+    if (decrease) {
+      const current = getCart().find((item) => item.id === decrease.dataset.cartDecrease);
+      if (current) setCartItemQuantity(current.id, current.qty - 1);
+    }
+    if (remove) removeCartItem(remove.dataset.cartRemove);
+    if (clear) clearCart();
+  });
 
   updateCartCount();
   renderCart();

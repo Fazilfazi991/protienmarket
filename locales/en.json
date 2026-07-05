@@ -170,7 +170,11 @@
     "total": "Total",
     "free": "Free",
     "checkout": "Proceed to Checkout",
-    "suggestions": "You may also need"
+    "suggestions": "You may also need",
+    "remove": "Remove",
+    "clear": "Clear Cart",
+    "itemRemoved": "Item removed from cart.",
+    "cleared": "Cart cleared."
   },
   "checkout": {
     "title": "Secure Checkout",
