@@ -7054,3 +7054,32 @@ body.dir-rtl .protein-coach .coach-header {
 .protein-coach .coach-body {
   padding-top: 8px;
 }
+
+/* Keep Protein Coach collapsed to the small icon until opened */
+.protein-coach .coach-panel[hidden] {
+  display: none !important;
+}
+
+.protein-coach:not(.is-open) .coach-fab {
+  width: 54px !important;
+  min-width: 54px !important;
+  max-width: 54px !important;
+  flex-basis: 54px;
+  height: 54px;
+  min-height: 54px;
+  justify-content: center;
+  padding: 0;
+  border-radius: 50%;
+}
+
+.protein-coach:not(.is-open) .coach-fab__text,
+.protein-coach:not(.is-open) .coach-fab__dot,
+.protein-coach:not(.is-open) .coach-tooltip {
+  display: none !important;
+}
+
+.protein-coach:not(.is-open) .coach-fab__character {
+  display: block;
+  width: 42px;
+  height: 42px;
+}
