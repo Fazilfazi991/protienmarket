@@ -6813,3 +6813,244 @@ body.coach-modal-open {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
+
+/* Add-to-cart confirmation drawer */
+.mini-cart-drawer {
+  width: min(92vw, 430px);
+  max-width: 430px;
+  height: auto;
+  max-height: min(86vh, 720px);
+  padding: 22px;
+  border-left: 1px solid rgba(232, 222, 210, .9);
+  border-radius: 0 0 0 22px;
+}
+
+.mini-cart-close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 36px;
+  height: 36px;
+  margin: 0;
+  background: #f6efe5;
+  font-size: 22px;
+}
+
+body.dir-rtl .mini-cart-close {
+  right: auto;
+  left: 14px;
+  margin: 0;
+}
+
+.mini-cart-content {
+  flex: 0 1 auto;
+  overflow-y: visible;
+  padding: 0;
+  margin: 0;
+}
+
+.mini-cart-drawer .eyebrow {
+  margin: 0 48px 8px 0;
+  color: var(--success);
+  font-size: 12px;
+  letter-spacing: .08em;
+}
+
+body.dir-rtl .mini-cart-drawer .eyebrow {
+  margin-right: 0;
+  margin-left: 48px;
+}
+
+.mini-cart-drawer h2 {
+  margin: 0 48px 8px 0;
+  font-size: clamp(24px, 3vw, 30px);
+  line-height: 1.1;
+}
+
+body.dir-rtl .mini-cart-drawer h2 {
+  margin-right: 0;
+  margin-left: 48px;
+}
+
+.mini-cart-drawer p:not(.eyebrow) {
+  margin: 0 0 16px;
+  color: #55504a;
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+.mini-cart-section-title {
+  margin: 0 0 10px;
+  color: var(--text);
+  font-size: 15px;
+  font-weight: 900;
+}
+
+.mini-suggestions {
+  gap: 9px;
+  margin: 0;
+  padding-bottom: 0;
+  overflow: visible;
+}
+
+.mini-suggestions:has(.suggestion-card:nth-child(4)) {
+  max-height: 300px;
+  overflow-y: auto;
+  padding-right: 6px;
+}
+
+.suggestion-card {
+  grid-template-columns: 54px minmax(0, 1fr) auto;
+  gap: 10px;
+  padding: 9px;
+  border-radius: 12px;
+  box-shadow: none;
+}
+
+.suggestion-card img {
+  width: 54px;
+  height: 54px;
+  border-radius: 10px;
+  object-fit: contain;
+}
+
+.suggestion-badge {
+  display: inline-flex !important;
+  width: max-content;
+  max-width: 100%;
+  margin-bottom: 4px;
+  padding: 3px 7px;
+  border-radius: 999px;
+  background: #fff4df;
+  color: var(--gold) !important;
+  font-size: 10px;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.suggestion-card strong {
+  font-size: 13px;
+  line-height: 1.25;
+}
+
+.suggestion-card .price-block {
+  margin-top: 3px;
+}
+
+.suggestion-card .price-aed {
+  font-size: 13px;
+}
+
+.suggestion-card .price-usd {
+  font-size: 10px;
+}
+
+.suggestion-card button {
+  min-height: 34px;
+  min-width: 56px;
+  max-width: 72px;
+  padding: 0 12px;
+  font-size: 13px;
+}
+
+.mini-cart-footer {
+  position: sticky;
+  bottom: 0;
+  gap: 10px;
+  margin: 16px -22px -22px;
+  padding: 14px 22px calc(16px + env(safe-area-inset-bottom));
+  background: rgba(255,255,255,.96);
+  backdrop-filter: blur(12px);
+}
+
+.mini-cart-footer .btn {
+  min-height: 46px;
+}
+
+.mini-cart-continue {
+  border: 0;
+  background: transparent;
+  color: #5b554d;
+  font: 800 13px/1 Inter, Arial, sans-serif;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+
+@media (max-width: 640px) {
+  .mini-cart-drawer {
+    top: auto;
+    right: 0;
+    bottom: 0;
+    width: 100vw;
+    max-width: 100vw;
+    max-height: 92vh;
+    padding: 18px;
+    border-radius: 22px 22px 0 0;
+  }
+
+  .mini-cart-content {
+    overflow-y: auto;
+  }
+
+  .mini-cart-drawer h2 {
+    font-size: 25px;
+  }
+
+  .suggestion-card {
+    grid-template-columns: 52px minmax(0, 1fr) 58px;
+  }
+
+  .suggestion-card button {
+    grid-column: auto;
+    width: auto;
+  }
+
+  .mini-cart-footer {
+    margin: 14px -18px -18px;
+    padding: 14px 18px calc(16px + env(safe-area-inset-bottom));
+  }
+}
+
+/* Remove Protein Coach header band while keeping close control */
+.protein-coach .coach-panel {
+  position: relative;
+}
+
+.protein-coach .coach-header {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 4;
+  display: block;
+  width: auto;
+  min-height: 0;
+  padding: 0;
+  background: transparent;
+  border: 0;
+}
+
+body.dir-rtl .protein-coach .coach-header {
+  right: auto;
+  left: 12px;
+}
+
+.protein-coach .coach-brand-logo,
+.protein-coach .coach-avatar,
+.protein-coach .coach-header h2,
+.protein-coach .coach-header p {
+  display: none;
+}
+
+.protein-coach .coach-icon-btn {
+  width: 38px;
+  height: 38px;
+  border: 1px solid rgba(227,163,51,.26);
+  background: rgba(255,255,255,.9);
+  color: var(--text);
+  box-shadow: 0 10px 24px rgba(16,12,8,.14);
+}
+
+.protein-coach .coach-body {
+  padding-top: 8px;
+}

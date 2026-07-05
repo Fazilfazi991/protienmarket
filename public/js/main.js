@@ -46,8 +46,24 @@
     return products.filter((item) => item.id !== product.id && categories.includes(item.category)).slice(0, limit);
   }
 
-  function productSuggestionCard(product) {
-    return `<article class="suggestion-card"><img src="${product.image}" alt="${productName(product)}" loading="lazy"><div><strong>${productName(product)}</strong>${priceBlock(product.price)}</div><button type="button" data-add-to-cart="${product.id}">${t("buttons.addToCart", "Add")}</button></article>`;
+  function suggestionReason(product, index = 0) {
+    if (product.category === "fresh-protein" || /protein|chicken|meal/i.test(product.name)) return t("cart.reasonHighProtein", "High protein");
+    if (index === 1 || product.category === "bars-snacks") return t("cart.reasonPopular", "Popular add-on");
+    return t("cart.reasonPairs", "Pairs well");
+  }
+
+  function productSuggestionCard(product, index = 0) {
+    return `
+      <article class="suggestion-card">
+        <img src="${product.image}" alt="${productName(product)}" loading="lazy">
+        <div>
+          <span class="suggestion-badge">${suggestionReason(product, index)}</span>
+          <strong>${productName(product)}</strong>
+          ${priceBlock(product.price)}
+        </div>
+        <button type="button" data-add-to-cart="${product.id}">${t("buttons.add", "Add")}</button>
+      </article>
+    `;
   }
 
   function closeCartDrawer() {
@@ -74,7 +90,21 @@
     const drawer = document.createElement("aside");
     drawer.className = "mini-cart-drawer";
     drawer.setAttribute("aria-label", t("cart.title", "Cart"));
-    drawer.innerHTML = `<button class="mini-cart-close" type="button" aria-label="Close cart suggestions">x</button><div class="mini-cart-content"><p class="eyebrow">${t("cart.title", "Cart")}</p><h2>${t("home.continuePlan", "Continue your plan")}</h2><p>${productName(addedProduct)} added. ${t("cart.suggestions", "You may also need")}.</p><div class="mini-suggestions">${smartSuggestionsFor(addedProduct, 3).map(productSuggestionCard).join("")}</div></div><div class="mini-cart-footer"><div class="mini-cart-subtotal"><span>${t("cart.subtotal", "Subtotal")}</span>${priceBlock(totals.subtotal)}</div><a class="btn btn--gold" href="${localePath("/cart")}">${t("cart.checkout", "Proceed to Checkout")}</a></div>`;
+    drawer.innerHTML = `
+      <button class="mini-cart-close" type="button" aria-label="${t("buttons.close", "Close")}">x</button>
+      <div class="mini-cart-content">
+        <p class="eyebrow">${t("cart.added", "Added to cart")}</p>
+        <h2>${t("cart.added", "Added to cart")}</h2>
+        <p>${productName(addedProduct)} ${t("cart.addedComplete", "has been added. Complete your plan with these recommended add-ons.")}</p>
+        <h3 class="mini-cart-section-title">${t("cart.recommendedAddons", "Recommended add-ons")}</h3>
+        <div class="mini-suggestions">${smartSuggestionsFor(addedProduct, 3).map(productSuggestionCard).join("")}</div>
+      </div>
+      <div class="mini-cart-footer">
+        <div class="mini-cart-subtotal"><span>${t("cart.subtotal", "Subtotal")}</span>${priceBlock(totals.subtotal)}</div>
+        <a class="btn btn--gold" href="${localePath("/cart")}">${t("cart.proceedToCart", "Proceed to Cart")}</a>
+        <button class="mini-cart-continue" type="button" data-mini-cart-continue>${t("cart.continueShopping", "Continue Shopping")}</button>
+      </div>
+    `;
     document.body.appendChild(backdrop);
     document.body.appendChild(drawer);
     const scrollY = window.scrollY || document.documentElement.scrollTop || 0;
@@ -87,6 +117,7 @@
     document.body.style.width = "100%";
     backdrop.addEventListener("click", closeCartDrawer);
     drawer.querySelector(".mini-cart-close").addEventListener("click", closeCartDrawer);
+    drawer.querySelector("[data-mini-cart-continue]")?.addEventListener("click", closeCartDrawer);
     drawer.querySelectorAll("[data-add-to-cart]").forEach((button) => {
       button.addEventListener("click", (event) => {
         event.preventDefault();
