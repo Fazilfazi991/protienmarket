@@ -66,6 +66,20 @@
     `;
   }
 
+  function cartAddonCard(product, index = 0) {
+    return `
+      <article class="cart-addon-card" data-product-card data-product-url="${localePath(`/product/${product.slug}`)}">
+        <img src="${product.image}" alt="${productName(product)}" loading="lazy">
+        <div>
+          <span>${suggestionReason(product, index)}</span>
+          <strong>${productName(product)}</strong>
+          ${priceBlock(product.price)}
+        </div>
+        <button type="button" data-add-to-cart="${product.id}">${t("buttons.add", "Add")}</button>
+      </article>
+    `;
+  }
+
   function closeCartDrawer() {
     const hadLock = document.body.classList.contains("cart-drawer-open");
     document.querySelector(".mini-cart-drawer")?.remove();
@@ -200,14 +214,27 @@
     }).join("");
     const delivery = 0;
     const grandTotal = total;
+    const firstProduct = products.find((entry) => entry.id === cart[0]?.id);
+    const addons = smartSuggestionsFor(firstProduct, 4).map(cartAddonCard).join("");
     panel.innerHTML = `
       <div class="cart-panel-header">
         <h2>${t("cart.title", "Cart")}</h2>
         <button type="button" data-cart-clear>${t("cart.clear", "Clear Cart")}</button>
       </div>
-      <div class="cart-items-scroll">
-        <div class="cart-row-list">${rows}</div>
-      </div>
+      <div class="cart-row-list">${rows}</div>
+      <section class="cart-inline-addons">
+        <div class="cart-section-title">
+          <h3>${t("cart.youMayAlsoLike", "You may also like")}</h3>
+        </div>
+        <div class="cart-addon-row">${addons}</div>
+      </section>
+      <section class="cart-coupon">
+        <label for="cart-coupon-code">${t("cart.coupon", "Coupon Code")}</label>
+        <div>
+          <input id="cart-coupon-code" type="text" placeholder="${t("cart.couponPlaceholder", "Enter coupon code")}">
+          <button type="button">${t("cart.apply", "Apply")}</button>
+        </div>
+      </section>
       <div class="cart-totals">
         <div><span>${t("cart.subtotal", "Subtotal")}</span>${priceBlock(total)}</div>
         <div><span>${t("cart.deliveryShort", "Delivery")}</span><strong class="ltr-value">${delivery ? formatAED(delivery) : t("cart.free", "Free")}</strong></div>
@@ -216,6 +243,7 @@
         <a class="btn btn--gold" href="${localePath("/checkout")}">${t("cart.checkout", "Proceed to Checkout")}</a>
       </div>
     `;
+    bindProductEvents(panel);
   }
 
   function cartTotals(cart) {

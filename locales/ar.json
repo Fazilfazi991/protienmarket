@@ -174,7 +174,11 @@
     "remove": "إزالة",
     "clear": "تفريغ السلة",
     "itemRemoved": "تمت إزالة المنتج من السلة.",
-    "cleared": "تم تفريغ السلة."
+    "cleared": "تم تفريغ السلة.",
+    "youMayAlsoLike": "قد يعجبك أيضاً",
+    "coupon": "رمز الخصم",
+    "couponPlaceholder": "أدخل رمز الخصم",
+    "apply": "تطبيق"
   },
   "checkout": {
     "title": "الدفع الآمن",

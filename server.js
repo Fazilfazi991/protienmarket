@@ -213,7 +213,7 @@ function calculateOrder(cartItems) {
   }).filter(Boolean);
 
   const subtotal = items.reduce((sum, item) => sum + item.lineTotal, 0);
-  const deliveryFee = subtotal > 250 || subtotal === 0 ? 0 : 15;
+  const deliveryFee = 0;
   const discount = 0;
   const total = subtotal + deliveryFee - discount;
   const totalUSDApprox = Number(usd(total));
