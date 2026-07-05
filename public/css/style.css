@@ -6136,6 +6136,80 @@ body.dir-rtl .mini-cart-close {
   padding: 14px;
 }
 
+.calculator-dashboard .plan-panel-results {
+  padding: 12px;
+}
+
+.calculator-dashboard .result-lower-grid {
+  grid-template-columns: minmax(0, 1fr) minmax(240px, .72fr);
+  gap: 12px;
+}
+
+.calculator-dashboard .distribution-card,
+.calculator-dashboard .pro-tip-card,
+.calculator-dashboard .dashboard-products {
+  min-width: 0;
+  padding: 16px;
+}
+
+.calculator-dashboard .distribution-card h3,
+.calculator-dashboard .dashboard-products h3 {
+  margin-bottom: 12px;
+  font-size: 19px;
+  line-height: 1.2;
+}
+
+.calculator-dashboard .distribution-layout {
+  grid-template-columns: minmax(120px, 150px) minmax(0, 1fr);
+  gap: 16px;
+  min-width: 0;
+}
+
+.calculator-dashboard .protein-donut {
+  width: 132px;
+}
+
+.calculator-dashboard .protein-donut span {
+  width: 62px;
+  height: 62px;
+}
+
+.calculator-dashboard .protein-donut strong {
+  font-size: 17px;
+}
+
+.calculator-dashboard .meal-list {
+  min-width: 0;
+  gap: 9px;
+}
+
+.calculator-dashboard .meal-pill {
+  grid-template-columns: 8px minmax(0, 1fr) max-content;
+  gap: 8px;
+  min-width: 0;
+  font-size: 12px;
+}
+
+.calculator-dashboard .meal-pill strong {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  line-height: 1.25;
+}
+
+.calculator-dashboard .meal-pill em {
+  white-space: nowrap;
+}
+
+.calculator-dashboard .pro-tip-card p:not(.calc-eyebrow) {
+  max-width: 28ch;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.calculator-dashboard .dashboard-products {
+  margin-top: 12px;
+}
+
 @media (max-width: 1180px) {
   .protein-calc-shell.calculator-dashboard {
     grid-template-columns: 1fr;
@@ -6160,6 +6234,15 @@ body.dir-rtl .mini-cart-close {
   .calculator-dashboard .plan-hero {
     min-height: 180px;
     padding: 24px 18px;
+  }
+
+  .calculator-dashboard .result-lower-grid,
+  .calculator-dashboard .distribution-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .calculator-dashboard .protein-donut {
+    justify-self: start;
   }
 
   .calculator-dashboard .empty-feature-list,
