@@ -198,14 +198,16 @@
         </div>
       `;
     }).join("");
-    const delivery = total > 250 ? 0 : 15;
-    const grandTotal = total + delivery;
+    const delivery = 0;
+    const grandTotal = total;
     panel.innerHTML = `
       <div class="cart-panel-header">
         <h2>${t("cart.title", "Cart")}</h2>
         <button type="button" data-cart-clear>${t("cart.clear", "Clear Cart")}</button>
       </div>
-      <div class="cart-row-list">${rows}</div>
+      <div class="cart-items-scroll">
+        <div class="cart-row-list">${rows}</div>
+      </div>
       <div class="cart-totals">
         <div><span>${t("cart.subtotal", "Subtotal")}</span>${priceBlock(total)}</div>
         <div><span>${t("cart.deliveryShort", "Delivery")}</span><strong class="ltr-value">${delivery ? formatAED(delivery) : t("cart.free", "Free")}</strong></div>
@@ -221,7 +223,7 @@
       const product = products.find((entry) => entry.id === item.id);
       return product ? sum + Number(product.price) * item.qty : sum;
     }, 0);
-    const delivery = subtotal > 250 || subtotal === 0 ? 0 : 15;
+    const delivery = 0;
     return { subtotal, delivery, total: subtotal + delivery };
   }
 
