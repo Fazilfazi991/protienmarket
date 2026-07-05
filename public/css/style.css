@@ -7151,3 +7151,57 @@ body.dir-rtl .protein-coach .coach-header {
   width: 42px;
   height: 42px;
 }
+
+/* Arabic hero: keep product visual on the right and give text clear space on the left */
+body.dir-rtl .hero-premium {
+  background:
+    linear-gradient(90deg, rgba(0,0,0,.98) 0%, rgba(0,0,0,.9) 34%, rgba(0,0,0,.38) 58%, rgba(0,0,0,.06) 100%),
+    url("/images/home-protein-slider.png") 78% center / cover no-repeat;
+}
+
+body.dir-rtl .hero-premium .hero__grid {
+  direction: ltr;
+  grid-template-columns: minmax(420px, .92fr) minmax(420px, 1.08fr);
+}
+
+body.dir-rtl .hero-premium .hero__copy {
+  direction: rtl;
+  max-width: 600px;
+  justify-self: start;
+  text-align: left;
+}
+
+body.dir-rtl .hero-premium .hero__copy h1,
+body.dir-rtl .hero-premium .hero__copy p {
+  margin-left: 0;
+  margin-right: auto;
+  text-align: left;
+}
+
+body.dir-rtl .hero-premium .hero__copy .btn {
+  margin-left: 0;
+  margin-right: auto;
+}
+
+body.dir-rtl .hero-premium .hero-product {
+  right: clamp(16px, 5vw, 86px);
+  left: auto;
+}
+
+@media (max-width: 1020px) {
+  body.dir-rtl .hero-premium .hero__grid {
+    grid-template-columns: 1fr;
+  }
+
+  body.dir-rtl .hero-premium .hero__copy {
+    max-width: 620px;
+  }
+}
+
+@media (max-width: 768px) {
+  body.dir-rtl .hero-premium .hero__copy,
+  body.dir-rtl .hero-premium .hero__copy h1,
+  body.dir-rtl .hero-premium .hero__copy p {
+    text-align: right;
+  }
+}
