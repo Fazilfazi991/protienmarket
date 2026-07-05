@@ -5974,6 +5974,203 @@ body.dir-rtl .mini-cart-close {
   }
 }
 
+/* Protein calculator 40% compact pass */
+.protein-calc-page {
+  padding: 30px 14px;
+}
+
+.protein-calc-shell.calculator-dashboard {
+  max-width: 1160px;
+  grid-template-columns: minmax(390px, 470px) minmax(0, 1fr);
+  border-radius: 18px;
+}
+
+.calculator-dashboard .calc-profile-panel,
+.calculator-dashboard .calc-plan-panel {
+  padding: 14px;
+}
+
+.calculator-dashboard .calc-stepper {
+  margin-bottom: 14px;
+}
+
+.calculator-dashboard .calc-step span {
+  width: 30px;
+  height: 30px;
+  font-size: 14px;
+}
+
+.calculator-dashboard .calc-step strong {
+  font-size: 12px;
+}
+
+.calculator-dashboard .calc-form-card {
+  border-radius: 14px;
+}
+
+.calculator-dashboard .calc-form-title {
+  gap: 12px;
+  padding: 15px 18px;
+}
+
+.calculator-dashboard .calc-icon {
+  width: 34px;
+  height: 34px;
+}
+
+.calculator-dashboard .calc-icon svg {
+  width: 17px;
+  height: 17px;
+}
+
+.calculator-dashboard .calc-form-title h1 {
+  font-size: 20px;
+}
+
+.calculator-dashboard .calc-form-title p {
+  font-size: 12px;
+}
+
+.calculator-dashboard .calc-fieldset {
+  padding: 16px 18px 18px;
+}
+
+.calculator-dashboard .calc-fieldset h2 {
+  margin-bottom: 12px;
+  font-size: 14px;
+}
+
+.calculator-dashboard .calc-fields {
+  column-gap: 14px;
+  row-gap: 14px;
+}
+
+.calculator-dashboard .calc-field {
+  min-height: 70px;
+  padding: 12px 34px 11px 14px;
+  border-radius: 13px;
+}
+
+.calculator-dashboard .calc-field::before {
+  right: 15px;
+  width: 10px;
+  height: 10px;
+}
+
+.calculator-dashboard .calc-field__label {
+  margin-bottom: 5px;
+  font-size: 12px;
+}
+
+.calculator-dashboard .calc-field input,
+.calculator-dashboard .calc-field select {
+  min-height: 24px;
+  font-size: 17px;
+}
+
+.calculator-dashboard .calc-submit {
+  width: calc(100% - 36px);
+  min-height: 46px;
+  margin: 18px 18px 0;
+  border-radius: 16px;
+  font-size: 14px;
+}
+
+.calculator-dashboard .calc-secure {
+  margin: 10px 18px 18px;
+  font-size: 11px;
+}
+
+.calculator-dashboard .plan-hero {
+  min-height: 210px;
+  padding: 28px 34px;
+}
+
+.calculator-dashboard .plan-hero h2 {
+  font-size: clamp(30px, 3.1vw, 40px);
+}
+
+.calculator-dashboard .plan-hero p:not(.calc-eyebrow) {
+  max-width: 390px;
+  font-size: 15px;
+}
+
+.calculator-dashboard .calc-eyebrow {
+  font-size: 12px;
+}
+
+.calculator-dashboard .empty-feature-list {
+  gap: 10px;
+  padding: 0 34px 18px;
+}
+
+.calculator-dashboard .empty-feature {
+  gap: 12px;
+  padding: 14px;
+}
+
+.calculator-dashboard .empty-feature h3,
+.calculator-dashboard .empty-callout h3 {
+  font-size: 16px;
+}
+
+.calculator-dashboard .empty-feature p,
+.calculator-dashboard .empty-callout p {
+  font-size: 13px;
+}
+
+.calculator-dashboard .empty-feature .feature-icon,
+.calculator-dashboard .empty-callout .feature-icon {
+  width: 40px;
+  height: 40px;
+}
+
+.calculator-dashboard .empty-feature .feature-icon svg,
+.calculator-dashboard .empty-callout .feature-icon svg {
+  width: 19px;
+  height: 19px;
+}
+
+.calculator-dashboard .empty-callout {
+  margin: 0 34px 22px;
+  padding: 14px;
+}
+
+@media (max-width: 1180px) {
+  .protein-calc-shell.calculator-dashboard {
+    grid-template-columns: 1fr;
+    max-width: 760px;
+  }
+}
+
+@media (max-width: 720px) {
+  .protein-calc-page {
+    padding: 18px 10px;
+  }
+
+  .calculator-dashboard .calc-profile-panel,
+  .calculator-dashboard .calc-plan-panel {
+    padding: 10px;
+  }
+
+  .calculator-dashboard .calc-field {
+    min-height: 64px;
+  }
+
+  .calculator-dashboard .plan-hero {
+    min-height: 180px;
+    padding: 24px 18px;
+  }
+
+  .calculator-dashboard .empty-feature-list,
+  .calculator-dashboard .empty-callout {
+    margin-left: 18px;
+    margin-right: 18px;
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
 /* Premium Protein Coach wizard refresh */
 .protein-coach .coach-panel {
   width: min(94vw, 520px);
