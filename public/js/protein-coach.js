@@ -34,7 +34,6 @@
         { label: "Build Muscle", value: "build-muscle", icon: icon("goal_build_muscle"), description: "Gain lean muscle and strength" },
         { label: "Stay Fit", value: "stay-fit", icon: icon("goal_stay_fit"), description: "Maintain fitness and energy" },
         { label: "Improve Recovery", value: "recovery", icon: icon("goal_recovery"), description: "Recover faster after training" },
-        { label: "Eat Healthier", value: "eat-healthier", icon: icon("goal_eat_healthier"), description: "Build a cleaner daily routine" },
         { label: "Not Sure", value: "not-sure", icon: icon("goal_not_sure"), description: "Let us guide your match" }
       ]
     },
@@ -82,45 +81,43 @@
       note: "Activity level directly impacts your daily protein requirements."
     },
     {
-      id: "lifestyle",
-      eyebrow: "Diet & preferences",
-      title: "Tell us about your lifestyle",
-      question: "We'll only recommend products that fit your preferences and budget.",
-      groups: [
-        {
-          id: "diet",
-          label: "Diet options",
-          options: [
-            { label: "Non-Vegetarian", value: "non-vegetarian", icon: icon("diet_nonveg") },
-            { label: "Vegetarian", value: "vegetarian", icon: icon("diet_vegetarian") },
-            { label: "Vegan", value: "vegan", icon: icon("diet_vegan") },
-            { label: "Keto", value: "keto", icon: icon("diet_keto") },
-            { label: "Gluten-Free", value: "gluten-free", icon: icon("diet_gluten_free") }
-          ]
-        },
-        {
-          id: "productType",
-          label: "Product interests",
-          options: [
-            { label: "Whey Protein", value: "protein-powder", icon: icon("product_whey") },
-            { label: "Clear Protein", value: "clear-protein", icon: icon("product_clear") },
-            { label: "Fresh Protein Meals", value: "fresh-protein", icon: icon("product_meal") },
-            { label: "Protein Snacks", value: "bars-snacks", icon: icon("product_snack") },
-            { label: "Meal Plans", value: "meal-plans", icon: icon("product_meal") }
-          ]
-        },
-        {
-          id: "budget",
-          label: "Budget selector",
-          options: [
-            { label: "Under AED 150", value: "under-150", icon: icon("budget_wallet") },
-            { label: "AED 150-300", value: "150-300", icon: icon("budget_wallet") },
-            { label: "AED 300-500", value: "300-500", icon: icon("budget_wallet") },
-            { label: "Premium AED 500+", value: "500-plus", icon: icon("budget_wallet") }
-          ]
-        }
-      ],
-      note: "We'll only recommend products that fit your preferences and budget."
+      id: "diet",
+      eyebrow: "Diet preference",
+      title: "Choose your diet style",
+      question: "Any diet preference?",
+      options: [
+        { label: "Non-Vegetarian", value: "non-vegetarian", icon: icon("diet_nonveg"), description: "Flexible meals and protein." },
+        { label: "Vegetarian", value: "vegetarian", icon: icon("diet_vegetarian"), description: "Meat-free protein choices." },
+        { label: "Vegan", value: "vegan", icon: icon("diet_vegan"), description: "Plant-powered options." },
+        { label: "Keto", value: "keto", icon: icon("diet_keto"), description: "Low-carb friendly picks." },
+        { label: "Gluten-Free", value: "gluten-free", icon: icon("diet_gluten_free"), description: "Gluten-free support." }
+      ]
+    },
+    {
+      id: "budget",
+      eyebrow: "Budget",
+      title: "Set your budget",
+      question: "What's your preferred budget?",
+      subtitle: "We'll recommend products that fit your budget.",
+      options: [
+        { label: "Under AED 150", value: "under-150", icon: icon("budget_wallet"), description: "Simple essentials." },
+        { label: "AED 150-300", value: "150-300", icon: icon("budget_wallet"), description: "Daily routine support." },
+        { label: "AED 300-500", value: "300-500", icon: icon("budget_wallet"), description: "Fuller nutrition stack." },
+        { label: "Premium AED 500+", value: "500-plus", icon: icon("budget_wallet"), description: "Complete premium plan." }
+      ]
+    },
+    {
+      id: "productType",
+      eyebrow: "Product match",
+      title: "Choose what you want",
+      question: "What are you looking for?",
+      options: [
+        { label: "Protein Drinks", value: "protein-drinks", icon: icon("product_whey"), description: "Whey, clear, or vegan protein." },
+        { label: "Healthy Meals", value: "healthy-meals", icon: icon("product_meal"), description: "Fresh high-protein meals." },
+        { label: "Snacks & Bars", value: "snacks-bars", icon: icon("product_snack"), description: "Protein bars and healthy snacks." },
+        { label: "Complete Nutrition Plans", value: "complete-plans", icon: icon("product_meal"), description: "Weekly or monthly programs." },
+        { label: "Not Sure", value: "not-sure-products", icon: icon("goal_not_sure"), description: "Let us choose the best fit." }
+      ]
     }
   ];
 
@@ -181,7 +178,7 @@
       <div class="coach-intro coach-view">
         <p class="coach-kicker">${t("coach.title", "Protein Coach")}</p>
         <h3>${t("coach.quick", "Find the right product in 30 seconds")}</h3>
-        <p>${t("coach.introCopy", "Answer 5 quick questions and we'll suggest products that fit your goal.")}</p>
+        <p>${t("coach.introCopy", "Answer 6 quick questions and we'll suggest products that fit your goal.")}</p>
         <button class="coach-primary" type="button" data-coach-start>${t("coach.start", "Start")}</button>
         <a class="coach-secondary-link" href="${localePath("/shop")}">${t("coach.skip", "Skip and browse shop")}</a>
       </div>
@@ -209,7 +206,7 @@
   }
 
   function renderStepProgress() {
-    const total = coachSteps.length + 1;
+    const total = coachSteps.length;
     const current = state.currentStep + 1;
     return `
       <div class="coach-step-progress">
@@ -325,12 +322,12 @@
       if (/daily-protein|maintenance|balanced|top rated/.test(text)) score += 14;
     }
 
-    if (answers.productType === "meal-plans" && product.category === "meal-plan") score += 28;
-    if (answers.productType === "bars-snacks" && product.category === "bars-snacks") score += 28;
-    if (answers.productType === "fresh-protein" && product.category === "fresh-protein") score += 28;
-    if (answers.productType === "vegan-options" && product.category === "vegan-protein") score += 28;
-    if (answers.productType === "protein-powder" && ["protein", "vegan-protein"].includes(product.category)) score += 24;
-    if (answers.productType === "clear-protein" && product.subcategory === "clear-protein") score += 28;
+    if (answers.productType === "complete-plans" && product.category === "meal-plan") score += 28;
+    if (answers.productType === "snacks-bars" && product.category === "bars-snacks") score += 28;
+    if (answers.productType === "healthy-meals" && product.category === "fresh-protein") score += 28;
+    if (answers.productType === "protein-drinks" && ["protein", "vegan-protein"].includes(product.category)) score += 24;
+    if (answers.productType === "protein-drinks" && product.subcategory === "clear-protein") score += 28;
+    if (answers.productType === "not-sure-products") score += 8;
 
     const limit = budgetLimit(answers.budget);
     if (Number(product.price) <= limit) score += 16;
@@ -344,16 +341,17 @@
   }
 
   function recommendedCategory(answers) {
-    if (answers.diet === "vegan" || answers.productType === "vegan-options") {
+    if (answers.diet === "vegan") {
       return {
         title: "Best match: Vegan Protein",
         copy: "Start with plant protein, vegan snacks, or a plant-based meal plan.",
         href: localePath("/category/vegan-protein")
       };
     }
-    if (answers.productType === "meal-plans") return { title: "Best match: Meal Plans", copy: "Choose calorie-aware plans that keep your nutrition consistent.", href: localePath("/category/meal-plan") };
-    if (answers.productType === "bars-snacks") return { title: "Best match: Bars & Snacks", copy: "Use protein snacks for easy fuel between meals.", href: localePath("/category/bars-snacks") };
-    if (answers.productType === "fresh-protein") return { title: "Best match: Fresh Protein", copy: "Fresh protein works well for clean lunches and dinner prep.", href: localePath("/category/fresh-protein") };
+    if (answers.productType === "complete-plans") return { title: "Best match: Complete Nutrition Plans", copy: "Choose calorie-aware plans that keep your nutrition consistent.", href: localePath("/category/meal-plan") };
+    if (answers.productType === "snacks-bars") return { title: "Best match: Snacks & Bars", copy: "Use protein snacks for easy fuel between meals.", href: localePath("/category/bars-snacks") };
+    if (answers.productType === "healthy-meals") return { title: "Best match: Healthy Meals", copy: "Fresh protein works well for clean lunches and dinner prep.", href: localePath("/category/fresh-protein") };
+    if (answers.productType === "protein-drinks") return { title: "Best match: Protein Drinks", copy: "Start with whey, clear protein, or plant-based protein drinks.", href: localePath("/category/protein") };
     if (answers.goal === "lose-fat") return { title: "Best match: Fat Loss Protein", copy: "Start with clear protein, thermogenic protein, or a lean meal plan.", href: localePath("/category/protein/thermogenic") };
     if (answers.goal === "build-muscle") return { title: "Best match: Muscle Gain Stack", copy: "Whey, mass gainers, and protein snacks fit your goal best.", href: localePath("/goal/build-muscle") };
     if (answers.goal === "recovery") return { title: "Best match: Recovery Support", copy: "Whey, fresh protein, and balanced meals can support recovery.", href: localePath("/goal/athlete-recovery") };
@@ -372,8 +370,9 @@
     if (answers.diet === "vegan" && product.category === "vegan-protein") return "Vegan fit";
     if (answers.goal === "lose-fat") return "Lean choice";
     if (answers.goal === "build-muscle") return "Muscle support";
-    if (answers.productType === "meal-plans") return "Meal support";
-    if (answers.productType === "bars-snacks") return "Easy snack";
+    if (answers.productType === "complete-plans") return "Plan support";
+    if (answers.productType === "healthy-meals") return "Meal support";
+    if (answers.productType === "snacks-bars") return "Easy snack";
     return "Best match";
   }
 
@@ -386,7 +385,7 @@
     body.innerHTML = `
       <div class="coach-result coach-view">
         <div class="coach-step-row">
-          <span>Step 5 of 5</span>
+          <span>Plan ready</span>
           <button type="button" data-coach-reset>Restart</button>
         </div>
         <div class="coach-progress"><span style="width:100%"></span></div>

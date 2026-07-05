@@ -6636,7 +6636,7 @@ body.coach-modal-open {
 
 .coach-step-dots {
   display: grid;
-  grid-template-columns: repeat(5, minmax(18px, 1fr));
+  grid-template-columns: repeat(6, minmax(16px, 1fr));
   gap: 8px;
   width: min(260px, 52%);
 }
@@ -7053,6 +7053,74 @@ body.dir-rtl .protein-coach .coach-header {
 
 .protein-coach .coach-body {
   padding-top: 8px;
+}
+
+/* Six-step Protein Coach onboarding */
+.protein-coach .coach-panel {
+  max-height: none;
+}
+
+.protein-coach .coach-body {
+  overflow: visible;
+}
+
+.protein-coach .coach-view {
+  padding: 16px 22px 18px;
+}
+
+.protein-coach .coach-options:not(.goal-grid) {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 9px;
+}
+
+.protein-coach .coach-options:not(.goal-grid) .coach-option {
+  min-height: 76px;
+}
+
+.protein-coach .coach-options:not(.goal-grid) .coach-option:nth-child(5):last-child {
+  grid-column: 1 / -1;
+  min-height: 54px;
+}
+
+.protein-coach .coach-options:not(.goal-grid) .coach-option:nth-child(5):last-child small {
+  display: none;
+}
+
+.protein-coach .coach-group {
+  margin-top: 8px;
+}
+
+.protein-coach .coach-chip-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.protein-coach .coach-note,
+.protein-coach .coach-privacy {
+  padding: 10px 12px;
+  font-size: 12px;
+}
+
+@media (max-width: 720px) {
+  .protein-coach .coach-panel {
+    max-height: 92vh;
+  }
+
+  .protein-coach .coach-body {
+    overflow-y: auto;
+  }
+
+  .protein-coach .coach-options:not(.goal-grid) {
+    grid-template-columns: 1fr;
+  }
+
+  .protein-coach .coach-options:not(.goal-grid) .coach-option:nth-child(5):last-child {
+    grid-column: auto;
+  }
+
+  .protein-coach .coach-chip-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 /* Keep Protein Coach collapsed to the small icon until opened */
