@@ -190,43 +190,54 @@
 
   function renderQuestion() {
     const step = coachSteps[state.currentStep];
-    const progress = ((state.currentStep + 1) / (coachSteps.length + 1)) * 100;
     const canContinue = step.groups ? step.groups.every((group) => state.answers[group.id]) : Boolean(state.answers[step.id]);
     body.innerHTML = `
       <div class="coach-question coach-view coach-view--${state.motion}">
+        ${renderStepProgress()}
         <p class="coach-microcopy">${step.eyebrow}</p>
-        <h3>${step.title}</h3>
-        ${step.subtitle ? `<p>${step.subtitle}</p>` : ""}
-        <p class="coach-question-copy">${step.question}</p>
+        <h3>${step.question}</h3>
+        ${step.subtitle ? `<p class="coach-question-subtitle">${step.subtitle}</p>` : ""}
         ${step.groups ? renderGroupedStep(step) : renderOptionGrid(step)}
         ${step.note ? `<div class="coach-note"><span><img src="${icon("recommendation")}" alt="" aria-hidden="true"></span><p>${step.note}</p></div>` : ""}
         ${step.privacy ? `<p class="coach-privacy"><img src="${icon("secure_private")}" alt="" aria-hidden="true">${step.privacy}</p>` : ""}
-        <footer class="coach-wizard-footer">
-          <div class="coach-footer-progress">
-            <span>Step ${state.currentStep + 1} of 5</span>
-            <div class="coach-progress"><span style="width:${progress}%"></span></div>
-          </div>
-          <div class="coach-nav-row">
-            ${state.currentStep > 0 ? '<button type="button" data-coach-back>Back</button>' : '<span></span>'}
-            <button class="coach-next" type="button" data-coach-next ${canContinue ? "" : "disabled"}>${state.currentStep === coachSteps.length - 1 ? "Generate My Plan" : "Continue ->"}</button>
-          </div>
-        </footer>
+        <div class="coach-action-bar">
+          <button class="coach-next" type="button" data-coach-next ${canContinue ? "" : "disabled"}>${state.currentStep === coachSteps.length - 1 ? "Generate My Plan" : "Continue ->"}</button>
+        </div>
       </div>
     `;
     scrollCoachTop();
   }
 
+  function renderStepProgress() {
+    const total = coachSteps.length + 1;
+    const current = state.currentStep + 1;
+    return `
+      <div class="coach-step-progress">
+        <span>Step ${current} of ${total}</span>
+        <div class="coach-step-dots" aria-hidden="true">
+          ${Array.from({ length: total }).map((_, index) => `<i class="${index < current ? "is-active" : ""}"></i>`).join("")}
+        </div>
+      </div>
+    `;
+  }
+
   function renderOptionGrid(step) {
+    const isGoalStep = step.layout === "goal-grid";
+    const mainOptions = isGoalStep ? step.options.slice(0, 4) : step.options;
+    const secondaryOptions = isGoalStep ? step.options.slice(4) : [];
+    const renderOption = (option, isSecondary = false) => `
+      <button class="coach-option ${isSecondary ? "coach-option--secondary" : ""} ${state.answers[step.id] === option.value ? "is-selected" : ""}" type="button" data-coach-answer="${option.value}" data-coach-answer-id="${step.id}">
+        <span><img src="${option.icon}" alt="" aria-hidden="true"></span>
+        <strong>${option.label}</strong>
+        ${option.description ? `<small>${option.description}</small>` : ""}
+      </button>
+    `;
+
     return `
       <div class="coach-options ${step.layout || ""}">
-        ${step.options.map((option) => `
-          <button class="coach-option ${state.answers[step.id] === option.value ? "is-selected" : ""}" type="button" data-coach-answer="${option.value}" data-coach-answer-id="${step.id}">
-            <span><img src="${option.icon}" alt="" aria-hidden="true"></span>
-            <strong>${option.label}</strong>
-            ${option.description ? `<small>${option.description}</small>` : ""}
-          </button>
-        `).join("")}
+        ${mainOptions.map((option) => renderOption(option)).join("")}
       </div>
+      ${secondaryOptions.length ? `<div class="coach-secondary-options">${secondaryOptions.map((option) => renderOption(option, true)).join("")}</div>` : ""}
     `;
   }
 
@@ -261,14 +272,6 @@
     }
     body.innerHTML = '<div class="coach-loading coach-view"><span></span><h3>Building your plan...</h3><p>Your personalized stack is almost ready.</p></div>';
     window.setTimeout(renderResults, 350);
-  }
-
-  function goBack() {
-    if (state.currentStep > 0) {
-      state.motion = "back";
-      state.currentStep -= 1;
-      renderQuestion();
-    }
   }
 
   function textFor(product) {
@@ -454,14 +457,12 @@
     const start = event.target.closest("[data-coach-start]");
     const answer = event.target.closest("[data-coach-answer]");
     const next = event.target.closest("[data-coach-next]");
-    const back = event.target.closest("[data-coach-back]");
     const reset = event.target.closest("[data-coach-reset]");
     const add = event.target.closest("[data-coach-add]");
 
     if (start) startCoach();
     if (answer) selectAnswer(answer.dataset.coachAnswerId, answer.dataset.coachAnswer);
     if (next && !next.disabled) nextStep();
-    if (back) goBack();
     if (reset) resetCoach();
     if (add) addProductToCart(add.dataset.coachAdd);
   });
